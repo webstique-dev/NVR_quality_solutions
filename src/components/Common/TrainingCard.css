@@ -1,0 +1,38 @@
+.training-card {
+  border-radius: var(--card-radius-lg);
+  overflow: hidden;
+  background: var(--color-card-bg);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--duration-fast) var(--ease-premium),
+    box-shadow var(--duration-fast) var(--ease-premium);
+}
+
+.training-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.training-card__media {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  color: var(--color-accent);
+  background: linear-gradient(135deg, #ecfdf5, #f4f4f5);
+}
+
+.training-card__body {
+  padding: var(--space-lg);
+}
+
+.training-card__title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.training-card__meta {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary-light);
+  margin-bottom: var(--space-md);
+}

@@ -1,0 +1,21 @@
+/* ===========================
+   Home Page — Scoped Styles
+   =========================== */
+
+/* Legacy grid kept for any remaining uses */
+.home-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.home-faq-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .home-services-grid {
+    grid-template-columns: 1fr;
+  }
+}

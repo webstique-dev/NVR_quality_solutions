@@ -1,0 +1,126 @@
+/* ===========================
+   Who We Work With Section
+   =========================== */
+.who-work {
+  background-color: var(--color-light-bg);
+}
+
+.who-work__header {
+  margin-bottom: var(--space-xl);
+}
+
+.who-work__heading {
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  letter-spacing: var(--ls-heading);
+  color: var(--color-text-primary-light);
+  max-width: 22ch;
+  margin-top: var(--space-sm);
+}
+
+/* --- Grid --- */
+.who-work__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+/* --- Card --- */
+.who-work__card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--card-radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.3s var(--ease-premium), border-color 0.3s var(--ease-premium);
+  cursor: default;
+}
+
+.who-work__card:hover {
+  box-shadow: var(--shadow-elevated);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.who-work__card-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: rgba(52, 211, 153, 0.1);
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.who-work__card-icon {
+  width: 26px;
+  height: 26px;
+  color: #059669;
+}
+
+.who-work__card-label {
+  font-size: 1rem;
+  color: var(--color-text-primary-light);
+  line-height: 1.5;
+  font-weight: 500;
+  flex: 1;
+}
+
+.who-work__card-check {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.12);
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.who-work__check-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ===========================
+   Responsive — Tablet (≤1024px)
+   =========================== */
+@media (max-width: 1024px) {
+  .who-work__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .who-work__heading {
+    max-width: 28ch;
+  }
+}
+
+/* ===========================
+   Responsive — Mobile (≤640px)
+   =========================== */
+@media (max-width: 640px) {
+  .who-work__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .who-work__heading {
+    max-width: none;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+}
+
+/* ===========================
+   2K / 4K
+   =========================== */
+@media (min-width: 2000px) {
+  .who-work__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

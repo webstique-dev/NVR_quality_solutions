@@ -1,0 +1,65 @@
+:root {
+  /* ===== Color — Dark Sections ===== */
+  --color-dark-bg: #000000;
+  --color-glass-surface: rgba(255, 255, 255, 0.09);
+  --color-glass-border: rgba(255, 255, 255, 0.22);
+  --color-accent: #34d399;
+  --color-accent-soft: rgba(52, 211, 153, 0.18);
+  --color-text-primary-dark: #ffffff;
+  --color-text-secondary-dark: rgba(255, 255, 255, 0.82);
+
+  /* ===== Color — Light Sections ===== */
+  --color-light-bg: #f4f4f5;
+  --color-card-bg: #ffffff;
+  --color-text-primary-light: #18181b;
+  --color-text-secondary-light: #71717a;
+
+  /* ===== Typography ===== */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --fs-h1: clamp(2rem, 3.5vw + 1rem, 4.25rem);
+  --fs-h2: clamp(1.65rem, 2.5vw + 0.8rem, 3.25rem);
+  --fs-h3: clamp(1.25rem, 1.8vw + 0.6rem, 2rem);
+  --fs-h4: clamp(1.1rem, 1.2vw + 0.5rem, 1.35rem);
+  --fs-body-lg: clamp(1rem, 0.4vw + 0.85rem, 1.15rem);
+  --fs-body: clamp(0.875rem, 0.3vw + 0.8rem, 1rem);
+  --fs-small: clamp(0.78rem, 0.2vw + 0.72rem, 0.875rem);
+
+  --lh-heading: 1.1;
+  --lh-body: 1.7;
+
+  --ls-heading: -0.02em;
+
+  /* ===== Layout ===== */
+  --max-width: 1600px;
+  --section-radius: clamp(24px, 3vw, 40px);
+  --card-radius-sm: 16px;
+  --card-radius-lg: 24px;
+
+  --space-xs: clamp(6px, 0.5vw, 8px);
+  --space-sm: clamp(12px, 1vw, 16px);
+  --space-md: clamp(16px, 1.5vw, 24px);
+  --space-lg: clamp(24px, 2.5vw, 40px);
+  --space-xl: clamp(40px, 4vw, 64px);
+  --space-2xl: clamp(56px, 6vw, 96px);
+  --space-3xl: clamp(80px, 8vw, 140px);
+
+  /* ===== Motion ===== */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 0.4s;
+  --duration-base: 0.6s;
+  --duration-slow: 0.8s;
+
+  /* ===== Effects ===== */
+  --blur-glass: blur(18px);
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-glass: 0 10px 32px rgba(0, 0, 0, 0.28);
+  --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.12);
+  --shadow-dark-glow: 0 0 40px rgba(52, 211, 153, 0.15);
+
+  /* ===== Z-index ===== */
+  --z-nav: 100;
+  --z-modal: 200;
+  --z-toast: 300;
+}

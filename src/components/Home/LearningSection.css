@@ -1,0 +1,221 @@
+/* ===========================
+   Learning Section
+   =========================== */
+.learning {
+  position: relative;
+  overflow: hidden;
+}
+
+.learning__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.learning__glow {
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.1), transparent 70%);
+  filter: blur(80px);
+}
+
+/* --- Layout --- */
+.learning__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+/* --- Content (Left) --- */
+.learning__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.learning__heading {
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  letter-spacing: var(--ls-heading);
+  color: var(--color-text-primary-dark);
+  max-width: 20ch;
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.learning__subheading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+}
+
+.learning__paragraph {
+  font-size: var(--fs-body-lg);
+  color: var(--color-text-secondary-dark);
+  line-height: var(--lh-body);
+  max-width: 56ch;
+  margin-bottom: var(--space-md);
+}
+
+.learning__paragraph:last-of-type {
+  margin-bottom: 0;
+}
+
+/* --- Stats Row --- */
+.learning__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.learning__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.learning__stat-value {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.learning__stat-label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary-dark);
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.learning__stat-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+/* --- Visual (Right) --- */
+.learning__visual {
+  position: relative;
+}
+
+.learning__img-wrap {
+  position: relative;
+}
+
+.learning__img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--card-radius-lg);
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 64px rgba(0, 0, 0, 0.5));
+}
+
+.learning__img-tag {
+  position: absolute;
+  bottom: -16px;
+  left: -16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1f2937;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+  white-space: nowrap;
+}
+
+.learning__img-tag-icon {
+  width: 20px;
+  height: 20px;
+  color: #059669;
+  flex-shrink: 0;
+}
+
+/* ===========================
+   Responsive — Tablet (≤1024px)
+   =========================== */
+@media (max-width: 1024px) {
+  .learning__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .learning__visual {
+    order: -1;
+  }
+
+  .learning__img {
+    max-width: 460px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .learning__heading {
+    max-width: 28ch;
+  }
+
+  .learning__paragraph {
+    max-width: none;
+  }
+}
+
+/* ===========================
+   Responsive — Mobile (≤640px)
+   =========================== */
+@media (max-width: 640px) {
+  .learning__heading {
+    max-width: none;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .learning__paragraph {
+    font-size: 1rem;
+  }
+
+  .learning__stats {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .learning__stat-divider {
+    display: none;
+  }
+
+  .learning__img-tag {
+    bottom: 0;
+    left: 0;
+    font-size: 0.78rem;
+    padding: 10px 14px;
+  }
+}
+
+/* ===========================
+   2K / 4K
+   =========================== */
+@media (min-width: 2000px) {
+  .learning__img {
+    max-width: 640px;
+  }
+}

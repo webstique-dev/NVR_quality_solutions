@@ -1,0 +1,99 @@
+#root,
+.app-wrapper {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-xl) 0;
+  }
+}
+
+.section--dark {
+  background-color: var(--color-dark-bg);
+  color: var(--color-text-primary-dark);
+}
+
+.section--light {
+  background-color: var(--color-light-bg);
+  color: var(--color-text-primary-light);
+}
+
+.section--rounded {
+  border-radius: var(--section-radius);
+}
+
+/* Glass surface — dark sections only, per design rule */
+.glass {
+  background: var(--color-glass-surface);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--shadow-glass);
+  transition: background var(--duration-fast) var(--ease-premium),
+    border-color var(--duration-fast) var(--ease-premium),
+    box-shadow var(--duration-fast) var(--ease-premium);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-accent), #6ee7b7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.home-faq-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+}
