@@ -1,65 +1,78 @@
 /* ===================================================================
-   Navbar — Mistral AI Design System (DESIGN.md)
-
-   Sticky white editorial bar with hairline border.
-   No glass, no floating pill, no dark background.
+   Navbar — Floating pill navigation
    =================================================================== */
 
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: var(--z-nav);
-  background-color: var(--color-canvas);
-  border-bottom: 1px solid var(--color-hairline-soft);
-  transition: box-shadow var(--duration-base) var(--ease-standard);
-}
-
-.navbar--scrolled {
-  box-shadow: var(--shadow-navbar);
-}
-
-/* ─── Inner layout ───────────────────────────────────────────────── */
-.navbar__inner {
   width: 100%;
-  max-width: var(--max-width);
+  padding: 0.75rem 1rem 0;
+}
+
+.navbar__shell {
+  width: min(100%, 960px);
   margin: 0 auto;
-  height: var(--nav-height);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(0px);
+  box-shadow: none;
+  transition:
+    background-color 300ms ease,
+    box-shadow 300ms ease,
+    border-color 300ms ease,
+    backdrop-filter 300ms ease;
+}
+
+.navbar--scrolled .navbar__shell {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+}
+
+.navbar__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-xl);
-  padding: 0 clamp(1rem, 3vw, 2rem);
+  gap: 1rem;
+  padding: 0.55rem 1.4rem;
+  min-height: 3.4rem;
 }
 
-/* ─── Logo ────────────────────────────────────────────────────────── */
 .navbar__logo {
-  text-decoration: none;
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .navbar__logo-img {
-  height: clamp(32px, 4vw, 40px);
+  height: clamp(34px, 4vw, 42px);
   width: auto;
   object-fit: contain;
   display: block;
 }
 
-/* ─── Desktop nav links ───────────────────────────────────────────── */
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
-  flex: 1;
   justify-content: center;
+  gap: 0.35rem;
+  flex: 1;
 }
 
-.navbar__link {
-  padding: 0.55rem 0.9rem;
-  border-radius: var(--rounded-md);
+.navbar__link,
+.navbar__mobile-link {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65rem 0.95rem;
+  border-radius: 9999px;
   font-family: var(--font-body);
   font-size: var(--fs-body-sm-resp);
   font-weight: 500;
@@ -68,52 +81,108 @@
   color: var(--color-slate);
   text-decoration: none;
   transition:
-    color var(--duration-fast) var(--ease-standard),
-    background-color var(--duration-fast) var(--ease-standard);
+    color 180ms ease,
+    transform 180ms ease,
+    font-weight 180ms ease;
 }
 
-.navbar__link:hover {
-  color: var(--color-accent-blue);
-  background-color: var(--color-blue-50);
+.navbar__link::before,
+.navbar__mobile-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(15, 63, 184, 0.08), rgba(63, 169, 255, 0.14));
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: -1;
 }
 
-.navbar__link--active {
+.navbar__link:hover,
+.navbar__link:focus-visible,
+.navbar__mobile-link:hover,
+.navbar__mobile-link:focus-visible,
+.navbar__link--active,
+.navbar__mobile-link--active {
   color: var(--color-primary-blue);
-  background-color: var(--color-blue-50);
   font-weight: 600;
 }
 
-/* ─── CTA area ────────────────────────────────────────────────────── */
+.navbar__link:hover::before,
+.navbar__link:focus-visible::before,
+.navbar__mobile-link:hover::before,
+.navbar__mobile-link:focus-visible::before,
+.navbar__link--active::before,
+.navbar__mobile-link--active::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.navbar__link:hover,
+.navbar__link:focus-visible {
+  transform: translateY(-1px);
+}
+
 .navbar__cta {
   flex-shrink: 0;
 }
 
-/* ─── Mobile toggle ───────────────────────────────────────────────── */
 .navbar__toggle {
   display: none;
   width: 44px;
   height: 44px;
-  border-radius: var(--rounded-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-hairline);
+  border: 1px solid rgba(15, 63, 184, 0.12);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
   color: var(--color-ink);
   cursor: pointer;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background-color var(--duration-fast) var(--ease-standard);
+  transition: background-color 180ms ease, transform 180ms ease;
 }
 
-.navbar__toggle:hover {
-  background-color: var(--color-hairline-soft);
+.navbar__toggle:hover,
+.navbar__toggle:focus-visible {
+  background-color: var(--color-blue-50);
+  transform: translateY(-1px);
 }
 
-/* ─── Mobile drawer ───────────────────────────────────────────────── */
 .navbar__mobile {
   display: none;
+  gap: 0.5rem;
+  padding: 0 0.25rem 0.15rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: max-height 240ms var(--ease-premium), opacity 220ms ease, transform 220ms ease, padding 220ms ease;
 }
 
-/* ─── Responsive — Tablet & Mobile (<1024px) ─────────────────────── */
+.navbar__mobile--open {
+  display: grid;
+  max-height: 320px;
+  opacity: 1;
+  pointer-events: auto;
+  padding-top: 0.7rem;
+  transform: translateY(0);
+}
+
+.navbar__mobile .btn {
+  margin-top: 0.25rem;
+  justify-content: center;
+}
+
+.navbar__link:focus-visible,
+.navbar__mobile-link:focus-visible,
+.navbar__toggle:focus-visible {
+  outline: 2px solid var(--color-primary-blue);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(63, 169, 255, 0.2);
+}
+
 @media (max-width: 1024px) {
   .navbar__links,
   .navbar__cta {
@@ -121,76 +190,50 @@
   }
 
   .navbar__toggle {
-    display: flex;
-  }
-
-  .navbar__inner {
-    padding: 0 var(--spacing-xl);
+    display: inline-flex;
   }
 
   .navbar__mobile {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-    padding: var(--spacing-md) clamp(1rem, 3vw, 2rem) var(--spacing-xl);
-    background-color: var(--color-canvas);
-    border-top: 1px solid var(--color-hairline-soft);
-    border-bottom: 1px solid var(--color-hairline-soft);
+    display: grid;
   }
 
   .navbar__mobile-link {
-    display: flex;
-    align-items: center;
     min-height: 44px;
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-family: var(--font-body);
-    font-size: var(--fs-body-resp);
-    font-weight: 500;
-    color: var(--color-slate);
-    text-decoration: none;
-    border-radius: var(--rounded-md);
-    transition: background-color var(--duration-fast), color var(--duration-fast);
-  }
-
-  .navbar__mobile-link:hover {
-    background-color: var(--color-surface);
-    color: var(--color-ink);
-  }
-
-  .navbar__mobile-link--active {
-    background-color: var(--color-surface);
-    color: var(--color-ink);
-    font-weight: 600;
-  }
-
-  .navbar__mobile .btn {
-    margin-top: var(--spacing-sm);
-    width: 100%;
-    justify-content: center;
+    padding: 0.75rem 0.95rem;
   }
 }
 
-/* ─── Responsive — Small Mobile (<480px) ─────────────────────────── */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 0.75rem 0;
+  }
+
+  .navbar__inner {
+    padding: 0.55rem 1rem;
+  }
+
+  .navbar__shell {
+    width: min(100%, 100%);
+  }
+}
+
 @media (max-width: 480px) {
   .navbar__inner {
-    padding: 0 1rem;
+    padding: 0.5rem 0.85rem;
   }
 
-  .navbar__logo {
-    font-size: clamp(12px, 3.8vw, 14px);
-  }
-
-  .navbar__mobile {
-    padding: var(--spacing-md);
+  .navbar__logo-img {
+    height: 32px;
   }
 }
 
-@media (max-width: 360px) {
-  .navbar__inner {
-    padding: 0 0.75rem;
-  }
-
-  .navbar__logo {
-    font-size: var(--fs-micro-resp);
+@media (prefers-reduced-motion: reduce) {
+  .navbar__shell,
+  .navbar__link,
+  .navbar__mobile-link,
+  .navbar__toggle,
+  .navbar__mobile {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
   }
 }
