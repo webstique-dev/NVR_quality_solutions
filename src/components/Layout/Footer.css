@@ -20,7 +20,7 @@
 .footer__inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: clamp(3.25rem, 6vw, 4.5rem) clamp(1rem, 3vw, 2rem);
+  padding: var(--spacing-section) var(--spacing-xxl);
 }
 
 /* ─── Top grid ────────────────────────────────────────────────────── */
@@ -56,24 +56,26 @@
   max-width: 44ch;
   color: var(--color-slate);
   font-family: var(--font-body);
-  font-size: var(--fs-body-sm-resp);
+  font-size: var(--fs-body-sm);
   line-height: var(--lh-body-sm);
 }
 
 .footer__cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-xs);
   margin-top: var(--spacing-lg);
-  padding: 0.8rem 1.35rem;
-  background-color: var(--color-primary-red);
+  padding: 0.85rem 1.35rem;
+  min-height: 46px;
+  background: linear-gradient(135deg, var(--color-primary-red), #ff3d4a);
   color: var(--color-on-primary);
   font-family: var(--font-body);
-  font-size: var(--fs-btn-resp);
-  font-weight: 500;
-  border-radius: var(--rounded-md);
+  font-size: var(--fs-btn);
+  font-weight: 600;
+  border-radius: 999px;
   text-decoration: none;
-  box-shadow: var(--shadow-button-red);
+  box-shadow: 0 14px 30px rgba(227, 27, 35, 0.24);
   transition:
     background-color var(--duration-fast) var(--ease-standard),
     transform var(--duration-fast) var(--ease-standard),
@@ -81,9 +83,14 @@
 }
 
 .footer__cta:hover {
-  background-color: var(--color-dark-red);
-  transform: translateY(-1px);
-  box-shadow: 0 12px 28px rgba(227, 27, 35, 0.35);
+  background: linear-gradient(135deg, var(--color-dark-red), #be1720);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(227, 27, 35, 0.32);
+}
+
+.footer__cta:focus-visible {
+  outline: 3px solid rgba(227, 27, 35, 0.2);
+  outline-offset: 2px;
 }
 
 .footer__cta-icon {
@@ -126,7 +133,7 @@
   font-size: var(--fs-body-sm);
   line-height: var(--lh-body-sm);
   text-decoration: none;
-  padding: 0.25rem 0;
+  padding: 4px 0;
   transition: color var(--duration-fast) var(--ease-standard);
 }
 
@@ -160,7 +167,7 @@
 .footer__disclaimer {
   max-width: 60ch;
   font-family: var(--font-body);
-  font-size: var(--fs-micro-resp);
+  font-size: var(--fs-micro);
   line-height: 1.6;
   color: var(--color-stone);
 }
@@ -184,7 +191,7 @@
 /* ─── Responsive — Mobile (≤640px) ──────────────────────────────── */
 @media (max-width: 640px) {
   .footer__inner {
-    padding: clamp(2.25rem, 5vw, 2.75rem) 1rem;
+    padding: var(--spacing-xxl) var(--spacing-md);
   }
 
   .footer__links {
@@ -217,7 +224,7 @@
 
 @media (max-width: 360px) {
   .footer__inner {
-    padding: var(--spacing-xl) 0.75rem;
+    padding: var(--spacing-xl) 12px;
   }
 }
 

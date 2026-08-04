@@ -6,23 +6,25 @@
   align-items: center;
   justify-content: center;
   gap: var(--spacing-xs);
-  min-height: 44px;
+  min-height: 46px;
   min-width: 44px;
   max-width: 100%;
-  padding: clamp(0.75rem, 1.3vw + 0.55rem, 1rem) clamp(1rem, 1.9vw + 0.75rem, 1.4rem);
-  border-radius: var(--rounded-md);
+  padding: clamp(0.8rem, 1.3vw + 0.6rem, 1.1rem) clamp(1.1rem, 2vw + 0.8rem, 1.6rem);
+  border-radius: 999px;
   font-family: var(--font-body);
   font-size: var(--fs-btn-resp);
-  font-weight: 500;
-  line-height: 1.20;
-  letter-spacing: var(--ls-btn);
-  white-space: normal;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
   text-align: center;
   word-break: break-word;
   cursor: pointer;
   text-decoration: none;
   border: 1px solid transparent;
   box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 10px 24px rgba(15, 63, 184, 0.08);
   transition:
     background-color var(--duration-fast) var(--ease-standard),
     border-color     var(--duration-fast) var(--ease-standard),
@@ -32,84 +34,88 @@
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn:active {
   transform: translateY(0);
 }
 
+.btn:focus-visible {
+  outline: 3px solid rgba(227, 27, 35, 0.2);
+  outline-offset: 2px;
+}
+
 /* ─── Primary — NVR Brand Red CTA ──────────────────────────────── */
 .btn--primary {
-  background-color: var(--color-primary-red);
+  background: linear-gradient(135deg, var(--color-primary-red), #ff3d4a);
   color: var(--color-on-primary);
-  border-color: var(--color-primary-red);
-  box-shadow: var(--shadow-button-red);
+  border-color: transparent;
+  box-shadow: 0 14px 30px rgba(227, 27, 35, 0.24);
 }
 
 .btn--primary:hover {
-  background-color: var(--color-dark-red);
-  border-color: var(--color-dark-red);
-  box-shadow: 0 12px 28px rgba(227, 27, 35, 0.35);
-}
-
-.btn--primary:active {
-  background-color: var(--color-dark-red);
-  border-color: var(--color-dark-red);
+  background: linear-gradient(135deg, var(--color-dark-red), #be1720);
+  border-color: transparent;
+  box-shadow: 0 16px 34px rgba(227, 27, 35, 0.32);
 }
 
 /* ─── Secondary — Primary Blue Solid ───────────────────────────── */
 .btn--secondary {
-  background-color: var(--color-primary-blue);
+  background: linear-gradient(135deg, var(--color-primary-blue), var(--color-royal-blue));
   color: var(--color-on-primary);
-  border-color: var(--color-primary-blue);
-  box-shadow: 0 8px 24px rgba(15, 63, 184, 0.20);
+  border-color: transparent;
+  box-shadow: 0 14px 30px rgba(15, 63, 184, 0.22);
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-royal-blue);
-  border-color: var(--color-royal-blue);
-  box-shadow: 0 12px 28px rgba(15, 63, 184, 0.30);
+  background: linear-gradient(135deg, var(--color-royal-blue), #1454d2);
+  border-color: transparent;
+  box-shadow: 0 16px 34px rgba(15, 63, 184, 0.28);
 }
 
-/* ─── Outline — Blue Border & Blue Text ────────────────────────── */
+/* ─── Outline — Soft Blue Border & Blue Text ──────────────────── */
 .btn--outline {
-  background-color: transparent;
+  background: rgba(255, 255, 255, 0.94);
   color: var(--color-primary-blue);
-  border-color: var(--color-primary-blue);
+  border-color: rgba(15, 63, 184, 0.18);
+  box-shadow: 0 10px 24px rgba(15, 63, 184, 0.08);
 }
 
 .btn--outline:hover {
-  background-color: var(--color-primary-blue);
-  color: var(--color-on-primary);
+  background: var(--color-blue-50);
+  color: var(--color-primary-blue);
   border-color: var(--color-primary-blue);
+  box-shadow: 0 12px 26px rgba(15, 63, 184, 0.14);
 }
 
-/* ─── Dark — Primary Blue CTA ───────────────────────────────────── */
+/* ─── Dark — Premium Deep Blue CTA ─────────────────────────────── */
 .btn--dark {
-  background-color: var(--color-primary-blue);
+  background: linear-gradient(135deg, #0f1b3d, #0e2c66);
   color: var(--color-on-dark);
-  border-color: var(--color-primary-blue);
-  box-shadow: 0 8px 24px rgba(15, 63, 184, 0.20);
+  border-color: transparent;
+  box-shadow: 0 14px 30px rgba(6, 19, 54, 0.22);
 }
 
 .btn--dark:hover {
-  background-color: var(--color-royal-blue);
-  border-color: var(--color-royal-blue);
+  background: linear-gradient(135deg, #0e2c66, #103b94);
+  border-color: transparent;
+  box-shadow: 0 16px 34px rgba(6, 19, 54, 0.28);
 }
 
 /* ─── Cream / Light Blue Soft Secondary ─────────────────────────── */
 .btn--cream,
 .btn--on-cream {
-  background-color: var(--color-blue-50);
+  background: linear-gradient(135deg, var(--color-blue-50), #eaf4ff);
   color: var(--color-primary-blue);
-  border-color: var(--color-hairline-soft);
+  border-color: rgba(15, 63, 184, 0.16);
+  box-shadow: 0 10px 24px rgba(15, 63, 184, 0.07);
 }
 
 .btn--cream:hover,
 .btn--on-cream:hover {
-  background-color: var(--color-blue-100);
-  border-color: var(--color-royal-blue);
+  background: linear-gradient(135deg, var(--color-blue-100), #f8fbff);
+  border-color: var(--color-primary-blue);
   color: var(--color-primary-blue);
 }
 
@@ -119,22 +125,25 @@
   color: var(--color-link);
   border-color: transparent;
   font-size: var(--fs-body-sm);
-  font-weight: 500;
+  font-weight: 600;
   padding: 0;
   min-height: auto;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .btn--link:hover {
   color: var(--color-link-hover);
   transform: none;
+  box-shadow: none;
 }
 
 /* ─── Disabled state ─────────────────────────────────────────────── */
 .btn:disabled,
 .btn--disabled {
-  background-color: var(--color-hairline);
+  background: var(--color-hairline);
   color: var(--color-muted);
   border-color: var(--color-hairline);
   cursor: not-allowed;

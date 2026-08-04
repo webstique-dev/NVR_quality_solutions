@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   LuTarget,
   LuGlobe,
@@ -41,6 +41,8 @@ const features = [
 ];
 
 const WhyChooseUs = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="why-choose section section--light">
       <div className="container why-choose__inner">
@@ -104,10 +106,11 @@ const WhyChooseUs = () => {
                   key={f.title}
                   className="why-choose__feature"
                   variants={fadeUp}
-                  initial="hidden"
-                  whileInView="show"
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                  whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
                   viewport={{ once: true, amount: 0.3 }}
                   custom={0.2 + i * 0.1}
+                  whileHover={shouldReduceMotion ? undefined : { y: -3, scale: 1.005 }}
                 >
                   <div className="why-choose__feature-icon" aria-hidden="true">
                     <Icon className="why-choose__feature-icon-svg" />

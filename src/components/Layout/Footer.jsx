@@ -1,5 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiArrowUpRight } from 'react-icons/fi';
+import { motion, useReducedMotion } from 'framer-motion';
 import './Footer.css';
 
 const FOOTER_LINKS = {
@@ -18,14 +19,19 @@ const FOOTER_LINKS = {
 
 const Footer = () => {
   const year = new Date().getFullYear();
-  const location = useLocation();
-  const isContactPage = location.pathname === '/contact';
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <footer className="footer">
-      {!isContactPage && <div className="sunset-stripe-band" aria-hidden="true" />}
+      <div className="sunset-stripe-band" aria-hidden="true" />
       <div className="footer__inner">
-        <div className="footer__top">
+        <motion.div
+          className="footer__top"
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+        >
           {/* Brand Column */}
           <div className="footer__brand">
             <Link to="/" className="footer__logo" aria-label="NVR Quality Solutions Home">
@@ -58,20 +64,26 @@ const Footer = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Divider */}
         <div className="footer__divider" aria-hidden="true" />
 
         {/* Bottom Section */}
-        <div className="footer__bottom">
+        <motion.div
+          className="footer__bottom"
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+        >
           <p className="footer__copyright">&copy; {year} NVR Quality Solutions. All rights reserved.</p>
           <p className="footer__disclaimer">
             NVR Quality Solutions provides training and consultancy in preparation for
             healthcare quality standards such as NABH, JCI, and CAMHP. NVR Quality Solutions
             does not award these certifications.
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

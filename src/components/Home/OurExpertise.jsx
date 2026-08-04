@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -49,6 +50,7 @@ const expertiseCards = [
 
 const OurExpertise = () => {
   const containerRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useGSAP(
     () => {
@@ -99,10 +101,15 @@ const OurExpertise = () => {
           {expertiseCards.map((card) => {
             const Icon = card.icon;
             return (
-              <article
+              <motion.article
                 key={card.id}
                 id={`expertise-card-${card.id}`}
                 className="expertise__card"
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+                whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={shouldReduceMotion ? undefined : { y: -4, scale: 1.01 }}
               >
                 <div className="expertise__card-header">
                   <span className="expertise__card-number" aria-hidden="true">
@@ -115,7 +122,7 @@ const OurExpertise = () => {
                 <h3 className="expertise__card-title">{card.title}</h3>
                 <p className="expertise__card-description">{card.description}</p>
                 <div className="expertise__card-accent" aria-hidden="true" />
-              </article>
+              </motion.article>
             );
           })}
         </div>

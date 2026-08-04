@@ -1,0 +1,195 @@
+.nvr-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(90deg, #ffffff 0%, #eef5ff 40%, #ffffff 100%);
+  background-size: 200% 100%;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  animation: nvr-preloader-intro 0.75s ease forwards;
+}
+
+.nvr-preloader--exiting {
+  opacity: 0;
+  transform: scale(0.995);
+  pointer-events: none;
+}
+
+/* Soft brand-color glow blobs, corners */
+.nvr-preloader__blob {
+  position: absolute;
+  width: min(70vw, 900px);
+  height: min(70vw, 900px);
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.35;
+  pointer-events: none;
+  animation: nvr-glow-breathe 6s ease-in-out infinite;
+}
+
+.nvr-preloader {
+  animation: nvr-preloader-intro 0.75s ease forwards, nvr-bg-sweep 10s linear infinite;
+}
+
+.nvr-preloader__blob--red {
+  top: -22%;
+  right: -18%;
+  background: radial-gradient(circle, #e31e24 0%, transparent 70%);
+}
+
+.nvr-preloader__blob--blue {
+  bottom: -22%;
+  left: -18%;
+  background: radial-gradient(circle, #1e6fee 0%, transparent 70%);
+}
+
+@media (max-width: 480px) {
+  .nvr-preloader__blob {
+    width: 90vw;
+    height: 90vw;
+  }
+}
+
+/* Center content */
+.nvr-preloader__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 1.5rem;
+  text-align: center;
+  animation: nvr-content-breathe 5s ease-in-out infinite;
+}
+
+/* Logo left-to-right wipe reveal */
+.nvr-preloader__logo-wrap {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  opacity: 0;
+}
+
+.nvr-preloader__logo-wrap--revealed {
+  clip-path: inset(0 0% 0 0);
+  opacity: 1;
+}
+
+.nvr-preloader__logo {
+  display: block;
+  width: clamp(200px, 30vw, 340px);
+  height: auto;
+}
+
+/* Tagline carousel */
+.nvr-preloader__tagline-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 1.4em;
+}
+
+.nvr-preloader__tagline {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f2a63;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.nvr-preloader__tagline--active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion: simple cross-fades only, no wipe/slide */
+@media (prefers-reduced-motion: reduce) {
+  .nvr-preloader__logo-wrap {
+    clip-path: none !important;
+    animation: nvr-fade-in 0.4s ease forwards;
+  }
+  .nvr-preloader__tagline {
+    transition: opacity 0.3s ease;
+    transform: none;
+  }
+  .nvr-preloader__content {
+    animation: none;
+  }
+  .nvr-preloader__blob {
+    animation: none;
+  }
+}
+
+.nvr-preloader--reduced .nvr-preloader__logo-wrap {
+  clip-path: none !important;
+  animation: nvr-fade-in 0.4s ease forwards;
+}
+
+.nvr-preloader--reduced .nvr-preloader__tagline {
+  transition: opacity 0.3s ease;
+  transform: none;
+}
+
+@keyframes nvr-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nvr-glow-breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.34;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.45;
+  }
+}
+
+@keyframes nvr-content-breathe {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes nvr-preloader-intro {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    background-position: 0% 50%;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes nvr-bg-sweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

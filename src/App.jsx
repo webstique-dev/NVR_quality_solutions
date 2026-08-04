@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
-import SunsetStripeBand from './components/Layout/SunsetStripeBand';
 import ScrollToTopOnRoute from './components/Common/ScrollToTopOnRoute';
 import ScrollToTopButton from './components/Common/ScrollToTopButton';
+import Preloader from './components/Common/Preloader';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -18,6 +19,8 @@ import TermsConditions from './pages/TermsConditions';
 import NotFound from './pages/NotFound';
 
 function App() {
+  const [isPreloading, setIsPreloading] = useState(true);
+
   return (
     <>
       <ScrollToTopOnRoute />
@@ -37,10 +40,9 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      {/* Sunset stripe band — brand signature, appears on every page */}
-      <SunsetStripeBand />
       <Footer />
       <ScrollToTopButton />
+      {isPreloading && <Preloader onFinish={() => setIsPreloading(false)} />}
     </>
   );
 }

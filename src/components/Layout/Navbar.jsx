@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Button from '../Common/Button';
 import './Navbar.css';
 
@@ -17,6 +17,7 @@ const NAV_LINKS = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,7 +33,12 @@ const Navbar = () => {
   }, [menuOpen]);
 
   return (
-    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+    <motion.header
+      className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
+      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+    >
       <div className="navbar__inner">
         <NavLink to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
           <img src="/nvr-logo.png" alt="NVR Quality Solutions" className="navbar__logo-img" />
@@ -40,16 +46,19 @@ const Navbar = () => {
 
         <nav className="navbar__links" aria-label="Primary navigation">
           {NAV_LINKS.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              className={({ isActive }) =>
-                `navbar__link ${isActive ? 'navbar__link--active' : ''}`
-              }
-              end={link.to === '/'}
-            >
-              {link.label}
-            </NavLink>
+            <motion.div key={link.to} layout>
+              <NavLink
+                to={link.to}
+                whileHover={shouldReduceMotion ? undefined : { y: -1, scale: 1.01 }}
+                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className={({ isActive }) =>
+                  `navbar__link ${isActive ? 'navbar__link--active' : ''}`
+                }
+                end={link.to === '/'}
+              >
+                {link.label}
+              </NavLink>
+            </motion.div>
           ))}
         </nav>
 
@@ -79,17 +88,20 @@ const Navbar = () => {
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             {NAV_LINKS.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  `navbar__mobile-link ${isActive ? 'navbar__mobile-link--active' : ''}`
-                }
-                onClick={() => setMenuOpen(false)}
-                end={link.to === '/'}
-              >
-                {link.label}
-              </NavLink>
+              <motion.div key={link.to} layout>
+                <NavLink
+                  to={link.to}
+                  whileHover={shouldReduceMotion ? undefined : { x: 2, scale: 1.01 }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className={({ isActive }) =>
+                    `navbar__mobile-link ${isActive ? 'navbar__mobile-link--active' : ''}`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                  end={link.to === '/'}
+                >
+                  {link.label}
+                </NavLink>
+              </motion.div>
             ))}
             <Button as="link" to="/contact" variant="primary" onClick={() => setMenuOpen(false)}>
               Get in Touch
@@ -97,7 +109,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 

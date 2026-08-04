@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { LuCircleCheckBig, LuGraduationCap } from 'react-icons/lu';
 import Button from '../Common/Button';
+import StarBorder from '../Common/StarBorder';
 import './Hero.css';
 
 const fadeUp = {
@@ -13,10 +14,19 @@ const fadeUp = {
 };
 
 const Hero = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="hero">
       <div className="hero__bg" aria-hidden="true">
-        <div className="hero__bg-word">QUALITY</div>
+        <motion.div
+          className="hero__bg-word"
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0.8, y: 12 }}
+          animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 0.8, y: [12, -8, 12] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          QUALITY
+        </motion.div>
         <div className="hero__glow hero__glow--1" />
         <div className="hero__glow hero__glow--2" />
         <div className="hero__orb hero__orb--1" />
@@ -29,8 +39,8 @@ const Hero = () => {
           <motion.div
             className="hero__badge"
             variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             custom={0}
           >
             <span className="hero__badge-dot" aria-hidden="true" />
@@ -40,8 +50,8 @@ const Hero = () => {
           <motion.h1
             className="hero__heading"
             variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             custom={0.1}
           >
             Building Safer Healthcare Through{' '}
@@ -51,8 +61,8 @@ const Hero = () => {
           <motion.p
             className="hero__description"
             variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             custom={0.2}
           >
             At NVR Quality Solutions, we provide expert-led Healthcare Quality Training, Patient
@@ -63,8 +73,8 @@ const Hero = () => {
           <motion.p
             className="hero__description hero__description--secondary"
             variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             custom={0.28}
           >
             Are you a student looking to build a rewarding career? Or a healthcare organization
@@ -73,25 +83,29 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
-            className="hero__actions"
+            className="hero__actions-wrapper"
             variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             custom={0.36}
           >
-            <Button as="link" to="/training-programs" variant="primary">
-              Explore Trainings
-            </Button>
-            <Button as="link" to="/contact" variant="secondary">
-              Talk to Our Experts
-            </Button>
+            <StarBorder className="hero__actions-shell" color="rgba(15, 63, 184, 0.75)" speed="7s" thickness={1}>
+              <div className="hero__actions">
+                <Button as="link" to="/training-programs" variant="primary">
+                  Explore Trainings
+                </Button>
+                <Button as="link" to="/contact" variant="secondary">
+                  Talk to Our Experts
+                </Button>
+              </div>
+            </StarBorder>
           </motion.div>
 
           <motion.p
             className="hero__note"
             variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             custom={0.44}
           >
             Gain internationally recognized standards such as{' '}
@@ -102,8 +116,8 @@ const Hero = () => {
           <motion.div
             className="hero__trust"
             variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             custom={0.52}
           >
             <div className="hero__trust-item">
@@ -126,8 +140,8 @@ const Hero = () => {
         {/* Right Illustration */}
         <motion.div
           className="hero__visual"
-          initial={{ opacity: 0, x: 48, scale: 0.96 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
+          initial={shouldReduceMotion ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 48, scale: 0.96 }}
+          animate={shouldReduceMotion ? { opacity: 1, x: 0, scale: 1 } : { opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
           <div className="hero__visual-frame">

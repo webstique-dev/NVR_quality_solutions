@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { LuTarget } from 'react-icons/lu';
 import './LearningSection.css';
 
@@ -12,6 +12,8 @@ const fadeUp = {
 };
 
 const LearningSection = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="learning section section--light">
       <div className="learning__bg" aria-hidden="true">
@@ -23,8 +25,8 @@ const LearningSection = () => {
           <motion.span
             className="eyebrow-light"
             variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             viewport={{ once: true, amount: 0.4 }}
             custom={0}
           >
@@ -34,8 +36,8 @@ const LearningSection = () => {
           <motion.h2
             className="learning__heading"
             variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             viewport={{ once: true, amount: 0.4 }}
             custom={0.1}
           >
@@ -46,8 +48,8 @@ const LearningSection = () => {
           <motion.h3
             className="learning__subheading"
             variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             viewport={{ once: true, amount: 0.4 }}
             custom={0.18}
           >
@@ -57,8 +59,8 @@ const LearningSection = () => {
           <motion.p
             className="learning__paragraph"
             variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             viewport={{ once: true, amount: 0.4 }}
             custom={0.26}
           >
@@ -68,8 +70,8 @@ const LearningSection = () => {
           <motion.p
             className="learning__paragraph"
             variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             viewport={{ once: true, amount: 0.4 }}
             custom={0.34}
           >
@@ -79,25 +81,43 @@ const LearningSection = () => {
           <motion.div
             className="learning__stats"
             variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
             viewport={{ once: true, amount: 0.4 }}
             custom={0.42}
           >
-            <div className="learning__stat">
+            <motion.div
+              className="learning__stat"
+              initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
+              whileInView={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            >
               <span className="learning__stat-value">3</span>
               <span className="learning__stat-label">Global Standards<br />(NABH, JCI, CAMHP)</span>
-            </div>
+            </motion.div>
             <div className="learning__stat-divider" aria-hidden="true" />
-            <div className="learning__stat">
+            <motion.div
+              className="learning__stat"
+              initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
+              whileInView={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            >
               <span className="learning__stat-value">100%</span>
               <span className="learning__stat-label">Practical,<br />Real-World Focus</span>
-            </div>
+            </motion.div>
             <div className="learning__stat-divider" aria-hidden="true" />
-            <div className="learning__stat">
+            <motion.div
+              className="learning__stat"
+              initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
+              whileInView={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            >
               <span className="learning__stat-value">All</span>
               <span className="learning__stat-label">Healthcare<br />Roles Covered</span>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
