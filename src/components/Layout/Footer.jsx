@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FiArrowUpRight } from 'react-icons/fi';
 import './Footer.css';
 
@@ -18,19 +18,18 @@ const FOOTER_LINKS = {
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const location = useLocation();
+  const isContactPage = location.pathname === '/contact';
 
   return (
-    <footer className="footer section--dark">
-      <div className="footer__bg" aria-hidden="true">
-        <div className="footer__glow" />
-      </div>
-
-      <div className="container footer__inner">
+    <footer className="footer">
+      {!isContactPage && <div className="sunset-stripe-band" aria-hidden="true" />}
+      <div className="footer__inner">
         <div className="footer__top">
           {/* Brand Column */}
           <div className="footer__brand">
             <Link to="/" className="footer__logo" aria-label="NVR Quality Solutions Home">
-              NVR <span>Quality Solutions</span>
+              <img src="/nvr-logo.png" alt="NVR Quality Solutions" className="footer__logo-img" />
             </Link>
             <p className="footer__tagline">
               Empowering healthcare professionals to build safer, higher-quality
@@ -61,7 +60,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Clean Divider */}
+        {/* Divider */}
         <div className="footer__divider" aria-hidden="true" />
 
         {/* Bottom Section */}

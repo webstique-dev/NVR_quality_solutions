@@ -1,58 +1,68 @@
 /* =====================================================
-   Inquiry Form Component Styles
+   Inquiry Form Component Styles — DESIGN.md
    ===================================================== */
 .inquiry-form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--spacing-lg);
 }
 
 .inquiry-form__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
+  gap: var(--spacing-lg);
 }
 
 .inquiry-form .btn {
-  margin-top: var(--space-xs);
+  margin-top: var(--spacing-xs);
   align-self: flex-start;
   padding: 12px 36px;
-  font-size: 1rem;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
-}
-
-.inquiry-form .btn:hover {
-  box-shadow: 0 8px 24px rgba(52, 211, 153, 0.25);
+  font-family: var(--font-body);
+  font-size: var(--fs-btn);
+  font-weight: 500;
+  letter-spacing: var(--ls-btn);
+  border-radius: var(--rounded-md);
 }
 
 .inquiry-form__success {
-  padding: var(--space-2xl) var(--space-xl);
-  border-radius: var(--card-radius-lg);
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  border-radius: var(--rounded-lg);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: var(--shadow-soft);
+  gap: var(--spacing-sm);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline-soft);
+  box-shadow: var(--shadow-1);
 }
 
 .inquiry-form__success h3 {
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--color-text-primary-light);
+  font-family: var(--font-body);
+  font-size: var(--fs-h4);
+  font-weight: 500;
+  line-height: var(--lh-h4);
+  letter-spacing: var(--ls-h2);
+  color: var(--color-ink);
 }
 
 .inquiry-form__success p {
-  color: var(--color-text-secondary-light);
-  margin-bottom: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-md);
+  color: var(--color-slate);
+  line-height: var(--lh-body-md);
+  letter-spacing: var(--ls-body);
+  margin-bottom: var(--spacing-sm);
 }
 
 @media (max-width: 640px) {
+  .inquiry-form {
+    gap: var(--spacing-md);
+  }
+
   .inquiry-form__row {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 
   .inquiry-form .btn {

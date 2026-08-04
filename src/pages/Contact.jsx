@@ -89,7 +89,7 @@ const Contact = () => {
       {/* ═══════════════════════════════════════════════
           1. HERO SECTION
       ════════════════════════════════════════════════ */}
-      <section className="cnt-hero section--dark">
+      <section className="cnt-hero">
         <div className="cnt-hero__bg" aria-hidden="true">
           <div className="cnt-hero__glow cnt-hero__glow--1" />
           <div className="cnt-hero__glow cnt-hero__glow--2" />
@@ -100,7 +100,7 @@ const Contact = () => {
           {/* Content */}
           <div className="cnt-hero__content">
             <motion.span
-              className="eyebrow"
+              className="eyebrow-light"
               variants={fadeUp}
               initial="hidden"
               animate="show"
@@ -117,7 +117,7 @@ const Contact = () => {
               custom={0.12}
             >
               Let&apos;s Start the{' '}
-              <span className="text-gradient">Conversation</span>
+              <span className="hero__highlight">Conversation</span>
             </motion.h1>
 
             <motion.p
@@ -232,23 +232,23 @@ const Contact = () => {
       {/* ═══════════════════════════════════════════════
           3. HOW CAN WE HELP?
       ════════════════════════════════════════════════ */}
-      <section className="section section--dark cnt-help">
+      <section className="section section--light cnt-help">
         <div className="cnt-help__bg" aria-hidden="true">
           <div className="cnt-help__glow" />
         </div>
         <div className="container">
           <motion.div
-            className="cnt-section-header cnt-section-header--dark"
+            className="cnt-section-header"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="eyebrow">Our Support</span>
-            <h2 className="cnt-section-heading cnt-section-heading--dark">
+            <span className="eyebrow-light">Our Support</span>
+            <h2 className="cnt-section-heading">
               How Can We Help?
             </h2>
-            <p className="cnt-section-intro--dark">
+            <p className="cnt-form-sub">
               Our team can assist you with:
             </p>
           </motion.div>
@@ -258,7 +258,7 @@ const Contact = () => {
               <motion.div
                 key={item.id}
                 id={`help-${item.id}`}
-                className="cnt-help__card glass"
+                className="cnt-help__card"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -362,20 +362,20 @@ const Contact = () => {
       {/* ═══════════════════════════════════════════════
           5. FREQUENTLY ASKED QUESTIONS
       ════════════════════════════════════════════════ */}
-      <section className="section section--dark cnt-faq">
+      <section className="section section--light cnt-faq">
         <div className="cnt-faq__bg" aria-hidden="true">
           <div className="cnt-faq__glow" />
         </div>
         <div className="container">
           <motion.div
-            className="cnt-section-header cnt-section-header--dark text-center"
+            className="cnt-section-header text-center"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="eyebrow">FAQ</span>
-            <h2 className="cnt-section-heading cnt-section-heading--dark">
+            <span className="eyebrow-light">FAQ</span>
+            <h2 className="cnt-section-heading">
               Frequently Asked Questions
             </h2>
           </motion.div>

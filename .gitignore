@@ -18,6 +18,7 @@ jspm_packages/
 
 # Build output
 dist/
+dump
 dist-ssr/
 *.local
 

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
+import SunsetStripeBand from './components/Layout/SunsetStripeBand';
 import ScrollToTopOnRoute from './components/Common/ScrollToTopOnRoute';
 import ScrollToTopButton from './components/Common/ScrollToTopButton';
 
@@ -36,6 +37,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      {/* Sunset stripe band — brand signature, appears on every page */}
+      <SunsetStripeBand />
       <Footer />
       <ScrollToTopButton />
     </>

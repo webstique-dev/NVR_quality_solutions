@@ -1,4 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#000000"/>
-  <circle cx="16" cy="16" r="7" fill="#34D399"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0034b5"/>
+      <stop offset="50%" stop-color="#0055ff"/>
+      <stop offset="100%" stop-color="#001d80"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0000"/>
+      <stop offset="60%" stop-color="#d60000"/>
+      <stop offset="100%" stop-color="#990000"/>
+    </linearGradient>
+    <linearGradient id="rLoopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066ff"/>
+      <stop offset="70%" stop-color="#0033bb"/>
+      <stop offset="100%" stop-color="#001870"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="512" height="512" rx="96" fill="#ffffff"/>
+
+  <g transform="translate(36, 68) scale(0.86)">
+    <!-- N Left Vertical Bar (Blue) -->
+    <path d="M40 90 L110 90 L110 410 L40 410 Z" fill="url(#blueGrad)"/>
+
+    <!-- N Diagonal & Stem (Red) -->
+    <path d="M40 90 L110 90 L240 330 L240 90 L310 90 L310 410 L240 410 L110 170 L110 410 L40 410 Z" fill="url(#redGrad)"/>
+
+    <!-- R Loop & Leg (Blue) -->
+    <path d="M310 90 C390 90 470 120 470 210 C470 280 410 320 340 330 L470 410 L390 410 L280 340 L310 340 C380 340 400 290 400 210 C400 150 350 140 310 140 Z" fill="url(#rLoopGrad)"/>
+  </g>
 </svg>

@@ -33,9 +33,9 @@ const Navbar = () => {
 
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
-      <div className="navbar__inner glass">
+      <div className="navbar__inner">
         <NavLink to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          NVR <span>Quality Solutions</span>
+          <img src="/nvr-logo.png" alt="NVR Quality Solutions" className="navbar__logo-img" />
         </NavLink>
 
         <nav className="navbar__links" aria-label="Primary navigation">
@@ -54,7 +54,7 @@ const Navbar = () => {
         </nav>
 
         <div className="navbar__cta">
-          <Button as="link" to="/contact" variant="secondary" showIcon={false}>
+          <Button as="link" to="/contact" variant="dark" showIcon={false}>
             Get in Touch
           </Button>
         </div>
@@ -65,18 +65,18 @@ const Navbar = () => {
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
         >
-          {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+          {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
         </button>
       </div>
 
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="navbar__mobile glass"
-            initial={{ opacity: 0, y: -16 }}
+            className="navbar__mobile"
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             {NAV_LINKS.map((link) => (
               <NavLink

@@ -1,3 +1,13 @@
+/* ───────────────────────────────────────────────────────────
+   Google Fonts — Inter (UI) + JetBrains Mono (code)
+   PP Editorial Old is a licensed typeface; Georgia serif fallback
+   is used. Swap the @font-face below if you have the file.
+─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ───────────────────────────────────────────────────────────
+   CSS Reset
+─────────────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -27,10 +37,10 @@ html {
 
 body {
   font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--color-text-primary-light);
-  background-color: var(--color-light-bg);
+  font-size: var(--fs-body-md);
+  line-height: var(--lh-body-md);
+  color: var(--color-ink);
+  background-color: var(--color-canvas);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -69,23 +79,23 @@ ol {
   list-style: none;
 }
 
+/* Headings — default to Inter; display headings override to font-display in components */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  line-height: var(--lh-heading);
-  letter-spacing: var(--ls-heading);
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: var(--lh-h2);
 }
 
-/* Accessible focus states — required, never suppressed */
+/* Accessible focus states — orange primary per DESIGN.md */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-primary);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: var(--rounded-xs);
 }
 
 /* Visually-hidden utility for a11y-only text */

@@ -2,13 +2,13 @@
    Why Choose Us Section
    =========================== */
 .why-choose {
-  background-color: var(--color-light-bg);
+  background-color: var(--color-surface);
 }
 
 .why-choose__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-2xl);
+  gap: var(--spacing-xxl);
   align-items: center;
 }
 
@@ -19,14 +19,14 @@
 
 .why-choose__img-wrap {
   position: relative;
-  border-radius: var(--card-radius-lg);
+  border-radius: var(--rounded-lg);
   overflow: visible;
 }
 
 .why-choose__img {
   width: 100%;
   height: auto;
-  border-radius: var(--card-radius-lg);
+  border-radius: var(--rounded-lg);
   display: block;
   object-fit: contain;
   filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.1));
@@ -34,18 +34,16 @@
 
 .why-choose__img-badge {
   position: absolute;
-  bottom: -20px;
-  right: -20px;
+  bottom: -12px;
+  right: 0;
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 16px;
-  padding: 14px 20px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-hairline-soft);
+  border-radius: var(--rounded-lg);
+  padding: 12px 18px;
+  box-shadow: var(--shadow-2);
   max-width: 240px;
 }
 
@@ -57,23 +55,23 @@
 }
 
 .why-choose__badge-icon {
-  width: 28px;
-  height: 28px;
-  color: #059669;
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary-blue);
 }
 
 .why-choose__img-badge strong {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #1f2937;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-ink);
   display: block;
   margin-bottom: 2px;
 }
 
 .why-choose__img-badge p {
-  font-size: 0.8rem;
-  color: #4b5563;
+  font-size: 0.78rem;
+  color: var(--color-slate);
   margin: 0;
   line-height: 1.4;
 }
@@ -89,12 +87,12 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-body);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body-sm);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #059669;
-  margin-bottom: var(--space-sm);
+  color: var(--color-primary-blue);
+  margin-bottom: var(--spacing-sm);
 }
 
 .eyebrow-light::before {
@@ -102,78 +100,82 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #059669;
+  background: var(--color-primary-blue);
 }
 
 .why-choose__heading {
-  font-size: var(--fs-h2);
-  line-height: 1.1;
-  letter-spacing: var(--ls-heading);
-  color: var(--color-text-primary-light);
+  font-family: var(--font-body);
+  font-size: var(--fs-h2-resp);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+  color: var(--color-primary-blue);
   max-width: 18ch;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--spacing-lg);
 }
 
 .text-gradient-light {
-  background: linear-gradient(135deg, #059669, #34d399);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-primary-red);
 }
 
 /* --- Feature List --- */
 .why-choose__features {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--spacing-md);
 }
 
 .why-choose__feature {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-md);
-  padding: var(--space-md);
-  background: #ffffff;
-  border-radius: var(--card-radius-sm);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium);
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--color-canvas);
+  border-radius: var(--rounded-md);
+  border: 1px solid var(--color-hairline-soft);
+  box-shadow: var(--shadow-2);
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
 }
 
 .why-choose__feature:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-elevated);
+  transform: translateY(-2px);
+  border-color: var(--color-royal-blue);
+  box-shadow: 0 12px 30px rgba(15, 63, 184, 0.12);
 }
 
 .why-choose__feature-icon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(52, 211, 153, 0.1);
-  border-radius: 12px;
+  background: var(--color-blue-50);
+  border: 1px solid var(--color-hairline-soft);
+  border-radius: var(--rounded-md);
   flex-shrink: 0;
 }
 
 .why-choose__feature-icon-svg {
-  width: 22px;
-  height: 22px;
-  color: #059669;
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary-blue);
 }
 
 .why-choose__feature-title {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-primary-light);
+  font-family: var(--font-body);
+  font-size: var(--fs-h5);
+  font-weight: 500;
+  color: var(--color-ink);
+  line-height: var(--lh-h5);
+  letter-spacing: var(--ls-h2);
   margin-bottom: 4px;
 }
 
 .why-choose__feature-text {
-  font-size: var(--fs-small);
-  color: var(--color-text-secondary-light);
-  line-height: var(--lh-body);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-slate);
+  line-height: var(--lh-card-desc);
+  letter-spacing: var(--ls-body);
 }
 
 /* ===========================
@@ -182,7 +184,7 @@
 @media (max-width: 1024px) {
   .why-choose__inner {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: var(--spacing-xl);
   }
 
   .why-choose__visual {
@@ -205,9 +207,11 @@
    =========================== */
 @media (max-width: 640px) {
   .why-choose__img-badge {
-    bottom: -12px;
-    right: 0;
-    max-width: 200px;
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 10px;
+    max-width: 100%;
     padding: 10px 14px;
   }
 
@@ -217,8 +221,7 @@
   }
 
   .why-choose__feature {
-    flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--spacing-sm);
   }
 }
 
@@ -230,3 +233,4 @@
     max-width: 600px;
   }
 }
+

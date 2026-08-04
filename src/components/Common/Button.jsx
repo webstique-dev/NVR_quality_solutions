@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
-import { FiArrowUpRight } from 'react-icons/fi';
 import './Button.css';
 
 /**
- * Reusable Button component.
+ * Reusable Button component — Mistral AI Design System
  *
- * variant: 'primary' | 'secondary'
- * as: 'button' | 'link' (link uses React Router <Link>)
- * to: route path, required when as="link"
- * showIcon: shows the circular arrow icon container
+ * variant: 'primary' | 'secondary' | 'dark' | 'cream' | 'on-cream' | 'link'
+ * as:      'button' | 'link' (React Router <Link>) | 'a' (external anchor)
+ * to:      route path, required when as="link"
+ * href:    URL, required when as="a"
  */
 const Button = ({
   children,
@@ -18,27 +17,23 @@ const Button = ({
   href,
   type = 'button',
   onClick,
-  showIcon = true,
   className = '',
+  disabled = false,
   ...rest
 }) => {
-  const classes = `btn btn--${variant} ${!showIcon ? 'btn--no-icon' : ''} ${className}`.trim();
-
-  const content = (
-    <>
-      <span className="btn__label">{children}</span>
-      {showIcon && (
-        <span className="btn__icon" aria-hidden="true">
-          <FiArrowUpRight />
-        </span>
-      )}
-    </>
-  );
+  const classes = [
+    'btn',
+    `btn--${variant}`,
+    disabled ? 'btn--disabled' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   if (as === 'link') {
     return (
       <Link to={to} className={classes} {...rest}>
-        {content}
+        {children}
       </Link>
     );
   }
@@ -46,14 +41,20 @@ const Button = ({
   if (as === 'a') {
     return (
       <a href={href} className={classes} {...rest}>
-        {content}
+        {children}
       </a>
     );
   }
 
   return (
-    <button type={type} className={classes} onClick={onClick} {...rest}>
-      {content}
+    <button
+      type={type}
+      className={classes}
+      onClick={onClick}
+      disabled={disabled}
+      {...rest}
+    >
+      {children}
     </button>
   );
 };

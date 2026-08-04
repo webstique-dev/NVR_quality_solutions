@@ -1,44 +1,59 @@
+/* ===================================================================
+   PageBanner — Mistral AI Design System (DESIGN.md)
+   =================================================================== */
+
 .page-banner {
-  padding-top: 180px;
-  padding-bottom: var(--space-2xl);
+  background-color: var(--color-surface-cream-soft);
+  padding-top: calc(var(--nav-height) + var(--spacing-section));
+  padding-bottom: var(--spacing-section);
+  border-bottom: 1px solid var(--color-beige-deep);
 }
 
 .page-banner__breadcrumb {
   display: flex;
   gap: 8px;
-  font-size: var(--fs-small);
-  color: var(--color-text-secondary-dark);
-  margin-bottom: var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-steel);
+  margin-bottom: var(--spacing-md);
 }
 
 .page-banner__breadcrumb a {
-  color: var(--color-text-secondary-dark);
-  transition: color var(--duration-fast) var(--ease-premium);
+  color: var(--color-steel);
+  transition: color var(--duration-fast) var(--ease-standard);
 }
 
 .page-banner__breadcrumb a:hover {
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .page-banner__sep {
-  margin: 0 8px;
+  margin: 0 4px;
   opacity: 0.5;
 }
 
 .page-banner__title {
-  font-size: var(--fs-h1);
+  font-family: var(--font-display);
+  font-size: var(--fs-h1-resp);
+  font-weight: 400;
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+  color: var(--color-ink);
   max-width: 20ch;
 }
 
 .page-banner__description {
-  margin-top: var(--space-md);
-  font-size: var(--fs-body-lg);
-  color: var(--color-text-secondary-dark);
+  margin-top: var(--spacing-md);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-md);
+  line-height: var(--lh-body-md);
+  color: var(--color-slate);
   max-width: 60ch;
 }
 
 @media (max-width: 640px) {
   .page-banner {
-    padding-top: 140px;
+    padding-top: calc(var(--nav-height) + var(--spacing-section-sm));
+    padding-bottom: var(--spacing-section-sm);
   }
 }

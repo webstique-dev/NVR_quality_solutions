@@ -13,6 +13,9 @@ import {
   LuUsers,
   LuCheck,
 } from 'react-icons/lu';
+import SectionTitle from '../components/Common/SectionTitle';
+import FAQAccordion from '../components/Common/FAQAccordion';
+import { faqs } from '../data/faqs';
 import Button from '../components/Common/Button';
 import CTABanner from '../components/Layout/CTABanner';
 import './About.css';
@@ -378,7 +381,24 @@ const About = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          6. CTA SECTION
+          6. FREQUENTLY ASKED QUESTIONS
+      ════════════════════════════════════════════════════════ */}
+      <section className="section section--light about-faq-section">
+        <div className="container">
+          <SectionTitle
+            eyebrow="FAQ"
+            title="Frequently Asked Questions"
+            description="Find answers to common questions about our healthcare quality training and consultancy services."
+            align="center"
+          />
+          <div className="about-faq-wrap">
+            <FAQAccordion items={faqs} />
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          7. CTA SECTION
       ════════════════════════════════════════════════════════ */}
       <CTABanner
         eyebrow="Get Started"

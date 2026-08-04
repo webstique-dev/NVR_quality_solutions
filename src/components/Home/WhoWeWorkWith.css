@@ -2,80 +2,89 @@
    Who We Work With Section
    =========================== */
 .who-work {
-  background-color: var(--color-light-bg);
+  background-color: var(--color-surface);
 }
 
 .who-work__header {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--spacing-xl);
 }
 
 .who-work__heading {
-  font-size: var(--fs-h2);
-  line-height: 1.1;
-  letter-spacing: var(--ls-heading);
-  color: var(--color-text-primary-light);
+  font-family: var(--font-body);
+  font-size: var(--fs-h2-resp);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+  color: var(--color-primary-blue);
   max-width: 22ch;
-  margin-top: var(--space-sm);
+  margin-top: var(--spacing-xs);
 }
 
 /* --- Grid --- */
 .who-work__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  gap: var(--spacing-md);
 }
 
 /* --- Card --- */
 .who-work__card {
   position: relative;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: var(--card-radius-lg);
-  padding: var(--space-lg);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline-soft);
+  border-radius: var(--rounded-lg);
+  padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  box-shadow: var(--shadow-soft);
-  transition: box-shadow 0.3s var(--ease-premium), border-color 0.3s var(--ease-premium);
+  gap: var(--spacing-sm);
+  box-shadow: var(--shadow-2);
+  transition:
+    box-shadow var(--duration-base) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
   cursor: default;
 }
 
 .who-work__card:hover {
-  box-shadow: var(--shadow-elevated);
-  border-color: rgba(52, 211, 153, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 63, 184, 0.12);
+  border-color: var(--color-royal-blue);
 }
 
 .who-work__card-icon-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  background: rgba(52, 211, 153, 0.1);
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-blue-50);
+  border: 1px solid var(--color-hairline-soft);
+  border-radius: var(--rounded-md);
   flex-shrink: 0;
 }
 
 .who-work__card-icon {
-  width: 26px;
-  height: 26px;
-  color: #059669;
+  width: 22px;
+  height: 22px;
+  color: var(--color-primary-blue);
 }
 
 .who-work__card-label {
-  font-size: 1rem;
-  color: var(--color-text-primary-light);
-  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: var(--fs-body-md);
+  color: var(--color-ink);
+  line-height: var(--lh-card-desc);
+  letter-spacing: var(--ls-body);
   font-weight: 500;
   flex: 1;
 }
 
 .who-work__card-check {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(52, 211, 153, 0.12);
-  color: #059669;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--rounded-md);
+  background-color: var(--color-blue-50);
+  border: 1px solid var(--color-hairline-soft);
+  color: var(--color-primary-blue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,3 +133,4 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+

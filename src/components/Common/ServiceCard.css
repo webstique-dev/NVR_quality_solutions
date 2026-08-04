@@ -1,53 +1,76 @@
+/* ===================================================================
+   ServiceCard — Mistral AI Design System (DESIGN.md)
+
+   card-feature token: canvas bg, rounded-lg (12px), padding spacing.xl,
+   1px hairline-soft border, no heavy shadow
+   =================================================================== */
+
 .service-card {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-lg);
-  border-radius: var(--card-radius-lg);
-  background: var(--color-card-bg);
-  box-shadow: var(--shadow-soft);
-  transition: transform var(--duration-fast) var(--ease-premium),
-    box-shadow var(--duration-fast) var(--ease-premium);
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  border-radius: var(--rounded-lg);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline-soft);
+  box-shadow: var(--shadow-2);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition:
+    box-shadow   var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    transform    var(--duration-fast) var(--ease-standard);
 }
 
 .service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-elevated);
+  box-shadow: 0 12px 30px rgba(15, 63, 184, 0.12);
+  border-color: var(--color-royal-blue);
+  transform: translateY(-2px);
 }
 
 .service-card__index {
-  font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-primary-red);
 }
 
 .service-card__title {
   flex: 1;
-  font-size: 1.15rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-h5);
+  font-weight: 500;
+  line-height: var(--lh-h5);
+  color: var(--color-ink);
 }
 
 .service-card__arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--color-light-bg);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--rounded-md);
+  background-color: var(--color-blue-50);
+  border: 1px solid var(--color-hairline-soft);
+  color: var(--color-primary-blue);
   flex-shrink: 0;
-  transition: transform var(--duration-fast) var(--ease-premium),
-    background var(--duration-fast) var(--ease-premium);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color     var(--duration-fast) var(--ease-standard),
+    color            var(--duration-fast) var(--ease-standard),
+    transform        var(--duration-fast) var(--ease-premium);
 }
 
 .service-card:hover .service-card__arrow {
-  background: var(--color-accent);
-  color: #fff;
+  background-color: var(--color-primary-red);
+  border-color: var(--color-primary-red);
+  color: var(--color-on-primary);
   transform: rotate(45deg);
 }
 
 @media (max-width: 480px) {
   .service-card {
-    padding: var(--space-md);
+    padding: var(--spacing-md);
   }
 }

@@ -82,16 +82,16 @@ const OurExpertise = () => {
   );
 
   return (
-    <section className="expertise section section--dark" ref={containerRef}>
+    <section className="expertise section section--light" ref={containerRef}>
       <div className="expertise__bg" aria-hidden="true">
         <div className="expertise__glow" />
       </div>
       <div className="container">
         <div className="expertise__header">
-          <span className="eyebrow">Our Expertise</span>
+          <span className="eyebrow-light">Our Expertise</span>
           <h2 className="expertise__heading">
             Comprehensive Training &amp;{' '}
-            <span className="text-gradient">Consultancy Services</span>
+            <span className="expertise__heading-highlight">Consultancy Services</span>
           </h2>
         </div>
 
@@ -102,7 +102,7 @@ const OurExpertise = () => {
               <article
                 key={card.id}
                 id={`expertise-card-${card.id}`}
-                className="expertise__card glass"
+                className="expertise__card"
               >
                 <div className="expertise__card-header">
                   <span className="expertise__card-number" aria-hidden="true">

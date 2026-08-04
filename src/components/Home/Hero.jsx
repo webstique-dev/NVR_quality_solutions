@@ -14,7 +14,7 @@ const fadeUp = {
 
 const Hero = () => {
   return (
-    <section className="hero section--dark">
+    <section className="hero">
       <div className="hero__bg" aria-hidden="true">
         <div className="hero__bg-word">QUALITY</div>
         <div className="hero__glow hero__glow--1" />
@@ -45,7 +45,7 @@ const Hero = () => {
             custom={0.1}
           >
             Building Safer Healthcare Through{' '}
-            <span className="text-gradient">Quality Excellence</span>
+            <span className="hero__highlight">Quality Excellence</span>
           </motion.h1>
 
           <motion.p

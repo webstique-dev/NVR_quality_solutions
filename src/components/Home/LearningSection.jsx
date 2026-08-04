@@ -13,7 +13,7 @@ const fadeUp = {
 
 const LearningSection = () => {
   return (
-    <section className="learning section section--dark">
+    <section className="learning section section--light">
       <div className="learning__bg" aria-hidden="true">
         <div className="learning__glow" />
       </div>
@@ -21,7 +21,7 @@ const LearningSection = () => {
         {/* Left: Content */}
         <div className="learning__content">
           <motion.span
-            className="eyebrow"
+            className="eyebrow-light"
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
@@ -40,7 +40,7 @@ const LearningSection = () => {
             custom={0.1}
           >
             Preparing Tomorrow&apos;s{' '}
-            <span className="text-gradient">Leaders in Healthcare Quality</span>
+            <span className="text-gradient-light">Leaders in Healthcare Quality</span>
           </motion.h2>
 
           <motion.h3

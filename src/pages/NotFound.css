@@ -1,8 +1,13 @@
+/* ===================================================================
+   Not Found Page — Mistral AI Design System (DESIGN.md)
+   =================================================================== */
+
 .not-found {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-canvas);
 }
 
 .not-found__inner {
@@ -10,22 +15,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--spacing-sm);
 }
 
 .not-found__code {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: clamp(5rem, 12vw, 9rem);
-  font-weight: 700;
-  color: var(--color-accent);
+  font-weight: 400;
+  color: var(--color-primary);
   line-height: 1;
 }
 
 .not-found h1 {
+  font-family: var(--font-body);
   font-size: var(--fs-h2);
+  font-weight: 500;
+  color: var(--color-ink);
 }
 
 .not-found p {
-  color: var(--color-text-secondary-dark);
-  margin-bottom: var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-md);
+  color: var(--color-slate);
+  margin-bottom: var(--spacing-md);
 }
