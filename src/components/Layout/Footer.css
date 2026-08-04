@@ -221,8 +221,4 @@
   }
 }
 
-@media (max-width: 360px) {
-  .footer {
-    padding: var(--spacing-xl) 12px;
-  }
-}
+
