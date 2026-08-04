@@ -7,88 +7,70 @@ const TAGLINES = [
   'Setting the Standard for Quality',
 ];
 
-const MIN_DISPLAY_MS = 3000;   // minimum time the preloader remains visible
-const EXIT_DURATION_MS = 800;  // must match the transition time in Preloader.css
+const MIN_DISPLAY_MS = 3000;   // Guaranteed 3.0 seconds display time on every refresh
+const EXIT_DURATION_MS = 800;  // 800ms exit fade-out animation
 
 export default function Preloader({ onFinish }) {
-  const [phase, setPhase] = useState('entering'); // entering -> cycling -> exiting
+  const [phase, setPhase] = useState('cycling'); // cycling -> exiting
+  const [progress, setProgress] = useState(0);
   const [taglineIndex, setTaglineIndex] = useState(0);
   const [visible, setVisible] = useState(true);
-  const reducedMotion = useRef(
-    typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
+
+  const startTimeRef = useRef(null);
   const onFinishRef = useRef(onFinish);
-  const loadedRef = useRef(false);
-  const minTimeRef = useRef(false);
-  const requestedExitRef = useRef(false);
-  const entryTimeout = useRef(null);
-  const cycleInterval = useRef(null);
-  const minTimeout = useRef(null);
-  const exitTimeout = useRef(null);
+  const exitTriggeredRef = useRef(false);
 
   useEffect(() => {
     onFinishRef.current = onFinish;
   }, [onFinish]);
 
-  const triggerExit = () => {
-    if (requestedExitRef.current) return;
-    requestedExitRef.current = true;
-    setPhase('exiting');
-    exitTimeout.current = window.setTimeout(() => {
-      setVisible(false);
-      onFinishRef.current?.();
-    }, reducedMotion.current ? 250 : EXIT_DURATION_MS);
-  };
-
-  // Logo wipe-in, then start cycling taglines
+  // Rotate taglines every 1.1s while active
   useEffect(() => {
-    entryTimeout.current = window.setTimeout(
-      () => setPhase('cycling'),
-      reducedMotion.current ? 120 : 650
-    );
-    return () => {
-      window.clearTimeout(entryTimeout.current);
-    };
-  }, []);
-
-  // Cycle taglines while in 'cycling' phase
-  useEffect(() => {
-    if (phase !== 'cycling') return undefined;
-    cycleInterval.current = window.setInterval(() => {
-      setTaglineIndex((i) => (i + 1) % TAGLINES.length);
-    }, 950);
-    return () => {
-      window.clearInterval(cycleInterval.current);
-    };
+    if (phase === 'exiting') return;
+    const interval = setInterval(() => {
+      setTaglineIndex((prev) => (prev + 1) % TAGLINES.length);
+    }, 1100);
+    return () => clearInterval(interval);
   }, [phase]);
 
-  // Start minimum display timer and wait for page load before exiting
+  // Deterministic 60 FPS RAF Progress animation strictly from 0% -> 100% over MIN_DISPLAY_MS (3000ms)
   useEffect(() => {
-    const markLoaded = () => {
-      loadedRef.current = true;
-      if (minTimeRef.current) {
-        triggerExit();
+    let animationFrameId;
+
+    const tick = (timestamp) => {
+      // Set start time on the very first frame of component mount
+      if (startTimeRef.current === null) {
+        startTimeRef.current = timestamp;
+      }
+
+      const elapsed = Math.max(0, timestamp - startTimeRef.current);
+      const progressRatio = Math.min(elapsed / MIN_DISPLAY_MS, 1);
+
+      // Linear percentage progression mapped strictly to elapsed time
+      const currentPct = Math.min(100, Math.floor(progressRatio * 100));
+      setProgress(currentPct);
+
+      if (elapsed < MIN_DISPLAY_MS) {
+        animationFrameId = requestAnimationFrame(tick);
+      } else {
+        // 3.0s duration reached: finish progress and trigger smooth 800ms exit
+        setProgress(100);
+        if (!exitTriggeredRef.current) {
+          exitTriggeredRef.current = true;
+          setPhase('exiting');
+
+          setTimeout(() => {
+            setVisible(false);
+            onFinishRef.current?.();
+          }, EXIT_DURATION_MS);
+        }
       }
     };
 
-    minTimeout.current = window.setTimeout(() => {
-      minTimeRef.current = true;
-      if (loadedRef.current) {
-        triggerExit();
-      }
-    }, reducedMotion.current ? 1500 : MIN_DISPLAY_MS);
-
-    if (document.readyState === 'complete') {
-      markLoaded();
-    } else {
-      window.addEventListener('load', markLoaded);
-    }
+    animationFrameId = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener('load', markLoaded);
-      window.clearTimeout(minTimeout.current);
-      window.clearTimeout(exitTimeout.current);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
@@ -99,49 +81,84 @@ export default function Preloader({ onFinish }) {
       className={[
         'nvr-preloader',
         phase === 'exiting' && 'nvr-preloader--exiting',
-        reducedMotion.current && 'nvr-preloader--reduced',
       ]
         .filter(Boolean)
         .join(' ')}
       role="status"
       aria-live="polite"
-      aria-label="Loading NVR Quality Solutions"
+      aria-label={`Loading NVR Quality Solutions - ${progress}%`}
+      aria-valuenow={progress}
+      aria-valuemin={0}
+      aria-valuemax={100}
     >
-      <div className="nvr-preloader__blob nvr-preloader__blob--red" />
-      <div className="nvr-preloader__blob nvr-preloader__blob--blue" />
+      {/* Dynamic Background Mesh Aurora Blobs */}
+      <div className="nvr-preloader__aurora nvr-preloader__aurora--1" />
+      <div className="nvr-preloader__aurora nvr-preloader__aurora--2" />
+      <div className="nvr-preloader__aurora nvr-preloader__aurora--3" />
+      <div className="nvr-preloader__grid-pattern" />
 
-      <div className="nvr-preloader__content">
-        <div
-          className={[
-            'nvr-preloader__logo-wrap',
-            phase !== 'entering' && 'nvr-preloader__logo-wrap--revealed',
-          ]
-            .filter(Boolean)
-            .join(' ')}
-        >
-          <img
-            src="/nvr-logo.png"
-            alt="NVR Quality Solutions"
-            className="nvr-preloader__logo"
-          />
+      {/* Main Glass Center Card */}
+      <div className="nvr-preloader__card">
+        {/* Status Pill Badge */}
+        <div className="nvr-preloader__badge">
+          <span className="nvr-preloader__badge-dot" />
+          <span className="nvr-preloader__badge-text">QUALITY ASSURANCE PLATFORM</span>
         </div>
 
-        <div className="nvr-preloader__tagline-wrap">
-          {TAGLINES.map((text, i) => (
-            <span
-              key={text}
-              className={[
-                'nvr-preloader__tagline',
-                i === taglineIndex &&
-                  phase === 'cycling' &&
-                  'nvr-preloader__tagline--active',
-              ]
-                .filter(Boolean)
-                .join(' ')}
+        {/* Logo Container with Ambient Backlight Glow */}
+        <div className="nvr-preloader__logo-container">
+          <div className="nvr-preloader__logo-glow" />
+          <div className="nvr-preloader__logo-wrap">
+            <img
+              src="/nvr-logo.png"
+              alt="NVR Quality Solutions Logo"
+              className="nvr-preloader__logo"
+            />
+            <div className="nvr-preloader__logo-shimmer" />
+          </div>
+        </div>
+
+        {/* Dynamic Tagline Carousel */}
+        <div className="nvr-preloader__tagline-viewport">
+          {TAGLINES.map((text, index) => {
+            const isActive = index === taglineIndex && phase !== 'exiting';
+            return (
+              <span
+                key={text}
+                className={[
+                  'nvr-preloader__tagline',
+                  isActive && 'nvr-preloader__tagline--active',
+                  index < taglineIndex && 'nvr-preloader__tagline--prev',
+                  index > taglineIndex && 'nvr-preloader__tagline--next',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              >
+                {text}
+              </span>
+            );
+          })}
+        </div>
+
+        {/* Progress System: Bar + Counter */}
+        <div className="nvr-preloader__progress-section">
+          <div className="nvr-preloader__track">
+            <div
+              className="nvr-preloader__bar"
+              style={{ width: `${progress}%` }}
             >
-              {text}
+              <div className="nvr-preloader__bar-glow" />
+            </div>
+          </div>
+
+          <div className="nvr-preloader__meta">
+            <span className="nvr-preloader__status-label">
+              {progress < 100 ? 'Initializing resources...' : 'Ready'}
             </span>
-          ))}
+            <span className="nvr-preloader__counter">
+              {String(progress).padStart(2, '0')}%
+            </span>
+          </div>
         </div>
       </div>
     </div>

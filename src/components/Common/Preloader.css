@@ -1,96 +1,221 @@
+/* ===================================================================
+   NVR Quality Solutions — Premium Preloader Design System
+   Inspired by Apple, Stripe, Linear & Vercel Design Engineering
+   =================================================================== */
+
 .nvr-preloader {
   position: fixed;
-  inset: 0;
-  z-index: 9999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(90deg, #ffffff 0%, #eef5ff 40%, #ffffff 100%);
-  background-size: 200% 100%;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  animation: nvr-preloader-intro 0.75s ease forwards;
+  background-color: #f8fafc;
+  opacity: 1; /* Guaranteed 100% initial visibility on mount */
+  transition: opacity 0.8s cubic-bezier(0.7, 0, 0.84, 0), filter 0.8s ease, transform 0.8s ease;
+  will-change: opacity, filter, transform;
 }
 
 .nvr-preloader--exiting {
-  opacity: 0;
-  transform: scale(0.995);
-  pointer-events: none;
+  opacity: 0 !important;
+  filter: blur(12px) !important;
+  transform: scale(1.025) !important;
+  pointer-events: none !important;
 }
 
-/* Soft brand-color glow blobs, corners */
-.nvr-preloader__blob {
+/* ─── Hardware-Accelerated Ambient Aurora Spheres ─────────────────── */
+
+.nvr-preloader__aurora {
   position: absolute;
-  width: min(70vw, 900px);
-  height: min(70vw, 900px);
   border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.35;
   pointer-events: none;
-  animation: nvr-glow-breathe 6s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
-.nvr-preloader {
-  animation: nvr-preloader-intro 0.75s ease forwards, nvr-bg-sweep 10s linear infinite;
+.nvr-preloader__aurora--1 {
+  top: -15%;
+  right: -10%;
+  width: min(75vw, 850px);
+  height: min(75vw, 850px);
+  background: radial-gradient(circle, rgba(227, 27, 35, 0.18) 0%, rgba(227, 27, 35, 0) 70%);
+  filter: blur(100px);
+  animation: nvr-aurora-orbit-1 18s ease-in-out infinite alternate;
 }
 
-.nvr-preloader__blob--red {
-  top: -22%;
-  right: -18%;
-  background: radial-gradient(circle, #e31e24 0%, transparent 70%);
+.nvr-preloader__aurora--2 {
+  bottom: -20%;
+  left: -15%;
+  width: min(80vw, 900px);
+  height: min(80vw, 900px);
+  background: radial-gradient(circle, rgba(30, 99, 233, 0.20) 0%, rgba(15, 63, 184, 0) 70%);
+  filter: blur(110px);
+  animation: nvr-aurora-orbit-2 22s ease-in-out infinite alternate;
 }
 
-.nvr-preloader__blob--blue {
-  bottom: -22%;
-  left: -18%;
-  background: radial-gradient(circle, #1e6fee 0%, transparent 70%);
+.nvr-preloader__aurora--3 {
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(50vw, 600px);
+  height: min(50vw, 600px);
+  background: radial-gradient(circle, rgba(63, 169, 255, 0.15) 0%, rgba(63, 169, 255, 0) 65%);
+  filter: blur(90px);
+  animation: nvr-aurora-pulse 12s ease-in-out infinite alternate;
 }
 
-@media (max-width: 480px) {
-  .nvr-preloader__blob {
-    width: 90vw;
-    height: 90vw;
-  }
+/* High-tech subtle dot matrix background */
+.nvr-preloader__grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(15, 63, 184, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  opacity: 0.6;
 }
 
-/* Center content */
-.nvr-preloader__content {
+/* ─── Center Glassmorphic Card ────────────────────────────────────── */
+
+.nvr-preloader__card {
   position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
-  padding: 0 1.5rem;
-  text-align: center;
-  animation: nvr-content-breathe 5s ease-in-out infinite;
-}
-
-/* Logo left-to-right wipe reveal */
-.nvr-preloader__logo-wrap {
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
-  opacity: 0;
-}
-
-.nvr-preloader__logo-wrap--revealed {
-  clip-path: inset(0 0% 0 0);
+  width: min(92vw, 480px);
+  padding: clamp(2rem, 5vw, 2.75rem) clamp(1.5rem, 4vw, 2.5rem);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: clamp(16px, 3vw, 24px);
+  box-shadow:
+    0 24px 70px -16px rgba(15, 63, 184, 0.14),
+    0 0 0 1px rgba(15, 63, 184, 0.05),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(0);
   opacity: 1;
+  transition: transform 0.8s ease, opacity 0.8s ease, filter 0.8s ease;
+  will-change: transform, opacity, filter;
+  animation: nvr-card-entrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.nvr-preloader--exiting .nvr-preloader__card {
+  opacity: 0 !important;
+  transform: translateY(-10px) scale(1.02) !important;
+  filter: blur(8px) !important;
+}
+
+/* ─── Status Badge Pill ───────────────────────────────────────────── */
+
+.nvr-preloader__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(15, 63, 184, 0.04);
+  border: 1px solid rgba(15, 63, 184, 0.1);
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.nvr-preloader__badge-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  background-color: #1e63e9;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(30, 99, 233, 0.8);
+}
+
+.nvr-preloader__badge-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(30, 99, 233, 0.5);
+  animation: nvr-dot-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.nvr-preloader__badge-text {
+  color: #0f3fb8;
+  font-family: var(--font-code, 'JetBrains Mono', monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ─── Logo Container & Shimmer Effect ─────────────────────────────── */
+
+.nvr-preloader__logo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+  padding: 0.5rem;
+}
+
+.nvr-preloader__logo-glow {
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(30, 99, 233, 0.14) 0%, transparent 70%);
+  filter: blur(20px);
+  border-radius: 50%;
+  animation: nvr-glow-pulse 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.nvr-preloader__logo-wrap {
+  position: relative;
+  display: block;
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .nvr-preloader__logo {
   display: block;
-  width: clamp(200px, 30vw, 340px);
+  width: clamp(210px, 28vw, 310px);
   height: auto;
+  object-fit: contain;
 }
 
-/* Tagline carousel */
-.nvr-preloader__tagline-wrap {
+.nvr-preloader__logo-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  animation: nvr-shimmer-sweep 3.5s ease-in-out infinite 0.5s;
+  pointer-events: none;
+}
+
+/* ─── Dynamic Tagline Carousel ────────────────────────────────────── */
+
+.nvr-preloader__tagline-viewport {
   position: relative;
   width: 100%;
-  max-width: 420px;
-  height: 1.4em;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+  overflow: hidden;
 }
 
 .nvr-preloader__tagline {
@@ -99,97 +224,206 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0f2a63;
-  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
-  font-size: 0.85rem;
+  text-align: center;
+  color: #0f172a;
+  font-family: var(--font-code, 'JetBrains Mono', monospace);
+  font-size: clamp(0.78rem, 1.4vw, 0.88rem);
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  white-space: nowrap;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(14px) scale(0.96);
+  filter: blur(6px);
+  will-change: opacity, transform, filter;
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nvr-preloader__tagline--active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
 }
 
-/* Reduced motion: simple cross-fades only, no wipe/slide */
-@media (prefers-reduced-motion: reduce) {
-  .nvr-preloader__logo-wrap {
-    clip-path: none !important;
-    animation: nvr-fade-in 0.4s ease forwards;
-  }
-  .nvr-preloader__tagline {
-    transition: opacity 0.3s ease;
-    transform: none;
-  }
-  .nvr-preloader__content {
-    animation: none;
-  }
-  .nvr-preloader__blob {
-    animation: none;
-  }
+.nvr-preloader__tagline--prev {
+  opacity: 0;
+  transform: translateY(-14px) scale(0.96);
+  filter: blur(6px);
 }
 
-.nvr-preloader--reduced .nvr-preloader__logo-wrap {
-  clip-path: none !important;
-  animation: nvr-fade-in 0.4s ease forwards;
+/* ─── Progress System (Track, Bar, Glow, Meta) ────────────────────── */
+
+.nvr-preloader__progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.nvr-preloader--reduced .nvr-preloader__tagline {
-  transition: opacity 0.3s ease;
-  transform: none;
+.nvr-preloader__track {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  background: rgba(15, 63, 184, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-@keyframes nvr-fade-in {
-  to {
-    opacity: 1;
-  }
+.nvr-preloader__bar {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(90deg, #1e63e9 0%, #3fa9ff 60%, #e31b23 100%);
+  border-radius: 9999px;
+  will-change: width;
+  transition: width 0.08s linear;
 }
 
-@keyframes nvr-glow-breathe {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.34;
-  }
-  50% {
-    transform: scale(1.03);
-    opacity: 0.45;
-  }
+.nvr-preloader__bar-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow:
+    0 0 12px #ffffff,
+    0 0 8px #3fa9ff;
+  border-radius: 9999px;
+  opacity: 0.9;
 }
 
-@keyframes nvr-content-breathe {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-3px);
-  }
+.nvr-preloader__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #64748b;
+  font-family: var(--font-code, 'JetBrains Mono', monospace);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
 }
 
-@keyframes nvr-preloader-intro {
+.nvr-preloader__status-label {
+  font-weight: 500;
+  color: #475569;
+}
+
+.nvr-preloader__counter {
+  font-weight: 700;
+  color: #0f3fb8;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+/* ─── Keyframe Animations ─────────────────────────────────────────── */
+
+@keyframes nvr-card-entrance {
   from {
     opacity: 0;
-    transform: translateY(16px);
-    background-position: 0% 50%;
+    transform: translateY(18px) scale(0.97);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
-    background-position: 100% 50%;
+    transform: translateY(0) scale(1);
   }
 }
 
-@keyframes nvr-bg-sweep {
+@keyframes nvr-aurora-orbit-1 {
   0% {
-    background-position: 0% 50%;
+    transform: translate(0, 0) scale(1);
   }
   50% {
-    background-position: 100% 50%;
+    transform: translate(40px, 30px) scale(1.08);
   }
   100% {
-    background-position: 0% 50%;
+    transform: translate(-30px, -20px) scale(0.95);
+  }
+}
+
+@keyframes nvr-aurora-orbit-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-45px, -35px) scale(1.1);
+  }
+  100% {
+    transform: translate(35px, 25px) scale(0.92);
+  }
+}
+
+@keyframes nvr-aurora-pulse {
+  0% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@keyframes nvr-dot-ping {
+  75%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes nvr-glow-pulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0.75;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes nvr-shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  40%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ─── Reduced Motion Override ─────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .nvr-preloader,
+  .nvr-preloader__card,
+  .nvr-preloader__logo-wrap,
+  .nvr-preloader__tagline {
+    animation: none !important;
+    transition: opacity 0.3s ease !important;
+    filter: none !important;
+  }
+  .nvr-preloader__aurora,
+  .nvr-preloader__logo-shimmer,
+  .nvr-preloader__badge-dot::after {
+    animation: none !important;
+  }
+}
+
+/* ─── Responsive Optimizations ────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .nvr-preloader__card {
+    padding: 1.75rem 1.25rem;
+    border-radius: 18px;
+  }
+  .nvr-preloader__logo {
+    width: 220px;
+  }
+  .nvr-preloader__tagline {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
   }
 }
