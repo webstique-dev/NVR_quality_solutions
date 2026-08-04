@@ -31,25 +31,30 @@ const contactDetails = [
     id: 'phone',
     icon: LuPhone,
     title: 'Phone',
-    detail: 'Reach out to our expert team directly for immediate assistance and inquiries.',
+    detail: '+91 8466040046',
+    href: 'tel:+918466040046',
   },
   {
     id: 'email',
     icon: LuMail,
     title: 'Email',
-    detail: 'Send us an email and we will respond with full course or consultancy details.',
+    detail: 'nvrqualitysolutions@gmail.com',
+    href: 'mailto:nvrqualitysolutions@gmail.com',
   },
   {
     id: 'address',
     icon: LuMapPin,
     title: 'Office Address',
-    detail: 'Visit our training and consultancy headquarters.',
+    detail: 'Thadepalli, Amaravathi, Andhra Pradesh',
+    href: 'https://maps.google.com/?q=Thadepalli,+Amaravathi,+Andhra+Pradesh',
+    external: true,
   },
   {
     id: 'hours',
     icon: LuClock,
     title: 'Business Hours',
-    detail: 'Our team is available Monday through Saturday to assist you.',
+    detail: 'Monday - Saturday, 9am - 6pm',
+    support: 'Our team is available during regular business hours to assist you.',
   },
 ];
 
@@ -193,7 +198,22 @@ const Contact = () => {
                     </div>
                     <div className="cnt-info-card__content">
                       <h3 className="cnt-info-card__title">{item.title}</h3>
-                      <p className="cnt-info-card__text">{item.detail}</p>
+                      <p className="cnt-info-card__text">
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            className="cnt-info-card__link"
+                            {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                          >
+                            {item.detail}
+                          </a>
+                        ) : (
+                          item.detail
+                        )}
+                      </p>
+                      {item.support && (
+                        <p className="cnt-info-card__support">{item.support}</p>
+                      )}
                     </div>
                   </motion.div>
                 );

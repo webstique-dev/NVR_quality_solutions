@@ -26,12 +26,25 @@
 /* ─── Top grid ────────────────────────────────────────────────────── */
 .footer__top {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: var(--spacing-section);
+  grid-template-columns: minmax(220px, 1.6fr) repeat(3, minmax(180px, 1fr));
+  gap: var(--spacing-lg);
   align-items: start;
+  justify-content: stretch;
+  justify-items: stretch;
 }
 
-/* ─── Brand column ────────────────────────────────────────────────── */
+.footer__top > * {
+  min-width: 0;
+}
+
+.footer__col,
+.footer__contact-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  justify-content: flex-start;
+}
+
 .footer__brand {
   display: flex;
   flex-direction: column;
@@ -82,6 +95,64 @@
     box-shadow var(--duration-fast) var(--ease-standard);
 }
 
+.footer__contact {
+  display: grid;
+  gap: 0.85rem;
+  /* margin-top: var(--spacing-lg); */
+}
+
+.footer__contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-slate);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: 1.5;
+  text-decoration: none;
+  padding: 0.35rem 0;
+  background: transparent;
+  border: none;
+  width: fit-content;
+  white-space: normal;
+  transition: color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.footer__contact-item:hover,
+.footer__contact-item:focus-visible {
+  color: var(--color-primary-blue);
+  transform: translateY(-1px);
+}
+
+.footer__contact-item span {
+  text-decoration: none;
+}
+
+.footer__contact-item:hover span,
+.footer__contact-item:focus-visible span {
+  text-decoration: underline;
+}
+
+@media (max-width: 420px) {
+  .footer__contact-item {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer__contact-item {
+    font-size: 0.94rem;
+  }
+}
+
+.footer__contact-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary-blue);
+  flex-shrink: 0;
+}
+
 .footer__cta:hover {
   background: linear-gradient(135deg, var(--color-dark-red), #be1720);
   transform: translateY(-2px);
@@ -100,9 +171,16 @@
 
 /* ─── Link columns ────────────────────────────────────────────────── */
 .footer__links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-xl);
+  display: none;
+}
+
+.footer__contact-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__contact-section .footer__col-heading {
+  margin-bottom: var(--spacing-md);
 }
 
 .footer__col-heading {
@@ -151,9 +229,14 @@
 /* ─── Bottom bar ──────────────────────────────────────────────────── */
 .footer__bottom {
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
+}
+
+.footer__bottom p {
+  margin: 0;
 }
 
 .footer__copyright {
@@ -185,6 +268,80 @@
 
   .footer__tagline {
     max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer__inner {
+    padding: var(--spacing-xxl) var(--spacing-md);
+  }
+
+  .footer__contact {
+    gap: var(--spacing-sm);
+  }
+
+  .footer__contact-item {
+    width: 100%;
+  }
+
+  .footer__cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer__bottom p {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .footer__inner {
+    padding: var(--spacing-xxl) var(--spacing-sm);
+  }
+
+  .footer__top {
+    gap: var(--spacing-lg);
+  }
+
+  .footer__contact-item {
+    width: 100%;
+    white-space: normal;
+    padding: 0.5rem 0;
+  }
+
+  .footer__contact {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer__inner {
+    padding: var(--spacing-xl) 12px;
+  }
+
+  .footer__tagline {
+    font-size: calc(var(--fs-body-sm) - 0.05rem);
+  }
+
+  .footer__contact-item {
+    font-size: 0.92rem;
   }
 }
 

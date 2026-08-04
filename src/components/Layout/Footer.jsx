@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FiArrowUpRight } from 'react-icons/fi';
+import { LuPhone, LuMail, LuMapPin } from 'react-icons/lu';
 import { motion, useReducedMotion } from 'framer-motion';
 import './Footer.css';
 
@@ -16,6 +17,28 @@ const FOOTER_LINKS = {
     { label: 'Terms & Conditions', to: '/terms-conditions' },
   ],
 };
+
+const FOOTER_CONTACT = [
+  {
+    icon: LuPhone,
+    label: 'Phone',
+    href: 'tel:+918466040046',
+    value: '+91 8466040046',
+  },
+  {
+    icon: LuMail,
+    label: 'Email',
+    href: 'mailto:nvrqualitysolutions@gmail.com',
+    value: 'nvrqualitysolutions@gmail.com',
+  },
+  {
+    icon: LuMapPin,
+    label: 'Address',
+    href: 'https://maps.google.com/?q=Thadepalli,+Amaravathi,+Andhra+Pradesh',
+    value: 'Thadepalli, Amaravathi, Andhra Pradesh',
+    external: true,
+  },
+];
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -48,21 +71,50 @@ const Footer = () => {
           </div>
 
           {/* Navigation Links Columns */}
-          <div className="footer__links">
-            {Object.entries(FOOTER_LINKS).map(([heading, links]) => (
-              <div className="footer__col" key={heading}>
-                <h3 className="footer__col-heading">{heading}</h3>
-                <ul className="footer__link-list">
-                  {links.map((link) => (
-                    <li key={link.to}>
-                      <Link to={link.to} className="footer__link-item">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="footer__col">
+            <h3 className="footer__col-heading">Company</h3>
+            <ul className="footer__link-list">
+              {FOOTER_LINKS.Company.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="footer__link-item">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="footer__col">
+            <h3 className="footer__col-heading">Resources</h3>
+            <ul className="footer__link-list">
+              {FOOTER_LINKS.Resources.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="footer__link-item">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="footer__contact-section">
+            <h3 className="footer__col-heading">Contact Details</h3>
+            <div className="footer__contact">
+              {FOOTER_CONTACT.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="footer__contact-item"
+                    {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                  >
+                    <Icon className="footer__contact-icon" aria-hidden="true" />
+                    <span>{item.value}</span>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </motion.div>
 
