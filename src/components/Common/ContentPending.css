@@ -1,13 +1,13 @@
 .content-pending {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 18px 22px;
+  gap: var(--spacing-sm);
+  padding: clamp(1rem, 2vw, 1.3rem);
   border-radius: var(--card-radius-sm);
   border: 1px dashed rgba(0, 0, 0, 0.2);
   background: rgba(0, 0, 0, 0.03);
   color: var(--color-text-secondary-light);
-  font-size: 0.9rem;
+  font-size: var(--fs-body-sm-resp);
 }
 
 .section--dark .content-pending {

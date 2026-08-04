@@ -17,7 +17,7 @@
   border: 1px solid var(--color-ink);
   box-shadow: var(--shadow-3);
   color: var(--color-on-dark);
-  font-size: 1rem;
+  font-size: var(--fs-body-resp);
   transition:
     transform    var(--duration-fast) var(--ease-premium),
     background   var(--duration-fast) var(--ease-standard);

@@ -7,11 +7,12 @@
   justify-content: center;
   gap: var(--spacing-xs);
   min-height: 44px;
+  min-width: 44px;
   max-width: 100%;
-  padding: 12px 22px;
+  padding: clamp(0.75rem, 1.3vw + 0.55rem, 1rem) clamp(1rem, 1.9vw + 0.75rem, 1.4rem);
   border-radius: var(--rounded-md);
   font-family: var(--font-body);
-  font-size: var(--fs-btn);
+  font-size: var(--fs-btn-resp);
   font-weight: 500;
   line-height: 1.20;
   letter-spacing: var(--ls-btn);
@@ -145,7 +146,7 @@
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .btn {
-    font-size: 13px;
-    padding: 10px 18px;
+    width: 100%;
+    justify-content: center;
   }
 }

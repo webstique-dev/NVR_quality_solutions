@@ -38,11 +38,11 @@
   right: 0;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-md);
   background: var(--color-canvas);
   border: 1px solid var(--color-hairline-soft);
   border-radius: var(--rounded-lg);
-  padding: 12px 18px;
+  padding: 0.8rem 1.1rem;
   box-shadow: var(--shadow-2);
   max-width: 240px;
 }
@@ -62,15 +62,15 @@
 
 .why-choose__img-badge strong {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: var(--fs-body-sm-resp);
   font-weight: 600;
   color: var(--color-ink);
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 0.15rem;
 }
 
 .why-choose__img-badge p {
-  font-size: 0.78rem;
+  font-size: var(--fs-caption-resp);
   color: var(--color-slate);
   margin: 0;
   line-height: 1.4;
@@ -85,7 +85,7 @@
 .eyebrow-light {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-sm);
   font-family: var(--font-body);
   font-size: var(--fs-body-sm);
   font-weight: 600;
@@ -167,7 +167,7 @@
   color: var(--color-ink);
   line-height: var(--lh-h5);
   letter-spacing: var(--ls-h2);
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 }
 
 .why-choose__feature-text {
@@ -210,9 +210,9 @@
     position: relative;
     bottom: auto;
     right: auto;
-    margin-top: 10px;
+    margin-top: 0.75rem;
     max-width: 100%;
-    padding: 10px 14px;
+    padding: 0.8rem 0.95rem;
   }
 
   .why-choose__heading {

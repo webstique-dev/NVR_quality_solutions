@@ -8,6 +8,22 @@
   width: 100%;
 }
 
+body {
+  margin: 0;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-md);
+  line-height: var(--lh-body-md);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+}
+
 /* Global safety resets for text overflow & responsive media */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -21,6 +37,10 @@ img, svg, canvas, video {
 h1, h2, h3, h4, h5, h6, p, span, a, li, button, label {
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+a, button, input, textarea, select {
+  font: inherit;
 }
 
 p {
@@ -38,41 +58,35 @@ p + p {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-xxl);
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 var(--spacing-xl);
-  }
+  padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 var(--spacing-md);
+    padding: 0 1rem;
   }
 }
 
 @media (max-width: 360px) {
   .container {
-    padding: 0 12px;
+    padding: 0 0.75rem;
   }
 }
 
 /* ─── Section Rhythm ─────────────────────────────────────────────── */
 .section {
-  padding: var(--spacing-section-lg) 0;
+  padding: var(--section-padding-desktop) 0;
 }
 
 @media (max-width: 1024px) {
   .section {
-    padding: var(--spacing-section) 0;
+    padding: clamp(3.5rem, 6vw, 4.75rem) 0;
   }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: var(--spacing-section-sm) 0;
+    padding: var(--section-padding-mobile) 0;
   }
 }
 
@@ -159,7 +173,7 @@ p + p {
   font-weight: 600;
   line-height: var(--lh-caption);
   border-radius: var(--rounded-full);
-  padding: 4px 12px;
+  padding: 0.25rem 0.75rem;
   white-space: nowrap;
 }
 

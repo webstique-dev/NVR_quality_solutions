@@ -108,9 +108,9 @@
 .hero__badge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-sm);
   font-family: var(--font-body);
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-body-sm-resp);
   font-weight: 600;
   letter-spacing: var(--ls-micro-uc);
   text-transform: uppercase;
@@ -118,7 +118,7 @@
   background: var(--color-blue-50);
   border: 1px solid var(--color-hairline-soft);
   border-radius: var(--rounded-full);
-  padding: 6px 16px 6px 10px;
+  padding: 0.45rem 1rem 0.45rem 0.75rem;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -175,7 +175,7 @@
 
 .hero__note {
   margin-top: var(--spacing-sm);
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-steel);
   line-height: var(--lh-body-sm);
 }
@@ -198,19 +198,19 @@
 .hero__trust-item {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 0.25rem;
 }
 
 .hero__trust-value {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.1vw + 0.7rem, 1.1rem);
   font-weight: 700;
   color: var(--color-primary-blue);
   letter-spacing: 0.04em;
 }
 
 .hero__trust-label {
-  font-size: 0.75rem;
+  font-size: var(--fs-caption-resp);
   color: var(--color-slate);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -250,11 +250,11 @@
   z-index: 10;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  gap: var(--spacing-sm);
+  padding: 0.75rem 1rem;
   border-radius: var(--rounded-lg);
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: var(--fs-caption-resp);
   font-weight: 600;
   color: var(--color-ink);
   background: var(--color-canvas);
@@ -277,7 +277,7 @@
 }
 
 .hero__float-icon {
-  font-size: 1.1rem;
+  font-size: var(--fs-body-resp);
   width: 18px;
   height: 18px;
   color: var(--color-primary-blue);
@@ -382,9 +382,9 @@
     white-space: nowrap;
     width: fit-content;
     max-width: calc(100% - 24px);
-    font-size: 0.78rem;
-    padding: 8px 12px;
-    margin: 8px auto 0;
+    font-size: var(--fs-caption-resp);
+    padding: 0.7rem 0.9rem;
+    margin: 0.75rem auto 0;
     animation: none;
     z-index: 10;
   }
@@ -399,8 +399,8 @@
   }
 
   .hero__badge {
-    font-size: 0.68rem;
-    padding: 4px 10px;
+    font-size: var(--fs-micro-resp);
+    padding: 0.35rem 0.7rem;
   }
 
   .hero__trust {

@@ -58,8 +58,8 @@
 .about-hero__breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: var(--fs-body-sm);
+  gap: var(--spacing-sm);
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-steel);
   margin-top: var(--spacing-md);
 }
@@ -101,11 +101,11 @@
   left: -16px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  gap: var(--spacing-sm);
+  padding: 0.8rem 1rem;
   border-radius: var(--rounded-lg);
   font-family: var(--font-body);
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-body-sm-resp);
   font-weight: 600;
   color: var(--color-ink);
   background: var(--color-canvas);
@@ -579,7 +579,7 @@
     position: relative;
     bottom: auto;
     left: auto;
-    margin-top: 14px;
+    margin-top: 0.9rem;
     display: inline-flex;
     white-space: nowrap;
     width: fit-content;

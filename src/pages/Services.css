@@ -89,8 +89,8 @@
 .svc-hero__breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: var(--fs-body-sm);
+  gap: var(--spacing-sm);
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-slate);
   margin-bottom: var(--spacing-md);
 }
@@ -162,9 +162,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 20px;
+  padding: 0.8rem 1.2rem;
   border-radius: 14px;
-  font-size: 0.875rem;
+  font-size: var(--fs-caption-resp);
   font-weight: 700;
   color: var(--color-ink);
   background: var(--color-canvas);
@@ -247,7 +247,7 @@
 
 .svc-card__number {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: var(--fs-caption-resp);
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--color-primary-red);
@@ -268,7 +268,7 @@
 }
 
 .svc-card__para {
-  font-size: 1rem;
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-slate);
   line-height: var(--lh-body-md);
   margin-bottom: var(--spacing-sm);
@@ -281,8 +281,8 @@
 .svc-card__link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
+  gap: 0.35rem;
+  font-size: var(--fs-body-sm-resp);
   font-weight: 600;
   color: var(--color-royal-blue);
   text-decoration: none;
@@ -402,7 +402,7 @@
 }
 
 .svc-consult__check-label {
-  font-size: 1rem;
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-slate);
   line-height: 1.5;
 }
@@ -449,14 +449,14 @@
 
 .svc-consult__panel-title {
   font-family: var(--font-body);
-  font-size: 1.25rem;
+  font-size: clamp(1.05rem, 1.35vw + 0.6rem, 1.25rem);
   font-weight: 700;
   color: var(--color-ink);
   line-height: 1.25;
 }
 
 .svc-consult__panel-desc {
-  font-size: 0.9375rem;
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-slate);
   line-height: var(--lh-body-md);
 }
@@ -470,9 +470,9 @@
 
 .svc-consult__tag {
   display: inline-block;
-  padding: 4px 14px;
+  padding: 0.25rem 0.95rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: var(--fs-caption-resp);
   font-weight: 600;
   letter-spacing: 0.06em;
   background: var(--color-blue-50);
@@ -545,7 +545,7 @@
 }
 
 .svc-why__item-label {
-  font-size: 0.9375rem;
+  font-size: var(--fs-body-sm-resp);
   font-weight: 500;
   color: var(--color-ink);
   line-height: 1.45;
@@ -622,13 +622,13 @@
     position: relative;
     bottom: auto;
     right: auto;
-    margin-top: 14px;
+    margin-top: 0.9rem;
     display: inline-flex;
     white-space: nowrap;
     width: fit-content;
     max-width: 100%;
-    font-size: 0.8rem;
-    padding: 8px 14px;
+    font-size: var(--fs-caption-resp);
+    padding: 0.7rem 0.95rem;
   }
 
   .svc-card {

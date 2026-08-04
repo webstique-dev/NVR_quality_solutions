@@ -11,7 +11,7 @@
 
 .page-banner__breadcrumb {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-sm);
   font-family: var(--font-body);
   font-size: var(--fs-body-sm);
   color: var(--color-steel);

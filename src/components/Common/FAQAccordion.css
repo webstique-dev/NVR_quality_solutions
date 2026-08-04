@@ -37,7 +37,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
-  padding: var(--spacing-xl);
+  padding: clamp(1rem, 2vw, 1.35rem);
   text-align: left;
   font-family: var(--font-body);
   font-size: var(--fs-body-md);
@@ -92,7 +92,7 @@
 .faq-item__panel-inner {
   padding: 0 var(--spacing-xl) var(--spacing-xl);
   font-family: var(--font-body);
-  font-size: var(--fs-body-md);
+  font-size: var(--fs-body-resp);
   line-height: var(--lh-body-md);
   color: var(--color-slate);
 }
@@ -105,14 +105,14 @@
 /* ─── Responsive ───────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .faq-item__trigger {
-    padding: var(--spacing-md) var(--spacing-md);
-    font-size: var(--fs-body-sm);
+    padding: 0.95rem;
+    font-size: var(--fs-body-sm-resp);
     gap: var(--spacing-sm);
   }
 
   .faq-item__panel-inner {
-    padding: 0 var(--spacing-md) var(--spacing-md);
-    font-size: var(--fs-body-sm);
+    padding: 0 0.95rem 0.95rem;
+    font-size: var(--fs-body-sm-resp);
   }
 
   .faq-item__icon {
@@ -123,7 +123,7 @@
 
 @media (max-width: 380px) {
   .faq-item__trigger {
-    padding: 12px;
+    padding: 0.75rem;
   }
 
   .faq-item__panel-inner {

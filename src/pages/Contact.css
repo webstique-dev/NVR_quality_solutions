@@ -69,8 +69,8 @@
 .cnt-hero__breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: var(--fs-body-sm);
+  gap: var(--spacing-sm);
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-steel);
   margin-bottom: var(--spacing-md);
 }
@@ -144,11 +144,11 @@
   right: -12px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  gap: var(--spacing-sm);
+  padding: 0.8rem 1rem;
   border-radius: var(--rounded-lg);
   font-family: var(--font-body);
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-body-sm-resp);
   font-weight: 600;
   color: var(--color-ink);
   background: var(--color-canvas);
@@ -236,7 +236,7 @@
   color: var(--color-ink);
   line-height: var(--lh-h5);
   letter-spacing: var(--ls-h2);
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 }
 
 .cnt-info-card__text {
@@ -354,14 +354,14 @@
 
 .cnt-map-card__label {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1vw + 0.7rem, 1.1rem);
   font-weight: 700;
   color: var(--color-ink);
   margin-bottom: 4px;
 }
 
 .cnt-map-card__sublabel {
-  font-size: 0.85rem;
+  font-size: var(--fs-caption-resp);
   color: var(--color-slate);
 }
 
@@ -545,8 +545,8 @@
 .cnt-side-badge {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  gap: var(--spacing-sm);
+  padding: 0.75rem 1rem;
   border-radius: var(--rounded-full);
   background-color: var(--color-blue-50);
   border: 1px solid var(--color-hairline-soft);
@@ -650,13 +650,13 @@
     position: relative;
     bottom: auto;
     right: auto;
-    margin-top: 14px;
+    margin-top: 0.9rem;
     display: inline-flex;
     white-space: nowrap;
     width: fit-content;
     max-width: 100%;
-    font-size: 0.8rem;
-    padding: 8px 14px;
+    font-size: var(--fs-caption-resp);
+    padding: 0.7rem 0.95rem;
   }
 
   .cnt-details__cards {
@@ -677,12 +677,12 @@
   }
 
   .cnt-side-card__title {
-    font-size: 1.25rem;
+    font-size: clamp(1.05rem, 1.5vw + 0.6rem, 1.25rem);
   }
 
   .cnt-side-badge {
-    font-size: 0.75rem;
-    padding: 10px 14px;
+    font-size: var(--fs-caption-resp);
+    padding: 0.75rem 0.95rem;
   }
 
   .cnt-section-heading {
@@ -699,11 +699,11 @@
   .cnt-hero { padding-top: calc(var(--nav-height) + var(--spacing-md)); }
 
   .cnt-info-card {
-    padding: 14px;
+    padding: 0.95rem;
   }
 
   .cnt-form-card {
-    padding: 14px;
+    padding: 0.95rem;
   }
 }
 

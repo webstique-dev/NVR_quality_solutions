@@ -111,8 +111,8 @@
 .tp-hero__breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: var(--fs-body-sm);
+  gap: var(--spacing-sm);
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-slate);
   margin-bottom: var(--spacing-md);
 }
@@ -179,10 +179,10 @@
   right: -12px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
+  gap: var(--spacing-sm);
+  padding: 0.8rem 1.2rem;
   border-radius: 14px;
-  font-size: 0.875rem;
+  font-size: var(--fs-caption-resp);
   font-weight: 700;
   color: var(--color-ink);
   background: var(--color-canvas);
@@ -268,7 +268,7 @@
 
 .tp-card__number {
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: var(--fs-caption-resp);
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--color-primary-red);
@@ -276,14 +276,14 @@
 
 .tp-card__title {
   font-family: var(--font-body);
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 1.4vw + 0.5rem, 1.15rem);
   font-weight: 700;
   color: var(--color-ink);
   line-height: 1.3;
 }
 
 .tp-card__desc {
-  font-size: 0.9375rem;
+  font-size: var(--fs-body-sm-resp);
   color: var(--color-slate);
   line-height: var(--lh-body-md);
   flex-grow: 1;
@@ -297,7 +297,7 @@
 }
 
 .tp-card__areas-label {
-  font-size: 0.8rem;
+  font-size: var(--fs-caption-resp);
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -311,14 +311,14 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 
 .tp-card__area-item {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  font-size: 0.875rem;
+  gap: var(--spacing-sm);
+  font-size: var(--fs-caption-resp);
   color: var(--color-slate);
   line-height: 1.45;
 }
@@ -328,7 +328,7 @@
   height: 14px;
   color: var(--color-primary-blue);
   flex-shrink: 0;
-  margin-top: 3px;
+  margin-top: 0.2rem;
 }
 
 /* Bottom accent bar */
@@ -423,7 +423,7 @@
 }
 
 .tp-who__card-label {
-  font-size: 0.9375rem;
+  font-size: var(--fs-body-sm-resp);
   font-weight: 500;
   color: var(--color-slate);
   line-height: 1.45;
@@ -490,7 +490,7 @@
   background: #ffffff;
   border: 1px solid var(--color-hairline-soft);
   border-radius: var(--rounded-sm);
-  padding: 14px var(--spacing-md);
+  padding: 0.95rem var(--spacing-md);
   box-shadow: var(--shadow-2);
   transition: box-shadow 0.25s var(--ease-premium), border-color 0.25s var(--ease-premium), transform 0.25s var(--ease-premium);
 }
@@ -520,13 +520,13 @@
 }
 
 .tp-different__item-label {
-  font-size: 0.9375rem;
+  font-size: var(--fs-body-sm-resp);
   font-weight: 500;
   color: var(--color-ink);
 }
 
 .tp-different__closing {
-  font-size: 1rem;
+  font-size: var(--fs-body-resp);
   color: var(--color-slate);
   line-height: var(--lh-body-md);
   font-style: italic;
@@ -557,7 +557,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 0.35rem;
 }
 
 .tp-different__stat-val {
@@ -569,7 +569,7 @@
 }
 
 .tp-different__stat-label {
-  font-size: 0.75rem;
+  font-size: var(--fs-caption-resp);
   color: var(--color-slate);
   text-align: center;
   text-transform: uppercase;
@@ -593,9 +593,9 @@
 
 .tp-different__badge {
   display: inline-block;
-  padding: 8px 20px;
+  padding: 0.6rem 1.25rem;
   border-radius: 999px;
-  font-size: 0.875rem;
+  font-size: var(--fs-caption-resp);
   font-weight: 700;
   letter-spacing: 0.06em;
   background: var(--color-blue-50);
@@ -718,23 +718,36 @@
     font-size: clamp(1.75rem, 6vw, 2.5rem);
   }
 
+  .tp-hero__breadcrumb {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+  }
+
+  .tp-hero__content {
+    gap: var(--spacing-sm);
+  }
+
   .tp-hero__para { font-size: var(--fs-body-md); }
 
   .tp-hero__img-tag {
     position: relative;
     bottom: auto;
     right: auto;
-    margin-top: 14px;
+    margin-top: 0.9rem;
     display: inline-flex;
     white-space: nowrap;
     width: fit-content;
     max-width: 100%;
-    font-size: 0.8rem;
-    padding: 8px 14px;
+    font-size: var(--fs-caption-resp);
+    padding: 0.7rem 0.95rem;
   }
 
   .tp-programs__grid {
     grid-template-columns: 1fr;
+  }
+
+  .tp-section-header {
+    margin-bottom: var(--spacing-lg);
   }
 
   .tp-card {
@@ -747,6 +760,10 @@
 
   .tp-different__heading {
     font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .tp-different__item {
+    padding: 0.85rem var(--spacing-md);
   }
 
   .tp-different__para { font-size: var(--fs-body-md); }

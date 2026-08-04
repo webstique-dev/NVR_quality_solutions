@@ -16,9 +16,9 @@
 .inquiry-form .btn {
   margin-top: var(--spacing-xs);
   align-self: flex-start;
-  padding: 12px 36px;
+  padding: clamp(0.75rem, 1.3vw + 0.5rem, 1rem) clamp(1.15rem, 2vw + 0.75rem, 1.5rem);
   font-family: var(--font-body);
-  font-size: var(--fs-btn);
+  font-size: var(--fs-btn-resp);
   font-weight: 500;
   letter-spacing: var(--ls-btn);
   border-radius: var(--rounded-md);
@@ -48,7 +48,7 @@
 
 .inquiry-form__success p {
   font-family: var(--font-body);
-  font-size: var(--fs-body-md);
+  font-size: var(--fs-body-resp);
   color: var(--color-slate);
   line-height: var(--lh-body-md);
   letter-spacing: var(--ls-body);

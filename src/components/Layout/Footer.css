@@ -20,7 +20,7 @@
 .footer__inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--spacing-section) var(--spacing-xxl);
+  padding: clamp(3.25rem, 6vw, 4.5rem) clamp(1rem, 3vw, 2rem);
 }
 
 /* ─── Top grid ────────────────────────────────────────────────────── */
@@ -56,7 +56,7 @@
   max-width: 44ch;
   color: var(--color-slate);
   font-family: var(--font-body);
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-body-sm-resp);
   line-height: var(--lh-body-sm);
 }
 
@@ -65,11 +65,11 @@
   align-items: center;
   gap: var(--spacing-xs);
   margin-top: var(--spacing-lg);
-  padding: 12px 22px;
+  padding: 0.8rem 1.35rem;
   background-color: var(--color-primary-red);
   color: var(--color-on-primary);
   font-family: var(--font-body);
-  font-size: var(--fs-btn);
+  font-size: var(--fs-btn-resp);
   font-weight: 500;
   border-radius: var(--rounded-md);
   text-decoration: none;
@@ -126,7 +126,7 @@
   font-size: var(--fs-body-sm);
   line-height: var(--lh-body-sm);
   text-decoration: none;
-  padding: 4px 0;
+  padding: 0.25rem 0;
   transition: color var(--duration-fast) var(--ease-standard);
 }
 
@@ -160,7 +160,7 @@
 .footer__disclaimer {
   max-width: 60ch;
   font-family: var(--font-body);
-  font-size: var(--fs-micro);
+  font-size: var(--fs-micro-resp);
   line-height: 1.6;
   color: var(--color-stone);
 }
@@ -184,7 +184,7 @@
 /* ─── Responsive — Mobile (≤640px) ──────────────────────────────── */
 @media (max-width: 640px) {
   .footer__inner {
-    padding: var(--spacing-xxl) var(--spacing-md);
+    padding: clamp(2.25rem, 5vw, 2.75rem) 1rem;
   }
 
   .footer__links {
@@ -217,7 +217,7 @@
 
 @media (max-width: 360px) {
   .footer__inner {
-    padding: var(--spacing-xl) 12px;
+    padding: var(--spacing-xl) 0.75rem;
   }
 }
 
