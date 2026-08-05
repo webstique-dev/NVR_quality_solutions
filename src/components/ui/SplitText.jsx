@@ -26,6 +26,7 @@ const SplitText = ({
   textAlign = 'left',
   highlightText = '',
   highlightClass = '',
+  ready = true,
   onLetterAnimationComplete,
 }) => {
   const containerRef = useRef(null);
@@ -34,11 +35,16 @@ const SplitText = ({
     const el = containerRef.current;
     if (!el) return;
 
-    // Check reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     const targets = el.querySelectorAll('.split-item');
     if (!targets || targets.length === 0) return;
+
+    if (!ready) {
+      gsap.set(targets, { opacity: 0, y: from.y || 40 });
+      return;
+    }
+
+    // Check reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
       gsap.set(targets, { opacity: 1, y: 0, x: 0 });
@@ -99,7 +105,7 @@ const SplitText = ({
     return () => {
       ctx.revert();
     };
-  }, [text, delay, duration, ease, splitType, from, to, threshold, onLetterAnimationComplete]);
+  }, [text, delay, duration, ease, splitType, from, to, threshold, ready, onLetterAnimationComplete]);
 
   // Determine if a character position or word falls within the highlighted phrase
   const isIndexHighlighted = (charIndex) => {

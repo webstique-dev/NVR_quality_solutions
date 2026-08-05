@@ -176,6 +176,24 @@ export const imageReveal = {
   },
 };
 
+export const heroImageReveal = {
+  hidden: {
+    opacity: 0,
+    x: isMobile ? 30 : 60,
+    scale: 0.95,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 1.1,
+      ease: EASE.smooth,
+      delay: 0.15,
+    },
+  },
+};
+
 /* ─── Button Animations ─────────────────────────────────────────── */
 export const buttonReveal = {
   hidden: {
@@ -205,3 +223,127 @@ export const buttonReveal = {
     },
   },
 };
+
+/* ─── Hero Section Animation System ─────────────────────────────── */
+
+export const heroContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+export const heroGlow = {
+  hidden: {
+    opacity: 0,
+    scale: 0.8,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1.4,
+      ease: EASE.smooth,
+    },
+  },
+};
+
+export const heroChildFadeUp = {
+  hidden: {
+    opacity: 0,
+    y: yOffset,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: DURATION.medium,
+      ease: EASE.smooth,
+    },
+  },
+};
+
+export const chipContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.35,
+    },
+  },
+};
+
+export const chipItem = {
+  hidden: {
+    opacity: 0,
+    scale: 0.85,
+    y: 12,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 400,
+      damping: 25,
+    },
+  },
+  hover: {
+    y: -3,
+    scale: 1.05,
+    boxShadow: '0 8px 20px rgba(15, 63, 184, 0.18)',
+    transition: {
+      duration: 0.2,
+      ease: EASE.smooth,
+    },
+  },
+};
+
+export const floatBadgeEntrance = {
+  hidden: {
+    opacity: 0,
+    scale: 0.82,
+    y: 24,
+    x: -12,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    x: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 22,
+      delay: 0.45,
+    },
+  },
+};
+
+export const floatCardEntrance = {
+  hidden: {
+    opacity: 0,
+    scale: 0.82,
+    y: 28,
+    x: -16,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    x: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 280,
+      damping: 20,
+      delay: 0.65,
+    },
+  },
+};
+

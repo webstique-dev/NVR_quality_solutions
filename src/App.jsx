@@ -5,6 +5,7 @@ import Footer from './components/Layout/Footer';
 import ScrollToTopOnRoute from './components/Common/ScrollToTopOnRoute';
 import ScrollToTopButton from './components/Common/ScrollToTopButton';
 import Preloader from './components/Common/Preloader';
+import { PreloaderProvider, usePreloader } from './context/PreloaderContext';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -18,8 +19,9 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
 import NotFound from './pages/NotFound';
 
-function App() {
-  const [isPreloading, setIsPreloading] = useState(true);
+function AppContent() {
+  const { isPreloaderActive, setPreloaderComplete } = usePreloader();
+  const [showPreloader, setShowPreloader] = useState(isPreloaderActive);
 
   return (
     <>
@@ -42,9 +44,23 @@ function App() {
       </main>
       <Footer />
       <ScrollToTopButton />
-      {isPreloading && <Preloader onFinish={() => setIsPreloading(false)} />}
+      {showPreloader && (
+        <Preloader
+          onStartExit={() => setPreloaderComplete()}
+          onFinish={() => setShowPreloader(false)}
+        />
+      )}
     </>
   );
 }
 
+function App() {
+  return (
+    <PreloaderProvider>
+      <AppContent />
+    </PreloaderProvider>
+  );
+}
+
 export default App;
+

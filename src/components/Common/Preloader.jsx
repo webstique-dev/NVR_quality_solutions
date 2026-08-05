@@ -10,7 +10,7 @@ const TAGLINES = [
 const MIN_DISPLAY_MS = 3000;   // Guaranteed 3.0 seconds display time on every refresh
 const EXIT_DURATION_MS = 800;  // 800ms exit fade-out animation
 
-export default function Preloader({ onFinish }) {
+export default function Preloader({ onFinish, onStartExit }) {
   const [phase, setPhase] = useState('cycling'); // cycling -> exiting
   const [progress, setProgress] = useState(0);
   const [taglineIndex, setTaglineIndex] = useState(0);
@@ -18,11 +18,13 @@ export default function Preloader({ onFinish }) {
 
   const startTimeRef = useRef(null);
   const onFinishRef = useRef(onFinish);
+  const onStartExitRef = useRef(onStartExit);
   const exitTriggeredRef = useRef(false);
 
   useEffect(() => {
     onFinishRef.current = onFinish;
-  }, [onFinish]);
+    onStartExitRef.current = onStartExit;
+  }, [onFinish, onStartExit]);
 
   // Completely lock body & html scrolling while preloader is active
   useEffect(() => {
@@ -77,6 +79,7 @@ export default function Preloader({ onFinish }) {
         if (!exitTriggeredRef.current) {
           exitTriggeredRef.current = true;
           setPhase('exiting');
+          onStartExitRef.current?.();
 
           // Unlock scroll immediately when exit transition begins
           document.body.style.overflow = '';

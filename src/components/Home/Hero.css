@@ -46,6 +46,16 @@
   background: radial-gradient(circle, rgba(227, 27, 35, 0.08), transparent 70%);
 }
 
+.hero__grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(15, 63, 184, 0.1) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 25%, transparent 75%);
+}
+
 /* Main 2-Column Grid Layout */
 .hero__inner {
   position: relative;
@@ -291,9 +301,6 @@
   position: absolute;
   top: 22px;
   left: 22px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -302,6 +309,17 @@
   padding: 9px 16px 9px 9px;
   box-shadow: 0 14px 30px -12px rgba(15, 23, 42, 0.2);
   z-index: 2;
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.float-badge-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  will-change: transform;
 }
 
 .float-badge .icon {
@@ -338,9 +356,6 @@
 .float-card {
   position: absolute;
   bottom: 26px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
   background: #ffffff;
   border: 1px solid rgba(15, 63, 184, 0.15);
   border-radius: 0px 18px 18px 0px;
@@ -348,6 +363,17 @@
   box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.22);
   max-width: 265px;
   z-index: 2;
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.float-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  will-change: transform;
 }
 
 .float-card .ring {
