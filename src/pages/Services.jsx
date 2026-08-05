@@ -1,47 +1,43 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   LuChartBar,
   LuShieldCheck,
   LuMedal,
   LuGlobe,
   LuAward,
-  LuBookOpen,
-  LuBriefcase,
-  LuCheck,
-  LuArrowRight,
-  LuTarget,
-  LuCircleCheckBig,
 } from 'react-icons/lu';
+import Button from '../components/Common/Button';
 import CTABanner from '../components/Layout/CTABanner';
+import SplitText from '../components/ui/SplitText';
+import ScrollReveal from '../components/ui/ScrollReveal';
+import {
+  fadeUp,
+  cardReveal,
+  blurReveal,
+  fadeRight,
+  staggerContainer,
+  staggerItem,
+} from '../animations/variants';
+import { homeViewport } from '../animations/viewport';
 import './Services.css';
-
-/* ─── Animation variants ─────────────────────────────── */
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: (d = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: d },
-  }),
-};
 
 /* ─── Training service cards ─────────────────────────── */
 const trainingServices = [
   {
     id: 'healthcare-quality-training',
-    slug: 'healthcare-quality-training',
     icon: LuChartBar,
+    tag: 'Quality Practice',
     number: '01',
     title: 'Healthcare Quality Training',
     body: [
       'Our Healthcare Quality Training programs equip students and healthcare professionals. Every student leaves us with the knowledge and skills needed to understand healthcare quality systems, regulatory expectations, and quality improvement methodologies.',
-      'Participants gain exposure to industry best practices, documentation processes, quality frameworks, and implementation strategies. They can then contribute confidently to quality initiatives within hospitals and healthcare institutions.',
+      'Participants gain exposure to industry best practices, documentation processes, quality frameworks, and implementation strategies.',
     ],
   },
   {
     id: 'patient-safety-training',
-    slug: 'patient-safety-training',
     icon: LuShieldCheck,
+    tag: 'Risk & Safety',
     number: '02',
     title: 'Patient Safety Training',
     body: [
@@ -50,8 +46,8 @@ const trainingServices = [
   },
   {
     id: 'nabh-training',
-    slug: 'nabh-training',
     icon: LuMedal,
+    tag: 'Accreditation',
     number: '03',
     title: 'NABH Training',
     body: [
@@ -60,18 +56,18 @@ const trainingServices = [
   },
   {
     id: 'jci-training',
-    slug: 'jci-training',
     icon: LuGlobe,
+    tag: 'Global Standards',
     number: '04',
     title: 'JCI Training',
     body: [
-      'Our JCI Training programs introduce participants to internationally recognized healthcare quality and patient safety standards. Training includes quality management principles, patient-centered standards, documentation, and implementation practices that support organizational excellence.',
+      'Our JCI Training programs introduce participants to internationally recognized healthcare quality and patient safety standards. Training includes quality management principles, patient-centered standards, and implementation practices.',
     ],
   },
   {
     id: 'camhp-training',
-    slug: 'camhp-training',
     icon: LuAward,
+    tag: 'Compliance',
     number: '05',
     title: 'CAMHP Training',
     body: [
@@ -82,106 +78,75 @@ const trainingServices = [
 
 /* ─── Consultancy list items ─────────────────────────── */
 const consultancyItems = [
-  { id: 'c1', label: 'Assess existing quality systems' },
-  { id: 'c2', label: 'Identify compliance gaps' },
-  { id: 'c3', label: 'Develop implementation strategies' },
-  { id: 'c4', label: 'Improve documentation practices' },
-  { id: 'c5', label: 'Prepare for accreditation assessments' },
-  { id: 'c6', label: 'Build sustainable quality processes' },
+  { num: '01', label: 'Assess existing quality systems' },
+  { num: '02', label: 'Identify compliance gaps' },
+  { num: '03', label: 'Develop implementation strategies' },
+  { num: '04', label: 'Improve documentation practices' },
+  { num: '05', label: 'Prepare for accreditation assessments' },
+  { num: '06', label: 'Build sustainable quality processes' },
 ];
 
 /* ─── Why Choose list items ──────────────────────────── */
 const whyItems = [
-  { id: 'w1', label: 'Industry-focused learning' },
-  { id: 'w2', label: 'Practical implementation strategies' },
-  { id: 'w3', label: 'Experienced trainers and consultants' },
-  { id: 'w4', label: 'Real-world healthcare applications' },
-  { id: 'w5', label: 'Structured guidance for accreditation readiness' },
-  { id: 'w6', label: 'Continuous professional development' },
+  'Industry-focused learning',
+  'Practical implementation strategies',
+  'Experienced trainers and consultants',
+  'Real-world healthcare applications',
+  'Structured guidance for accreditation readiness',
+  'Continuous professional development',
 ];
 
-/* ─── Component ──────────────────────────────────────── */
 const Services = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
       {/* ═══════════════════════════════════════════════
           1. HERO / PAGE BANNER
       ════════════════════════════════════════════════ */}
-      <section className="svc-hero section--dark">
+      <section className="svc-hero">
         <div className="svc-hero__bg" aria-hidden="true">
-          <div className="svc-hero__glow svc-hero__glow--1" />
-          <div className="svc-hero__glow svc-hero__glow--2" />
+          <div className="svc-hero__glow" />
           <div className="svc-hero__grid" />
         </div>
 
         <div className="container svc-hero__inner">
-          {/* Content */}
-          <div className="svc-hero__content">
-            <motion.span
-              className="eyebrow"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.05}
-            >
+          <motion.div
+            className="svc-hero__content"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            variants={staggerContainer}
+          >
+            <motion.span className="eyebrow" variants={staggerItem}>
               Our Services
             </motion.span>
 
-            <motion.h1
-              className="svc-hero__heading"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.12}
-            >
-              Lasting Solutions for{' '}
-              <span className="text-gradient">Accreditation Readiness</span>
-            </motion.h1>
+            <SplitText
+              tag="h1"
+              text="Lasting Solutions for Accreditation Readiness"
+              highlightText="Accreditation Readiness"
+              highlightClass="hero__highlight"
+              className="svc-hero__headline"
+              delay={35}
+              duration={0.8}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="left"
+            />
 
-            <motion.p
-              className="svc-hero__para"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.2}
-            >
-              We provide specialized training and consultancy services that help healthcare
-              professionals build successful careers. We also enable healthcare organizations
-              to strengthen quality systems.
-            </motion.p>
-
-            <motion.p
-              className="svc-hero__para"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.28}
-            >
-              Our programs are designed to simplify healthcare standards, promote patient safety,
-              and support quality improvement. We ensure this through practical, industry-focused
-              learning and implementation guidance.
-            </motion.p>
-          </div>
-
-          {/* Illustration */}
-          <motion.div
-            className="svc-hero__visual"
-            initial={{ opacity: 0, x: 48, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
-          >
-            <div className="svc-hero__img-frame">
-              <img
-                src="/services-hero-illustration.png"
-                alt="Healthcare quality training and consultancy services overview"
-                className="svc-hero__img"
-                loading="eager"
-              />
-              <div className="svc-hero__img-tag glass">
-                <LuCircleCheckBig className="svc-hero__tag-icon" aria-hidden="true" />
-                <span>Accreditation Ready</span>
-              </div>
-            </div>
+            <motion.div className="svc-hero__lede" variants={staggerItem}>
+              <p>
+                We provide specialized training and consultancy services that help healthcare
+                professionals build successful careers. We also enable healthcare organizations
+                to strengthen quality systems.
+              </p>
+              <p>
+                Our programs are designed to simplify healthcare standards, promote patient safety,
+                and support quality improvement through practical, industry-focused learning.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -189,151 +154,129 @@ const Services = () => {
       {/* ═══════════════════════════════════════════════
           2. TRAINING SERVICES
       ════════════════════════════════════════════════ */}
-      <section className="section section--light svc-training">
+      <section className="svc-section section--light">
         <div className="container">
           <motion.div
-            className="svc-section-header"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            className="block-head"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={blurReveal}
           >
-            <span className="eyebrow-light">Training Programs</span>
-            <h2 className="svc-section-heading">Our Training Services</h2>
+            <span className="eyebrow">Training Programs</span>
+
+            <ScrollReveal
+              as="h2"
+              baseOpacity={0.15}
+              enableBlur={true}
+              baseRotation={2}
+              blurStrength={6}
+              textClassName="section-title"
+            >
+              Our Training Services
+            </ScrollReveal>
+
+            <p className="block-head-desc">
+              Structured education and practical training designed to prepare students and healthcare professionals for accreditation standards.
+            </p>
           </motion.div>
 
-          <div className="svc-training__list">
-            {trainingServices.map((svc, i) => {
+          <div className="pillar-grid">
+            {trainingServices.map((svc) => {
               const Icon = svc.icon;
               return (
                 <motion.article
                   key={svc.id}
                   id={`svc-${svc.id}`}
-                  className="svc-card"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: i * 0.07 }}
+                  className="pillar-card"
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                  whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+                  viewport={homeViewport}
+                  variants={cardReveal}
+                  whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
                 >
-                  <div className="svc-card__left">
-                    <div className="svc-card__icon-wrap" aria-hidden="true">
-                      <Icon className="svc-card__icon" />
-                    </div>
-                    <span className="svc-card__number" aria-hidden="true">{svc.number}</span>
+                  <div className="pillar-icon" aria-hidden="true">
+                    <Icon className="pillar-icon-svg" />
                   </div>
-
-                  <div className="svc-card__body">
-                    <h3 className="svc-card__title">{svc.title}</h3>
-                    {svc.body.map((para, j) => (
-                      <p key={j} className="svc-card__para">{para}</p>
-                    ))}
-                    {/* <Link
-                      to={`/services/${svc.slug}`}
-                      className="svc-card__link"
-                      id={`svc-link-${svc.id}`}
-                    >
-                      Learn more
-                      <LuArrowRight className="svc-card__link-icon" aria-hidden="true" />
-                    </Link> */}
-                  </div>
-
-                  <div className="svc-card__accent" aria-hidden="true" />
+                  <span className="pillar-tag">{svc.tag}</span>
+                  <h3>{svc.title}</h3>
+                  {svc.body.map((para, j) => (
+                    <p key={j}>{para}</p>
+                  ))}
                 </motion.article>
               );
             })}
           </div>
+
+          {/* Vital Waveform Line Divider */}
+          <div className="vital-wrap" aria-hidden="true">
+            <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
+              <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
+              <circle cx="556" cy="23" r="3" />
+              <circle cx="662" cy="22" r="3" />
+            </svg>
+          </div>
+
+          <motion.div
+            className="why-footline"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={fadeUp}
+          >
+            <span className="bar" aria-hidden="true" />
+            <p>Empowering healthcare institutions to transform compliance and accreditation standards into daily practice.</p>
+          </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════
           3. ACCREDITATION CONSULTANCY
       ════════════════════════════════════════════════ */}
-      <section className="section section--dark svc-consult">
-        <div className="svc-consult__bg" aria-hidden="true">
-          <div className="svc-consult__glow" />
-        </div>
+      <section id="consultancy" className="svc-section about-consult">
         <div className="container">
-          <motion.div
-            className="svc-section-header svc-section-header--dark"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="eyebrow">Consultancy</span>
-            <h2 className="svc-section-heading svc-section-heading--dark">
-              Healthcare Accreditation Consultancy
-            </h2>
-          </motion.div>
-
-          <div className="svc-consult__inner">
-            {/* Intro text */}
+          <div className="about-consult__grid">
+            {/* Left Column: Intro */}
             <motion.div
-              className="svc-consult__text"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
+              className="about-consult__intro"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeRight}
             >
-              <p className="svc-consult__intro">
+              <span className="eyebrow eyebrow--light">Consultancy</span>
+              <h2 className="about-consult__heading">
+                Healthcare Accreditation Consultancy
+              </h2>
+              <p className="about-consult__para">
                 Preparing for accreditation requires a well-designed quality management system
                 supported by effective implementation. Our Healthcare Accreditation Training and
-                consultancy services help healthcare organizations:
+                consultancy services help healthcare organizations.
               </p>
-
-              <div className="svc-consult__checklist">
-                {consultancyItems.map((item, i) => (
-                  <motion.div
-                    key={item.id}
-                    id={`consult-${item.id}`}
-                    className="svc-consult__check-item"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
-                  >
-                    <div className="svc-consult__check-icon-wrap" aria-hidden="true">
-                      <LuCheck className="svc-consult__check-icon" />
-                    </div>
-                    <span className="svc-consult__check-label">{item.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <motion.p
-                className="svc-consult__closing"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              >
-                Our consultants work alongside healthcare teams to strengthen organizational
-                readiness.
-              </motion.p>
+              <p className="about-consult__para" style={{ marginTop: '14px', fontStyle: 'italic', opacity: 0.8 }}>
+                Our consultants work alongside healthcare teams to strengthen organizational readiness.
+              </p>
             </motion.div>
 
-            {/* Consultancy card panel */}
-            <motion.div
-              className="svc-consult__panel glass"
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            {/* Right Column: Numbered List */}
+            <motion.ul
+              className="about-consult__list"
+              variants={staggerContainer}
+              initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
+              viewport={homeViewport}
             >
-              <div className="svc-consult__panel-icon-wrap" aria-hidden="true">
-                <LuBriefcase className="svc-consult__panel-icon" />
-              </div>
-              <h3 className="svc-consult__panel-title">Expert Consultancy</h3>
-              <p className="svc-consult__panel-desc">
-                Our team of experienced Healthcare Quality Consultants provides structured,
-                end-to-end support for accreditation preparation and quality system development.
-              </p>
-              <div className="svc-consult__panel-tags">
-                <span className="svc-consult__tag">NABH</span>
-                <span className="svc-consult__tag">JCI</span>
-                <span className="svc-consult__tag">CAMHP</span>
-              </div>
-            </motion.div>
+              {consultancyItems.map((item) => (
+                <motion.li
+                  key={item.num}
+                  className="about-consult__list-item"
+                  variants={staggerItem}
+                >
+                  <span className="about-consult__num">{item.num}</span>
+                  <span className="about-consult__label">{item.label}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
         </div>
       </section>
@@ -341,55 +284,51 @@ const Services = () => {
       {/* ═══════════════════════════════════════════════
           4. WHY CHOOSE NVR
       ════════════════════════════════════════════════ */}
-      <section className="section section--light svc-why">
+      <section className="svc-section section--light">
         <div className="container">
-          <motion.div
-            className="svc-section-header"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="eyebrow-light">Why Choose Us</span>
-            <h2 className="svc-section-heading">Why Choose NVR Quality Solutions?</h2>
-          </motion.div>
-
-          <div className="svc-why__inner">
-            {/* Paragraphs */}
+          <div className="about-closing__grid">
+            {/* Left Column: Copy & Grid */}
             <motion.div
-              className="svc-why__text"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
+              className="about-closing__copy"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeRight}
             >
-              <p className="svc-why__para">
+              <span className="eyebrow">Why Choose Us</span>
+              <h2 className="section-title">Why Choose NVR Quality Solutions?</h2>
+              <p className="block-head-desc">
                 Healthcare quality is always changing, and professionals need practical knowledge
                 that extends beyond textbooks. They need to always know and handle whatever is
                 happening in the world right now. This is why our approach combines:
               </p>
+
+              <div className="about-wwd__grid" style={{ marginTop: '24px' }}>
+                {whyItems.map((item) => (
+                  <div key={item} className="about-wwd__item">
+                    <span className="about-wwd__tick" aria-hidden="true" />
+                    <span className="about-wwd__txt">{item}</span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
-            {/* Why items grid */}
-            <div className="svc-why__grid">
-              {whyItems.map((item, i) => (
-                <motion.div
-                  key={item.id}
-                  id={`why-${item.id}`}
-                  className="svc-why__item"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
-                  whileHover={{ y: -3, transition: { duration: 0.22 } }}
-                >
-                  <div className="svc-why__item-dot" aria-hidden="true">
-                    <LuCheck className="svc-why__check-icon" />
-                  </div>
-                  <span className="svc-why__item-label">{item.label}</span>
-                </motion.div>
-              ))}
-            </div>
+            {/* Right Column: CTA Box */}
+            <motion.div
+              className="about-closing__cta-box"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={cardReveal}
+            >
+              <span className="eyebrow">Next Step</span>
+              <p className="about-closing__cta-text">
+                Ready to build your healthcare quality career or strengthen your facility&apos;s quality systems?
+              </p>
+              <Button as="link" to="/training-programs" variant="primary" className="btn-solid">
+                Explore Our Training Programs
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -400,7 +339,7 @@ const Services = () => {
       <CTABanner
         eyebrow="Get Started"
         title="Ready to Build Your Healthcare Quality Career?"
-        description=""
+        description="Explore our specialized training programs or talk to our experts to discuss custom consultancy for your institution."
         primaryLabel="Explore Our Training Programs"
         primaryTo="/training-programs"
         secondaryLabel="Contact Our Team"

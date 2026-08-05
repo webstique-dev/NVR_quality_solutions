@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { LuPhone, LuMail, LuMapPin } from 'react-icons/lu';
 import { motion, useReducedMotion } from 'framer-motion';
+import { fadeUp } from '../../animations/variants';
+import { defaultViewport } from '../../animations/viewport';
 import './Footer.css';
 
 const FOOTER_LINKS = {
@@ -12,7 +14,6 @@ const FOOTER_LINKS = {
     { label: 'Contact', to: '/contact' },
   ],
   Resources: [
-    // { label: 'FAQ', to: '/faq' },
     { label: 'Privacy Policy', to: '/privacy-policy' },
     { label: 'Terms & Conditions', to: '/terms-conditions' },
   ],
@@ -50,10 +51,10 @@ const Footer = () => {
       <div className="footer__inner">
         <motion.div
           className="footer__top"
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+          viewport={defaultViewport}
+          variants={fadeUp}
         >
           {/* Brand Column */}
           <div className="footer__brand">
@@ -124,10 +125,11 @@ const Footer = () => {
         {/* Bottom Section */}
         <motion.div
           className="footer__bottom"
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+          viewport={defaultViewport}
+          variants={fadeUp}
+          custom={0.15}
         >
           <p className="footer__copyright">&copy; {year} NVR Quality Solutions. All rights reserved.</p>
           <p className="footer__disclaimer">

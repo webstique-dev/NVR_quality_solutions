@@ -1,6 +1,7 @@
-/* ===========================
-   Our Expertise Section
-   =========================== */
+/* ===================================================================
+   Our Expertise Section — Redesigned Pillar UI
+   =================================================================== */
+
 .expertise {
   position: relative;
   overflow: hidden;
@@ -20,62 +21,103 @@
   transform: translate(-50%, -50%);
   width: 80%;
   height: 60%;
-  background: radial-gradient(ellipse, rgba(15, 63, 184, 0.06), transparent 70%);
+  background: radial-gradient(ellipse, rgba(15, 63, 184, 0.05), transparent 70%);
   filter: blur(60px);
 }
 
 .expertise__header {
   position: relative;
   z-index: 1;
-  margin-bottom: var(--spacing-xl);
+  max-width: 720px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
 }
 
 .expertise__heading {
-  font-size: var(--fs-h2);
-  line-height: 1.1;
-  letter-spacing: var(--ls-h2);
-  color: var(--color-primary-blue);
-  max-width: 22ch;
-  margin-top: var(--spacing-sm);
+  font-family: var(--font-primary);
+  font-size: var(--fs-section-heading);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-section-title);
+  color: var(--color-ink, #0f172a);
+  margin-top: 10px;
+  margin-bottom: 16px;
 }
 
 .expertise__heading-highlight {
-  color: var(--color-primary-red);
+  color: var(--color-primary-red, #E31B23);
 }
 
-/* --- Card Grid --- */
+/* ─── Grid (4 Columns) ───────────────────────────────────────────── */
+
 .expertise__grid {
   position: relative;
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
+  gap: 24px;
   align-items: stretch;
 }
 
-/* --- Individual Card --- */
+/* ─── Card Styling ────────────────────────────────────────────────── */
+
 .expertise__card {
   position: relative;
-  padding: var(--spacing-xxl);
-  border-radius: var(--rounded-lg);
-  background-color: var(--color-canvas);
-  border: 1px solid var(--color-hairline-soft);
+  background: var(--color-canvas, #ffffff);
+  border: 1px solid var(--color-hairline-soft, #e2e8f0);
+  border-radius: 20px;
+  padding: 32px 26px;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 12px;
   overflow: hidden;
-  box-shadow: var(--shadow-2);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
   transition:
-    box-shadow var(--duration-base) var(--ease-standard),
-    border-color var(--duration-fast) var(--ease-standard),
-    transform var(--duration-fast) var(--ease-standard);
-  cursor: default;
+    box-shadow 300ms ease,
+    transform 300ms ease,
+    border-color 300ms ease;
 }
 
 .expertise__card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(15, 63, 184, 0.12);
-  border-color: var(--color-royal-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 26px 50px -25px rgba(15, 63, 184, 0.22);
+  border-color: rgba(15, 63, 184, 0.3);
+}
+
+.expertise__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.expertise__card-number {
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-primary-red, #E31B23);
+  background: var(--color-blue-50, #f5f9ff);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(15, 63, 184, 0.12);
+}
+
+.expertise__card-title {
+  font-family: var(--font-primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-ink, #0f172a);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.expertise__card-description {
+  font-family: var(--font-primary);
+  font-size: 0.94rem;
+  color: var(--color-slate, #475569);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
 }
 
 .expertise__card-accent {
@@ -84,114 +126,38 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary-blue), var(--color-primary-red));
+  background: linear-gradient(90deg, var(--color-primary-blue, #0F3FB8), var(--color-primary-red, #E31B23));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform var(--duration-slow) var(--ease-premium);
-  border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+  transition: transform 300ms ease;
 }
 
 .expertise__card:hover .expertise__card-accent {
   transform: scaleX(1);
 }
 
-.expertise__card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--spacing-sm);
-}
+/* ─── Responsive Breakpoints ──────────────────────────────────────── */
 
-.expertise__card-number {
-  font-family: var(--font-body);
-  font-size: var(--fs-micro-uc);
-  font-weight: 600;
-  letter-spacing: var(--ls-micro-uc);
-  color: var(--color-primary-red);
-}
-
-.expertise__card-icon {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-blue-50);
-  border: 1px solid var(--color-hairline-soft);
-  border-radius: var(--rounded-md);
-}
-
-.expertise__card-icon-svg {
-  width: 20px;
-  height: 20px;
-  color: var(--color-primary-blue);
-}
-
-.expertise__card-title {
-  font-family: var(--font-body);
-  font-size: var(--fs-h4);
-  font-weight: 500;
-  color: var(--color-ink);
-  line-height: var(--lh-h4);
-  letter-spacing: var(--ls-h2);
-  margin-bottom: var(--spacing-xs);
-}
-
-.expertise__card-description {
-  font-family: var(--font-body);
-  font-size: var(--fs-body-sm);
-  color: var(--color-slate);
-  line-height: var(--lh-card-desc);
-  letter-spacing: var(--ls-body);
-  flex: 1;
-}
-
-/* ===========================
-   Responsive — Large Desktop (≤1280px)
-   =========================== */
 @media (max-width: 1280px) {
   .expertise__grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
   }
 }
 
-/* ===========================
-   Responsive — Tablet (≤1024px)
-   =========================== */
-@media (max-width: 1024px) {
-  .expertise__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .expertise__heading {
-    max-width: 28ch;
-  }
-}
-
-/* ===========================
-   Responsive — Mobile (≤640px)
-   =========================== */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .expertise__grid {
     grid-template-columns: 1fr;
-  }
-
-  .expertise__heading {
-    max-width: none;
-    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    gap: 18px;
   }
 
   .expertise__card {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: 26px 22px;
   }
 }
 
-/* ===========================
-   2K / 4K
-   =========================== */
 @media (min-width: 2000px) {
   .expertise__grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-

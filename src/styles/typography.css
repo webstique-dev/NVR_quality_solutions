@@ -1,0 +1,261 @@
+/* ===================================================================
+   Centralized Typography System — NVR Quality Solutions
+   Fonts: Plus Jakarta Sans (Primary) + Atkinson Hyperlegible (Secondary)
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root {
+  /* ─── Font Families ───────────────────────────────────────────── */
+  --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-secondary: 'Atkinson Hyperlegible', sans-serif;
+  --font-body: var(--font-primary);
+  --font-display: var(--font-primary);
+  --font-code: var(--font-primary);
+
+  /* ─── Typography Scale ────────────────────────────────────────── */
+  --fs-display-xl: clamp(3.8rem, 6vw + 1rem, 5.5rem);
+  --fs-hero-heading: clamp(3rem, 5vw + 0.8rem, 4.5rem);
+  --fs-section-heading: clamp(2rem, 3.2vw + 0.5rem, 3rem);
+  --fs-sub-heading: clamp(1.4rem, 2vw + 0.3rem, 2rem);
+  --fs-card-heading: clamp(1.2rem, 1.5vw + 0.3rem, 1.5rem);
+  --fs-body-lg: 18px;
+  --fs-body: 16px;
+  --fs-small: 14px;
+  --fs-caption: 13px;
+  --fs-btn: 16px;
+  --fs-nav: 16px;
+  --fs-footer: 15px;
+
+  /* Responsive Alias Overrides */
+  --fs-hero-resp: var(--fs-hero-heading);
+  --fs-display-resp: var(--fs-display-xl);
+  --fs-h1-resp: var(--fs-hero-heading);
+  --fs-h2-resp: var(--fs-section-heading);
+  --fs-h3-resp: var(--fs-sub-heading);
+
+  /* ─── Line Heights ───────────────────────────────────────────── */
+  --lh-hero: 1.08;
+  --lh-heading: 1.15;
+  --lh-paragraph: 1.7;
+  --lh-paragraph-lg: 1.8;
+  --lh-card: 1.6;
+
+  /* Responsive Line Height Aliases */
+  --lh-h1: var(--lh-hero);
+  --lh-h2: var(--lh-heading);
+  --lh-h3: 1.2;
+  --lh-h4: 1.3;
+  --lh-h5: 1.35;
+  --lh-body-md: var(--lh-paragraph);
+  --lh-card-desc: var(--lh-card);
+
+  /* ─── Letter Spacing ─────────────────────────────────────────── */
+  --ls-large-heading: -0.03em;
+  --ls-section-title: -0.02em;
+  --ls-body: 0;
+  --ls-btn: 0.01em;
+  --ls-uppercase: 0.08em;
+
+  /* Letter Spacing Aliases */
+  --ls-hero: var(--ls-large-heading);
+  --ls-h1: var(--ls-large-heading);
+  --ls-h2: var(--ls-section-title);
+  --ls-micro-uc: var(--ls-uppercase);
+
+  /* ─── Font Weights ───────────────────────────────────────────── */
+  --fw-rare: 200;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+}
+
+/* ─── Global Reset & Font Application ──────────────────────────── */
+
+*, *::before, *::after {
+  font-family: var(--font-primary);
+}
+
+html, body {
+  font-family: var(--font-primary);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-paragraph);
+  letter-spacing: var(--ls-body);
+  color: var(--color-ink, #0f172a);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── Headings Hierarchy ────────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6,
+.display-xl, .hero-heading, .section-heading, .sub-heading, .card-heading {
+  font-family: var(--font-primary);
+  color: var(--color-ink, #0f172a);
+  margin: 0;
+}
+
+.display-xl {
+  font-size: var(--fs-display-xl);
+  font-weight: var(--fw-extrabold);
+  line-height: 1.05;
+  letter-spacing: var(--ls-large-heading);
+}
+
+h1, .hero-heading {
+  font-size: var(--fs-hero-heading);
+  font-weight: var(--fw-extrabold);
+  line-height: var(--lh-hero);
+  letter-spacing: var(--ls-large-heading);
+}
+
+h2, .section-heading {
+  font-size: var(--fs-section-heading);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-section-title);
+}
+
+h3, .sub-heading {
+  font-size: var(--fs-sub-heading);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h4, .card-heading {
+  font-size: var(--fs-card-heading);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-card);
+  letter-spacing: -0.01em;
+}
+
+h5 {
+  font-size: 1.125rem;
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+}
+
+/* ─── Text & Paragraph Classes ─────────────────────────────────── */
+
+p, .body {
+  font-family: var(--font-primary);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-paragraph);
+  letter-spacing: var(--ls-body);
+}
+
+.body-lg {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-paragraph-lg);
+}
+
+.text-small, small {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+}
+
+.caption {
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+}
+
+.eyebrow, .badge, .tag, .pillar-tag, .uppercase-label {
+  font-family: var(--font-primary);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-uppercase);
+  text-transform: uppercase;
+}
+
+/* ─── Secondary Font Usage (Readability Focus) ──────────────────── */
+
+.readable-body,
+.prose,
+.faq-answer,
+.article-body,
+.legal-content,
+.terms-content {
+  font-family: var(--font-secondary) !important;
+  font-weight: var(--fw-regular);
+  line-height: 1.75;
+}
+
+/* ─── UI Component Typography ────────────────────────────────────── */
+
+/* Buttons */
+button, input[type="submit"], input[type="button"], .btn {
+  font-family: var(--font-primary) !important;
+  font-size: var(--fs-btn) !important;
+  font-weight: var(--fw-semibold) !important;
+  letter-spacing: var(--ls-btn) !important;
+  text-transform: none !important;
+}
+
+/* Form Inputs & Labels */
+label {
+  font-family: var(--font-primary);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+}
+
+input, select, textarea {
+  font-family: var(--font-primary);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+}
+
+input::placeholder, textarea::placeholder {
+  font-family: var(--font-primary);
+  font-size: 15px;
+  font-weight: var(--fw-regular);
+}
+
+.form-helper-text {
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-regular);
+}
+
+/* Navigation */
+nav, .navbar, .navbar__link, .navbar__mobile-link {
+  font-family: var(--font-primary);
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-body);
+}
+
+/* Cards */
+.card-title {
+  font-weight: var(--fw-bold);
+}
+
+.card-desc {
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-card);
+}
+
+.card-meta {
+  font-weight: var(--fw-medium);
+}
+
+/* Footer */
+footer, .footer {
+  font-family: var(--font-primary);
+  font-size: var(--fs-footer);
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+}

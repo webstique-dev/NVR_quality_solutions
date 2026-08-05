@@ -1,9 +1,4 @@
-/* ───────────────────────────────────────────────────────────
-   Google Fonts — Inter (UI) + JetBrains Mono (code)
-   PP Editorial Old is a licensed typeface; Georgia serif fallback
-   is used. Swap the @font-face below if you have the file.
-─────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import './typography.css';
 
 /* ───────────────────────────────────────────────────────────
    CSS Reset

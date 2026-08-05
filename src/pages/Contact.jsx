@@ -1,35 +1,36 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   LuPhone,
   LuMail,
   LuMapPin,
   LuClock,
   LuMap,
-  LuCheck,
-  LuCircleCheckBig,
-  LuHeadphones,
   LuShieldCheck,
-  LuMessageSquare,
+  LuHeadphones,
 } from 'react-icons/lu';
 import InquiryForm from '../components/Contact/InquiryForm';
 import FAQAccordion from '../components/Common/FAQAccordion';
+import SectionTitle from '../components/Common/SectionTitle';
+import SplitText from '../components/ui/SplitText';
+import ScrollReveal from '../components/ui/ScrollReveal';
+import {
+  fadeUp,
+  cardReveal,
+  blurReveal,
+  fadeLeft,
+  fadeRight,
+  staggerContainer,
+  staggerItem,
+} from '../animations/variants';
+import { homeViewport } from '../animations/viewport';
 import './Contact.css';
-
-/* ─── Animation helpers ────────────────────────────── */
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: (d = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: d },
-  }),
-};
 
 /* ─── Contact Info Items ────────────────────────────── */
 const contactDetails = [
   {
     id: 'phone',
     icon: LuPhone,
+    tag: 'Direct Phone',
     title: 'Phone',
     detail: '+91 8466040046',
     href: 'tel:+918466040046',
@@ -37,6 +38,7 @@ const contactDetails = [
   {
     id: 'email',
     icon: LuMail,
+    tag: 'Email Inquiry',
     title: 'Email',
     detail: 'nvrqualitysolutions@gmail.com',
     href: 'mailto:nvrqualitysolutions@gmail.com',
@@ -44,6 +46,7 @@ const contactDetails = [
   {
     id: 'address',
     icon: LuMapPin,
+    tag: 'Headquarters',
     title: 'Office Address',
     detail: 'Thadepalli, Amaravathi, Andhra Pradesh',
     href: 'https://maps.google.com/?q=Thadepalli,+Amaravathi,+Andhra+Pradesh',
@@ -52,20 +55,21 @@ const contactDetails = [
   {
     id: 'hours',
     icon: LuClock,
+    tag: 'Availability',
     title: 'Business Hours',
     detail: 'Monday - Saturday, 9am - 6pm',
-    support: 'Our team is available during regular business hours to assist you.',
+    support: 'Available during regular business hours to assist you.',
   },
 ];
 
 /* ─── How Can We Help Items ─────────────────────────── */
 const helpItems = [
-  { id: 'h1', label: 'Information about upcoming training programs' },
-  { id: 'h2', label: 'Course enrollment guidance' },
-  { id: 'h3', label: 'Healthcare quality consultancy inquiries' },
-  { id: 'h4', label: 'Patient safety and accreditation training' },
-  { id: 'h5', label: 'Corporate and hospital training programs' },
-  { id: 'h6', label: 'General questions about our services' },
+  { num: '01', label: 'Information about upcoming training programs' },
+  { num: '02', label: 'Course enrollment guidance' },
+  { num: '03', label: 'Healthcare quality consultancy inquiries' },
+  { num: '04', label: 'Patient safety and accreditation training' },
+  { num: '05', label: 'Corporate and hospital training programs' },
+  { num: '06', label: 'General questions about our services' },
 ];
 
 /* ─── Contact FAQs ──────────────────────────────────── */
@@ -87,8 +91,9 @@ const contactFaqs = [
   },
 ];
 
-/* ─── Component ────────────────────────────────────── */
 const Contact = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
       {/* ═══════════════════════════════════════════════
@@ -96,67 +101,43 @@ const Contact = () => {
       ════════════════════════════════════════════════ */}
       <section className="cnt-hero">
         <div className="cnt-hero__bg" aria-hidden="true">
-          <div className="cnt-hero__glow cnt-hero__glow--1" />
-          <div className="cnt-hero__glow cnt-hero__glow--2" />
+          <div className="cnt-hero__glow" />
           <div className="cnt-hero__grid" />
         </div>
 
         <div className="container cnt-hero__inner">
-          {/* Content */}
-          <div className="cnt-hero__content">
-            <motion.span
-              className="eyebrow-light"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.05}
-            >
+          <motion.div
+            className="cnt-hero__content"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            variants={staggerContainer}
+          >
+            <motion.span className="eyebrow" variants={staggerItem}>
               Contact Us
             </motion.span>
 
-            <motion.h1
-              className="cnt-hero__heading"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.12}
-            >
-              Let&apos;s Start the{' '}
-              <span className="hero__highlight">Conversation</span>
-            </motion.h1>
+            <SplitText
+              tag="h1"
+              text="Let's Start the Conversation"
+              highlightText="Conversation"
+              highlightClass="hero__highlight"
+              className="cnt-hero__headline"
+              delay={35}
+              duration={0.8}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="left"
+            />
 
-            <motion.p
-              className="cnt-hero__para"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.2}
-            >
-              Whatever the nature of your query, our team is here to help. Reach out with your
-              questions, and we&apos;ll guide you toward the right solution based on your learning or
-              organizational needs.
-            </motion.p>
-          </div>
-
-          {/* Visual */}
-          <motion.div
-            className="cnt-hero__visual"
-            initial={{ opacity: 0, x: 48, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
-          >
-            <div className="cnt-hero__img-frame">
-              <img
-                src="/contact-hero-illustration.png"
-                alt="Support team ready to assist with healthcare quality inquiries"
-                className="cnt-hero__img"
-                loading="eager"
-              />
-              <div className="cnt-hero__img-tag glass">
-                <LuHeadphones className="cnt-hero__tag-icon" aria-hidden="true" />
-                <span>24 Hour Turnaround</span>
-              </div>
-            </div>
+            <motion.div className="cnt-hero__lede" variants={staggerItem}>
+              <p>
+                Whatever the nature of your query, our team is here to help. Reach out with your
+                questions, and we&apos;ll guide you toward the right solution based on your learning or
+                organizational needs.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -164,133 +145,165 @@ const Contact = () => {
       {/* ═══════════════════════════════════════════════
           2. CONTACT DETAILS & MAP LOCATION
       ════════════════════════════════════════════════ */}
-      <section className="section section--light cnt-details">
+      <section className="cnt-section section--light">
         <div className="container">
           <motion.div
-            className="cnt-section-header"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            className="block-head"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={blurReveal}
           >
-            <span className="eyebrow-light">Reach Out</span>
-            <h2 className="cnt-section-heading">Contact Details &amp; Location</h2>
+            <span className="eyebrow">Reach Out</span>
+
+            <ScrollReveal
+              as="h2"
+              baseOpacity={0.15}
+              enableBlur={true}
+              baseRotation={2}
+              blurStrength={6}
+              textClassName="section-title"
+            >
+              Contact Details & Location
+            </ScrollReveal>
           </motion.div>
 
-          <div className="cnt-details__grid">
-            {/* Info Cards */}
-            <div className="cnt-details__cards">
-              {contactDetails.map((item, i) => {
+          <div className="cnt-details__layout">
+            {/* Info Cards Grid */}
+            <motion.div
+              className="pillar-grid cnt-cards-2col"
+              variants={staggerContainer}
+              initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
+              viewport={homeViewport}
+            >
+              {contactDetails.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <motion.div
+                  <motion.article
                     key={item.id}
-                    id={`cnt-detail-${item.id}`}
-                    className="cnt-info-card"
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
-                    whileHover={{ y: -4, transition: { duration: 0.22 } }}
+                    className="pillar-card"
+                    variants={staggerItem}
+                    whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
                   >
-                    <div className="cnt-info-card__icon-wrap" aria-hidden="true">
-                      <Icon className="cnt-info-card__icon" />
+                    <div className="pillar-icon" aria-hidden="true">
+                      <Icon className="pillar-icon-svg" />
                     </div>
-                    <div className="cnt-info-card__content">
-                      <h3 className="cnt-info-card__title">{item.title}</h3>
-                      <p className="cnt-info-card__text">
-                        {item.href ? (
-                          <a
-                            href={item.href}
-                            className="cnt-info-card__link"
-                            {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                          >
-                            {item.detail}
-                          </a>
-                        ) : (
-                          item.detail
-                        )}
-                      </p>
-                      {item.support && (
-                        <p className="cnt-info-card__support">{item.support}</p>
+                    <span className="pillar-tag">{item.tag}</span>
+                    <h3>{item.title}</h3>
+                    <p>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="cnt-info-link"
+                          {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                        >
+                          {item.detail}
+                        </a>
+                      ) : (
+                        item.detail
                       )}
-                    </div>
-                  </motion.div>
+                    </p>
+                    {item.support && <p className="cnt-info-sub">{item.support}</p>}
+                  </motion.article>
                 );
               })}
-            </div>
+            </motion.div>
 
-            {/* Map Location Card */}
-            <motion.div
-              className="cnt-map-card"
-              initial={{ opacity: 0, x: 36 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            {/* Map Card */}
+            <motion.article
+              className="pillar-card cnt-map-card"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeLeft}
             >
               <div className="cnt-map-card__header">
-                <div className="cnt-map-card__icon-wrap" aria-hidden="true">
-                  <LuMap className="cnt-map-card__icon" />
+                <div className="pillar-icon" aria-hidden="true">
+                  <LuMap className="pillar-icon-svg" />
                 </div>
-                <h3 className="cnt-map-card__title">Map Location</h3>
+                <span className="pillar-tag">Headquarters Location</span>
               </div>
+              <h3>Amaravathi, AP</h3>
 
-              <div className="cnt-map-card__body" role="img" aria-label="Map Location Visual">
-                <div className="cnt-map-card__grid-pattern" aria-hidden="true" />
+              <div className="cnt-map-card__body">
                 <div className="cnt-map-card__pin-wrap">
                   <LuMapPin className="cnt-map-card__pin-icon" aria-hidden="true" />
                   <span className="cnt-map-card__pin-pulse" aria-hidden="true" />
                 </div>
-                <p className="cnt-map-card__label">Map Location</p>
-                <span className="cnt-map-card__sublabel">NVR Quality Solutions Headquarters</span>
+                <p className="cnt-map-card__label">Thadepalli, Amaravathi</p>
+                <span className="cnt-map-card__sublabel">Andhra Pradesh, India</span>
+                <a
+                  href="https://maps.google.com/?q=Thadepalli,+Amaravathi,+Andhra+Pradesh"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cnt-map-card__btn"
+                >
+                  View on Google Maps
+                </a>
               </div>
-            </motion.div>
+            </motion.article>
           </div>
+
+          {/* Vital Waveform Line Divider */}
+          <div className="vital-wrap" aria-hidden="true">
+            <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
+              <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
+              <circle cx="556" cy="23" r="3" />
+              <circle cx="662" cy="22" r="3" />
+            </svg>
+          </div>
+
+          <motion.div
+            className="why-footline"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={fadeUp}
+          >
+            <span className="bar" aria-hidden="true" />
+            <p>Our expert support team aims to answer all inquiries within 24 business hours.</p>
+          </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════
-          3. HOW CAN WE HELP?
+          3. HOW CAN WE HELP DARK BAND
       ════════════════════════════════════════════════ */}
-      <section className="section section--light cnt-help">
-        <div className="cnt-help__bg" aria-hidden="true">
-          <div className="cnt-help__glow" />
-        </div>
+      <section className="cnt-section about-consult">
         <div className="container">
-          <motion.div
-            className="cnt-section-header"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="eyebrow-light">Our Support</span>
-            <h2 className="cnt-section-heading">
-              How Can We Help?
-            </h2>
-            <p className="cnt-form-sub">
-              Our team can assist you with:
-            </p>
-          </motion.div>
+          <div className="about-consult__grid">
+            {/* Left Column: Intro */}
+            <motion.div
+              className="about-consult__intro"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeRight}
+            >
+              <span className="eyebrow eyebrow--light">Our Support</span>
+              <h2 className="about-consult__heading">How Can We Help?</h2>
+              <p className="about-consult__para">
+                Our team is ready to assist you with tailored guidance based on your learning or
+                organizational requirements.
+              </p>
+            </motion.div>
 
-          <div className="cnt-help__grid">
-            {helpItems.map((item, i) => (
-              <motion.div
-                key={item.id}
-                id={`help-${item.id}`}
-                className="cnt-help__card"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: i * 0.07 }}
-                whileHover={{ y: -4, transition: { duration: 0.22 } }}
-              >
-                <div className="cnt-help__card-check" aria-hidden="true">
-                  <LuCheck className="cnt-help__check-icon" />
-                </div>
-                <p className="cnt-help__card-label">{item.label}</p>
-              </motion.div>
-            ))}
+            {/* Right Column: Numbered List */}
+            <motion.ul
+              className="about-consult__list"
+              variants={staggerContainer}
+              initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
+              viewport={homeViewport}
+            >
+              {helpItems.map((item) => (
+                <motion.li key={item.num} className="about-consult__list-item" variants={staggerItem}>
+                  <span className="about-consult__num">{item.num}</span>
+                  <span className="about-consult__label">{item.label}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
         </div>
       </section>
@@ -298,80 +311,73 @@ const Contact = () => {
       {/* ═══════════════════════════════════════════════
           4. SEND US A MESSAGE
       ════════════════════════════════════════════════ */}
-      <section className="section section--light cnt-form-section">
+      <section className="cnt-section section--light">
         <div className="container">
-          <div className="cnt-form-two-col">
+          <div className="about-closing__grid">
             {/* Main Form Column */}
             <motion.div
-              className="cnt-form-col-main"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="cnt-form-main"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeRight}
             >
-              <div className="cnt-form-header">
-                <span className="eyebrow-light">Send an Inquiry</span>
-                <h2 className="cnt-section-heading">Send Us a Message</h2>
-                <p className="cnt-form-sub">
-                  Complete the contact form, and a member of our team will get back to you as soon
-                  as possible.
-                </p>
-              </div>
+              <span className="eyebrow">Send an Inquiry</span>
+              <h2 className="section-title">Send Us a Message</h2>
+              <p className="block-head-desc" style={{ marginBottom: '24px' }}>
+                Complete the contact form, and a member of our team will get back to you as soon
+                as possible.
+              </p>
 
               <div className="cnt-form-card">
                 <InquiryForm />
               </div>
             </motion.div>
 
-            {/* Supporting Side Panel */}
+            {/* Side Panel Column */}
             <motion.div
-              className="cnt-form-col-side"
-              initial={{ opacity: 0, x: 36 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+              className="about-closing__cta-box"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={cardReveal}
             >
-              <div className="cnt-side-card">
-                <h3 className="cnt-side-card__title">Need Immediate Guidance?</h3>
-                <p className="cnt-side-card__desc">
-                  Whether you are inquiring about NABH, JCI, or CAMHP training, course enrollment, or hospital consultancy services, our team is ready to assist you.
-                </p>
+              <span className="eyebrow">Rapid Support</span>
+              <h3 className="cnt-side-title">Need Immediate Guidance?</h3>
+              <p className="cnt-side-desc">
+                Whether you are inquiring about NABH, JCI, or CAMHP training, course enrollment, or
+                hospital consultancy services, our team is ready to assist you.
+              </p>
 
-                <div className="cnt-side-features">
-                  <div className="cnt-side-feature">
-                    <div className="cnt-side-feature__icon-wrap" aria-hidden="true">
-                      <LuClock className="cnt-side-feature__icon" />
-                    </div>
-                    <div>
-                      <strong>Rapid Turnaround</strong>
-                      <p>Expect a response within 24 hours</p>
-                    </div>
+              <div className="cnt-side-features">
+                <div className="cnt-side-feature">
+                  <div className="pillar-icon cnt-small-icon" aria-hidden="true">
+                    <LuClock className="pillar-icon-svg" />
                   </div>
-
-                  <div className="cnt-side-feature">
-                    <div className="cnt-side-feature__icon-wrap" aria-hidden="true">
-                      <LuShieldCheck className="cnt-side-feature__icon" />
-                    </div>
-                    <div>
-                      <strong>Expert Direct Guidance</strong>
-                      <p>Connect with quality consultants</p>
-                    </div>
-                  </div>
-
-                  <div className="cnt-side-feature">
-                    <div className="cnt-side-feature__icon-wrap" aria-hidden="true">
-                      <LuHeadphones className="cnt-side-feature__icon" />
-                    </div>
-                    <div>
-                      <strong>Tailored Support</strong>
-                      <p>Custom training for institutions</p>
-                    </div>
+                  <div>
+                    <strong>Rapid Turnaround</strong>
+                    <p>Expect a response within 24 hours</p>
                   </div>
                 </div>
 
-                <div className="cnt-side-badge">
-                  <span className="cnt-side-badge__dot" aria-hidden="true" />
-                  <span>Healthcare Quality &amp; Accreditation Consultancy</span>
+                <div className="cnt-side-feature">
+                  <div className="pillar-icon cnt-small-icon" aria-hidden="true">
+                    <LuShieldCheck className="pillar-icon-svg" />
+                  </div>
+                  <div>
+                    <strong>Expert Direct Guidance</strong>
+                    <p>Connect with quality consultants</p>
+                  </div>
+                </div>
+
+                <div className="cnt-side-feature">
+                  <div className="pillar-icon cnt-small-icon" aria-hidden="true">
+                    <LuHeadphones className="pillar-icon-svg" />
+                  </div>
+                  <div>
+                    <strong>Tailored Support</strong>
+                    <p>Custom training for institutions</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -380,32 +386,31 @@ const Contact = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          5. FREQUENTLY ASKED QUESTIONS
+          5. FREQUENTLY ASKED QUESTIONS — EXACT HOME PAGE ACCORDION
       ════════════════════════════════════════════════ */}
-      <section className="section section--light cnt-faq">
-        <div className="cnt-faq__bg" aria-hidden="true">
-          <div className="cnt-faq__glow" />
-        </div>
+      <section className="section section--light">
         <div className="container">
           <motion.div
-            className="cnt-section-header text-center"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={fadeUp}
           >
-            <span className="eyebrow-light">FAQ</span>
-            <h2 className="cnt-section-heading">
-              Frequently Asked Questions
-            </h2>
+            <SectionTitle
+              eyebrow="FAQ"
+              title="Frequently Asked Questions"
+              description="Everything you need to know about contacting our support team, training inquiries, and consultancy services."
+              align="center"
+            />
           </motion.div>
 
           <motion.div
-            className="cnt-faq__wrap"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="home-faq-wrap"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={fadeUp}
+            custom={0.15}
           >
             <FAQAccordion items={contactFaqs} />
           </motion.div>

@@ -16,6 +16,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  touch-action: none;
   background-color: #f8fafc;
   opacity: 1; /* Guaranteed 100% initial visibility on mount */
   transition: opacity 0.8s cubic-bezier(0.7, 0, 0.84, 0), filter 0.8s ease, transform 0.8s ease;

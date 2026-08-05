@@ -1,165 +1,137 @@
+import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { LuCircleCheckBig, LuGraduationCap } from 'react-icons/lu';
+import { LuCheck, LuShieldCheck, LuArrowRight } from 'react-icons/lu';
+import SplitText from '../ui/SplitText';
 import Button from '../Common/Button';
-import StarBorder from '../Common/StarBorder';
+import { fadeUp, imageReveal, cardReveal } from '../../animations/variants';
 import './Hero.css';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
-  show: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1], delay },
-  }),
-};
-
 const Hero = () => {
+  const [activeMode, setActiveMode] = useState('student');
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="hero">
       <div className="hero__bg" aria-hidden="true">
-        <motion.div
-          className="hero__bg-word"
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0.8, y: 12 }}
-          animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 0.8, y: [12, -8, 12] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          QUALITY
-        </motion.div>
         <div className="hero__glow hero__glow--1" />
         <div className="hero__glow hero__glow--2" />
-        <div className="hero__orb hero__orb--1" />
-        <div className="hero__orb hero__orb--2" />
       </div>
 
       <div className="container hero__inner">
-        {/* Left Content */}
-        <div className="hero__content">
-          <motion.div
-            className="hero__badge"
+        {/* Left Column: Content */}
+        <div className="text-col">
+          <motion.span
+            className="eyebrow"
             variants={fadeUp}
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
             animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            custom={0}
           >
-            <span className="hero__badge-dot" aria-hidden="true" />
-            Healthcare Quality Training &amp; Consultancy
-          </motion.div>
+            Healthcare Quality &amp; Patient Safety Training
+          </motion.span>
 
-          <motion.h1
+          <SplitText
+            tag="h1"
+            text="Building safer healthcare through quality excellence"
+            highlightText="quality excellence"
+            highlightClass="hero__highlight"
             className="hero__heading"
-            variants={fadeUp}
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            custom={0.1}
-          >
-            Building Safer Healthcare Through{' '}
-            <span className="hero__highlight">Quality Excellence</span>
-          </motion.h1>
+            delay={35}
+            duration={0.8}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            textAlign="left"
+          />
 
-          <motion.p
-            className="hero__description"
-            variants={fadeUp}
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            custom={0.2}
-          >
-            At NVR Quality Solutions, we provide expert-led Healthcare Quality Training, Patient
-            Safety Training, and professional consultancy. Every student that leaves us has the
-            knowledge and practical skills needed to implement globally recognized quality standards.
-          </motion.p>
+          <SplitText
+            tag="p"
+            text="At NVR Quality Solutions, we provide expert-led Healthcare Quality Training, Patient Safety Training, and professional consultancy. Every student that leaves us has the knowledge and practical skills needed to implement globally recognized quality standards."
+            className="lede"
+            delay={18}
+            duration={0.7}
+            splitType="words"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+          />
 
-          <motion.p
-            className="hero__description hero__description--secondary"
-            variants={fadeUp}
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            custom={0.28}
-          >
-            Are you a student looking to build a rewarding career? Or a healthcare organization
-            preparing for accreditation? Whatever your goal, our programs are designed to bridge
-            the gap between theory and real-world practice.
-          </motion.p>
-
+          {/* Action Buttons */}
           <motion.div
-            className="hero__actions-wrapper"
+            className="cta-row"
             variants={fadeUp}
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
             animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            custom={0.36}
           >
-            <StarBorder className="hero__actions-shell" color="rgba(15, 63, 184, 0.75)" speed="7s" thickness={1}>
-              <div className="hero__actions">
-                <Button as="link" to="/training-programs" variant="primary">
-                  Explore Trainings
-                </Button>
-                <Button as="link" to="/contact" variant="secondary">
-                  Talk to Our Experts
-                </Button>
-              </div>
-            </StarBorder>
+            <Button as="link" to="/training-programs" variant="primary" className="btn-solid">
+              Explore Trainings <LuArrowRight className="btn-arrow" aria-hidden="true" />
+            </Button>
+            <Button as="link" to="/contact" variant="secondary" className="btn-ghost">
+              Talk to Our Experts
+            </Button>
           </motion.div>
 
-          <motion.p
-            className="hero__note"
-            variants={fadeUp}
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            custom={0.44}
-          >
-            Gain internationally recognized standards such as{' '}
-            <strong>NABH, JCI, and CAMHP</strong> through structured training and expert guidance.
-          </motion.p>
-
-          {/* Trust indicators */}
+          {/* Recognized Worldwide Standards Chips */}
           <motion.div
-            className="hero__trust"
+            className="credential-line"
             variants={fadeUp}
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
             animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            custom={0.52}
           >
-            <div className="hero__trust-item">
-              <span className="hero__trust-value">NABH</span>
-              <span className="hero__trust-label">Training</span>
-            </div>
-            <div className="hero__trust-divider" aria-hidden="true" />
-            <div className="hero__trust-item">
-              <span className="hero__trust-value">JCI</span>
-              <span className="hero__trust-label">Training</span>
-            </div>
-            <div className="hero__trust-divider" aria-hidden="true" />
-            <div className="hero__trust-item">
-              <span className="hero__trust-value">CAMHP</span>
-              <span className="hero__trust-label">Training</span>
+            <span className="credential-label">Gain standards recognized worldwide:</span>
+            <div className="chip-row">
+              <span className="chip">NABH</span>
+              <span className="chip">JCI</span>
+              <span className="chip">CAMHP</span>
             </div>
           </motion.div>
         </div>
 
-        {/* Right Illustration */}
+        {/* Right Column: Media Frame */}
         <motion.div
-          className="hero__visual"
-          initial={shouldReduceMotion ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 48, scale: 0.96 }}
-          animate={shouldReduceMotion ? { opacity: 1, x: 0, scale: 1 } : { opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="media-col"
+          variants={imageReveal}
+          initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : 'hidden'}
+          animate={shouldReduceMotion ? { opacity: 1, scale: 1 } : 'show'}
         >
-          <div className="hero__visual-frame">
+          <div className="media-frame">
             <img
               src="/hero-illustration.png"
               alt="Healthcare professionals reviewing quality standards and accreditation documents"
-              className="hero__illustration"
+              className="media-fill"
               loading="eager"
             />
-            {/* Floating accent cards */}
-            <div className="hero__float-card hero__float-card--top glass">
-              <LuCircleCheckBig className="hero__float-icon" aria-hidden="true" />
-              <span>Accreditation Ready</span>
-            </div>
-            <div className="hero__float-card hero__float-card--bottom glass">
-              <LuGraduationCap className="hero__float-icon" aria-hidden="true" />
-              <span>Expert-Led Training</span>
-            </div>
+
+            <motion.div
+              className="float-badge"
+              variants={cardReveal}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            >
+              <span className="icon">
+                <LuCheck className="icon-svg" aria-hidden="true" />
+              </span>
+              <span className="float-badge-text">
+                <b>Structured training</b>Expert-guided programs
+              </span>
+            </motion.div>
+
+            <motion.div
+              className="float-card"
+              variants={cardReveal}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            >
+              <span className="ring">
+                <LuShieldCheck className="ring-icon" aria-hidden="true" />
+              </span>
+              <span className="float-card-text">
+                <b>Theory + practice</b>Bridging the gap to real-world care
+              </span>
+            </motion.div>
+          </div>
+
+          <div className="scroll-cue" aria-hidden="true">
+            <span>Explore</span> <span className="arrow">↓</span>
           </div>
         </motion.div>
       </div>

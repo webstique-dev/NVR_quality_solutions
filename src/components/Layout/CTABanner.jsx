@@ -1,5 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import Button from '../Common/Button';
+import { fadeScale, blurReveal, fadeUp } from '../../animations/variants';
+import { homeViewport } from '../../animations/viewport';
 import './CTABanner.css';
 
 const CTABanner = ({
@@ -18,17 +20,27 @@ const CTABanner = ({
       <div className="container">
         <motion.div
           className="cta-banner__inner"
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -1.5, 0], scale: [1, 1.004, 1] }}
+          initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : 'hidden'}
+          whileInView={shouldReduceMotion ? { opacity: 1, scale: 1 } : 'show'}
+          viewport={homeViewport}
+          variants={fadeScale}
         >
-          <div className="cta-banner__content">
+          <div className="cta-banner__accent-bar" aria-hidden="true" />
+          <motion.div
+            className="cta-banner__content"
+            variants={blurReveal}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+          >
             {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-            <h2 className="cta-banner__title">{title}</h2>
+            {title && (
+              <motion.h2 className="cta-banner__title" variants={fadeUp}>
+                {title}
+              </motion.h2>
+            )}
             {description && <p className="cta-banner__description">{description}</p>}
-          </div>
+          </motion.div>
           <div className="cta-banner__actions">
             <Button as="link" to={primaryTo} variant="dark" id="cta-primary-btn">
               {primaryLabel}

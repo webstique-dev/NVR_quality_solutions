@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import Hero from '../components/Home/Hero';
 import WhyChooseUs from '../components/Home/WhyChooseUs';
 import OurExpertise from '../components/Home/OurExpertise';
@@ -7,9 +8,13 @@ import SectionTitle from '../components/Common/SectionTitle';
 import FAQAccordion from '../components/Common/FAQAccordion';
 import CTABanner from '../components/Layout/CTABanner';
 import { faqs } from '../data/faqs';
+import { fadeUp } from '../animations/variants';
+import { homeViewport } from '../animations/viewport';
 import './Home.css';
 
 const Home = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
       {/* Hero Section */}
@@ -41,15 +46,30 @@ const Home = () => {
       {/* FAQ Section — Modern Accordion */}
       <section className="section section--light">
         <div className="container">
-          <SectionTitle
-            eyebrow="FAQ"
-            title="Frequently Asked Questions"
-            description="Everything you need to know about our training programs and consultancy services."
-            align="center"
-          />
-          <div className="home-faq-wrap">
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={fadeUp}
+          >
+            <SectionTitle
+              eyebrow="FAQ"
+              title="Frequently Asked Questions"
+              description="Everything you need to know about our training programs and consultancy services."
+              align="center"
+            />
+          </motion.div>
+
+          <motion.div
+            className="home-faq-wrap"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={fadeUp}
+            custom={0.15}
+          >
             <FAQAccordion items={faqs} />
-          </div>
+          </motion.div>
         </div>
       </section>
     </>

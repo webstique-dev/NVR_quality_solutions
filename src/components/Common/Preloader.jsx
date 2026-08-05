@@ -24,6 +24,25 @@ export default function Preloader({ onFinish }) {
     onFinishRef.current = onFinish;
   }, [onFinish]);
 
+  // Completely lock body & html scrolling while preloader is active
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.touchAction = '';
+    };
+  }, [visible]);
+
   // Rotate taglines every 1.1s while active
   useEffect(() => {
     if (phase === 'exiting') return;
@@ -58,6 +77,11 @@ export default function Preloader({ onFinish }) {
         if (!exitTriggeredRef.current) {
           exitTriggeredRef.current = true;
           setPhase('exiting');
+
+          // Unlock scroll immediately when exit transition begins
+          document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+          document.body.style.touchAction = '';
 
           setTimeout(() => {
             setVisible(false);

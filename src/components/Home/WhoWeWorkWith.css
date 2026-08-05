@@ -1,136 +1,113 @@
-/* ===========================
-   Who We Work With Section
-   =========================== */
+/* ===================================================================
+   Who We Work With Section — Redesigned Pillar UI
+   =================================================================== */
+
 .who-work {
-  background-color: var(--color-surface);
+  position: relative;
 }
 
 .who-work__header {
-  margin-bottom: var(--spacing-xl);
+  max-width: 680px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
 }
 
 .who-work__heading {
-  font-family: var(--font-body);
-  font-size: var(--fs-h2-resp);
-  line-height: var(--lh-h2);
-  letter-spacing: var(--ls-h2);
-  color: var(--color-primary-blue);
-  max-width: 22ch;
-  margin-top: var(--spacing-xs);
+  font-family: var(--font-primary);
+  font-size: var(--fs-section-heading);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-section-title);
+  color: var(--color-ink, #0f172a);
+  margin-top: 10px;
+  margin-bottom: 16px;
 }
 
-/* --- Grid --- */
+.who-work__heading-highlight {
+  color: var(--color-primary-red, #E31B23);
+}
+
+/* ─── Grid (3 Columns) ───────────────────────────────────────────── */
+
 .who-work__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-md);
+  gap: 24px;
 }
 
-/* --- Card --- */
+/* ─── Card Styling ────────────────────────────────────────────────── */
+
 .who-work__card {
   position: relative;
-  background-color: var(--color-canvas);
-  border: 1px solid var(--color-hairline-soft);
-  border-radius: var(--rounded-lg);
-  padding: var(--spacing-xl);
+  background: var(--color-canvas, #ffffff);
+  border: 1px solid var(--color-hairline-soft, #e2e8f0);
+  border-radius: 20px;
+  padding: 32px 28px;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-  box-shadow: var(--shadow-2);
+  gap: 14px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
   transition:
-    box-shadow var(--duration-base) var(--ease-standard),
-    border-color var(--duration-fast) var(--ease-standard),
-    transform var(--duration-fast) var(--ease-standard);
-  cursor: default;
+    box-shadow 300ms ease,
+    transform 300ms ease,
+    border-color 300ms ease;
 }
 
 .who-work__card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(15, 63, 184, 0.12);
-  border-color: var(--color-royal-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 26px 50px -25px rgba(15, 63, 184, 0.22);
+  border-color: rgba(15, 63, 184, 0.3);
 }
 
-.who-work__card-icon-wrap {
+.who-work__card-top {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background-color: var(--color-blue-50);
-  border: 1px solid var(--color-hairline-soft);
-  border-radius: var(--rounded-md);
-  flex-shrink: 0;
-}
-
-.who-work__card-icon {
-  width: 22px;
-  height: 22px;
-  color: var(--color-primary-blue);
+  justify-content: space-between;
+  width: 100%;
 }
 
 .who-work__card-label {
-  font-family: var(--font-body);
-  font-size: var(--fs-body-md);
-  color: var(--color-ink);
-  line-height: var(--lh-card-desc);
-  letter-spacing: var(--ls-body);
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  color: var(--color-ink, #0f172a);
+  line-height: 1.55;
   font-weight: 500;
+  margin: 0;
   flex: 1;
 }
 
-.who-work__card-check {
-  width: 26px;
-  height: 26px;
-  border-radius: var(--rounded-md);
-  background-color: var(--color-blue-50);
-  border: 1px solid var(--color-hairline-soft);
-  color: var(--color-primary-blue);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-  margin-top: auto;
-  flex-shrink: 0;
+.who-work__card-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary-blue, #0F3FB8), var(--color-primary-red, #E31B23));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease;
 }
 
-.who-work__check-icon {
-  width: 14px;
-  height: 14px;
+.who-work__card:hover .who-work__card-accent {
+  transform: scaleX(1);
 }
 
-/* ===========================
-   Responsive — Tablet (≤1024px)
-   =========================== */
+/* ─── Responsive Breakpoints ──────────────────────────────────────── */
+
 @media (max-width: 1024px) {
   .who-work__grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .who-work__heading {
-    max-width: 28ch;
+    gap: 20px;
   }
 }
 
-/* ===========================
-   Responsive — Mobile (≤640px)
-   =========================== */
 @media (max-width: 640px) {
   .who-work__grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .who-work__heading {
-    max-width: none;
-    font-size: clamp(1.75rem, 6vw, 2.5rem);
-  }
-}
-
-/* ===========================
-   2K / 4K
-   =========================== */
-@media (min-width: 2000px) {
-  .who-work__grid {
-    grid-template-columns: repeat(3, 1fr);
+  .who-work__card {
+    padding: 26px 22px;
   }
 }
-

@@ -1,74 +1,110 @@
 /* ===================================================================
-   CTA Banner — Mistral AI Design System (DESIGN.md)
-
-   cta-banner-cream token: cream bg, ink text, Editorial heading
+   CTA Banner — Redesigned Pillar & Glass Theme
    =================================================================== */
 
 .cta-banner {
-  padding: var(--spacing-section-lg) 0;
-  background-color: var(--color-canvas);
+  padding: clamp(4.5rem, 7.5vw, 6rem) 0;
+  background-color: var(--color-canvas, #ffffff);
 }
 
-/* ─── Inner panel ─────────────────────────────────────────────────── */
 .cta-banner__inner {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-xxl);
-  padding: var(--spacing-section);
+  gap: clamp(2rem, 5vw, 3.5rem);
+  padding: clamp(2.5rem, 5vw, 3.75rem);
   background: linear-gradient(135deg, #FFFFFF 0%, #F5F9FF 50%, #EEF6FF 100%);
-  border-radius: var(--rounded-lg);
-  border: 1px solid var(--color-hairline-soft);
-  box-shadow: var(--shadow-2);
+  border-radius: 24px;
+  border: 1px solid var(--color-hairline-soft, #e2e8f0);
+  box-shadow:
+    0 20px 40px -15px rgba(15, 63, 184, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.03);
+  overflow: hidden;
 }
 
-/* ─── Content ─────────────────────────────────────────────────────── */
+.cta-banner__accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-primary-blue, #0F3FB8), var(--color-primary-red, #E31B23));
+  border-radius: 4px 0 0 4px;
+}
+
 .cta-banner__content {
   flex: 1;
   min-width: 280px;
 }
 
+.cta-banner__content .eyebrow {
+  font-family: var(--font-primary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary-blue, #0F3FB8);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 12px;
+}
+
+.cta-banner__content .eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary-red, #E31B23);
+  flex: none;
+}
+
 .cta-banner__title {
-  font-family: var(--font-display);
-  font-size: var(--fs-h1-resp);
-  font-weight: 400;
-  line-height: var(--lh-hero);
-  letter-spacing: var(--ls-hero);
-  color: var(--color-primary-blue);
-  max-width: 22ch;
-  margin-top: var(--spacing-xs);
+  font-family: var(--font-primary);
+  font-size: var(--fs-section-heading);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-section-title);
+  color: var(--color-primary-blue, #0F3FB8);
+  max-width: 24ch;
+  margin-top: 6px;
 }
 
 .cta-banner__description {
-  margin-top: var(--spacing-md);
-  font-family: var(--font-body);
-  font-size: var(--fs-body-md);
-  line-height: var(--lh-body-md);
+  margin-top: 14px;
+  font-family: var(--font-primary);
+  font-size: 1.02rem;
+  line-height: 1.6;
   letter-spacing: var(--ls-body);
-  color: var(--color-slate);
+  color: var(--color-slate, #475569);
   max-width: 52ch;
 }
 
-/* ─── Actions ─────────────────────────────────────────────────────── */
 .cta-banner__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  gap: 14px;
   align-items: center;
   flex-shrink: 0;
 }
 
-/* ─── Responsive — Tablet (≤1024px) ─────────────────────────────── */
-@media (max-width: 1024px) {
-  .cta-banner {
-    padding: var(--spacing-section) 0;
-  }
+.cta-banner__actions .btn {
+  font-family: var(--font-primary) !important;
+  border-radius: 9999px !important;
+  padding: 0.75rem 1.6rem !important;
+  font-size: 0.94rem !important;
+  font-weight: 600 !important;
+}
 
+/* ─── Responsive Breakpoints ──────────────────────────────────────── */
+
+@media (max-width: 1024px) {
   .cta-banner__inner {
     flex-direction: column;
     align-items: flex-start;
-    padding: var(--spacing-xxl);
+    padding: clamp(2rem, 5vw, 3rem);
   }
 
   .cta-banner__title {
@@ -76,15 +112,10 @@
   }
 }
 
-/* ─── Responsive — Mobile (≤640px) ──────────────────────────────── */
 @media (max-width: 640px) {
-  .cta-banner {
-    padding: var(--spacing-section-sm) 0;
-  }
-
   .cta-banner__inner {
-    padding: var(--spacing-xl);
-    border-radius: var(--rounded-lg);
+    padding: clamp(1.5rem, 4vw, 2rem);
+    border-radius: 18px;
   }
 
   .cta-banner__actions {

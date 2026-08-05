@@ -1,14 +1,9 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './Button.css';
 
-/**
- * Reusable Button component — Mistral AI Design System
- *
- * variant: 'primary' | 'secondary' | 'dark' | 'cream' | 'on-cream' | 'link'
- * as:      'button' | 'link' (React Router <Link>) | 'a' (external anchor)
- * to:      route path, required when as="link"
- * href:    URL, required when as="a"
- */
+const MotionLink = motion.create(Link);
+
 const Button = ({
   children,
   variant = 'primary',
@@ -19,8 +14,11 @@ const Button = ({
   onClick,
   className = '',
   disabled = false,
+  showIcon,
   ...rest
 }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   const classes = [
     'btn',
     `btn--${variant}`,
@@ -30,32 +28,41 @@ const Button = ({
     .filter(Boolean)
     .join(' ');
 
+  const motionProps = shouldReduceMotion
+    ? {}
+    : {
+        whileHover: { scale: 1.03 },
+        whileTap: { scale: 0.97 },
+        transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] },
+      };
+
   if (as === 'link') {
     return (
-      <Link to={to} className={classes} {...rest}>
+      <MotionLink to={to} className={classes} {...motionProps} {...rest}>
         {children}
-      </Link>
+      </MotionLink>
     );
   }
 
   if (as === 'a') {
     return (
-      <a href={href} className={classes} {...rest}>
+      <motion.a href={href} className={classes} {...motionProps} {...rest}>
         {children}
-      </a>
+      </motion.a>
     );
   }
 
   return (
-    <button
+    <motion.button
       type={type}
       className={classes}
       onClick={onClick}
       disabled={disabled}
+      {...motionProps}
       {...rest}
     >
       {children}
-    </button>
+    </motion.button>
   );
 };
 

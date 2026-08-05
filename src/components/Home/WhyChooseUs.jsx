@@ -1,42 +1,33 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import {
-  LuTarget,
-  LuGlobe,
-  LuBuilding2,
-  LuClipboardList,
-  LuTrophy,
-} from 'react-icons/lu';
+import { LuBuilding2, LuTrendingUp, LuShieldCheck } from 'react-icons/lu';
+import { fadeUp, cardReveal, blurReveal } from '../../animations/variants';
+import { homeViewport } from '../../animations/viewport';
 import './WhyChooseUs.css';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay },
-  }),
-};
-
-const features = [
+const pillars = [
   {
-    icon: LuTarget,
-    title: 'Consultancy-Backed Curriculum',
-    text: 'Our training is grounded in real healthcare consultancy experience — not generic content.',
-  },
-  {
-    icon: LuGlobe,
-    title: 'Globally Recognized Standards',
-    text: 'Programs aligned to NABH, JCI, and CAMHP frameworks accepted across international healthcare systems.',
-  },
-  {
+    id: 'foundation',
+    tag: 'Foundation',
+    title: 'Hospital Quality Management',
+    description:
+      'A strong operational foundation — from policy and process design to the daily practices that keep patient care safe and consistent.',
     icon: LuBuilding2,
-    title: 'Real-World Application',
-    text: 'Practical, case-based learning that bridges theory and on-the-ground implementation.',
   },
   {
-    icon: LuClipboardList,
-    title: 'Accreditation Support',
-    text: 'End-to-end guidance for organizations preparing for accreditation assessments.',
+    id: 'application',
+    tag: 'Application',
+    title: 'Quality Improvement in Healthcare',
+    description:
+      'Practical tools and methods to identify gaps, measure outcomes, and drive continuous improvement across departments.',
+    icon: LuTrendingUp,
+  },
+  {
+    id: 'readiness',
+    tag: 'Readiness',
+    title: 'Healthcare Accreditation Training',
+    description:
+      'Structured preparation for accreditation surveys, so your team and facility walk in ready — not just compliant on paper.',
+    icon: LuShieldCheck,
   },
 ];
 
@@ -44,86 +35,89 @@ const WhyChooseUs = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="why-choose section section--light">
-      <div className="container why-choose__inner">
-        {/* Left: Illustration */}
+    <section className="why-section section section--light">
+      <div className="container">
+        {/* Header Block */}
         <motion.div
-          className="why-choose__visual"
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="block-head"
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+          viewport={homeViewport}
+          variants={blurReveal}
         >
-          <div className="why-choose__img-wrap">
-            <img
-              src="/why-choose-illustration.png"
-              alt="Healthcare professional learning quality skills with digital tools and certifications"
-              className="why-choose__img"
-              loading="lazy"
-            />
-            <div className="why-choose__img-badge">
-              <span className="why-choose__badge-icon-wrap" aria-hidden="true">
-                <LuTrophy className="why-choose__badge-icon" />
-              </span>
-              <div>
-                <strong>Expert-Led</strong>
-                <p>Industry practitioners teach every module</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+          <span className="eyebrow">Why NVR Quality Solutions</span>
 
-        {/* Right: Content */}
-        <div className="why-choose__content">
-          <motion.span
-            className="eyebrow-light"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
-            custom={0}
-          >
-            Why Choose NVR Quality Solutions
-          </motion.span>
-
-          <motion.h2
-            className="why-choose__heading"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
-            custom={0.1}
-          >
-            Learn the Skills That{' '}
-            <span className="text-gradient-light">Modern Healthcare Demands</span>
+          <motion.h2 className="section-title why-choose__heading" variants={fadeUp}>
+            Why choose NVR Quality Solutions?
           </motion.h2>
 
-          <div className="why-choose__features">
-            {features.map((f, i) => {
-              const Icon = f.icon;
-              return (
-                <motion.div
-                  key={f.title}
-                  className="why-choose__feature"
-                  variants={fadeUp}
-                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-                  whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-                  viewport={{ once: true, amount: 0.3 }}
-                  custom={0.2 + i * 0.1}
-                  whileHover={shouldReduceMotion ? undefined : { y: -3, scale: 1.005 }}
-                >
-                  <div className="why-choose__feature-icon" aria-hidden="true">
-                    <Icon className="why-choose__feature-icon-svg" />
-                  </div>
-                  <div>
-                    <h3 className="why-choose__feature-title">{f.title}</h3>
-                    <p className="why-choose__feature-text">{f.text}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+          <motion.p
+            className="block-head-desc"
+            variants={fadeUp}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            custom={0.15}
+          >
+            Healthcare quality demands more than classroom learning. It requires practical understanding, industry insight, and the ability to apply standards in real healthcare environments. Our training programs are designed to help you develop quality improvement skills across hospitals and healthcare institutions.
+          </motion.p>
+        </motion.div>
+
+        {/* 3 Pillar Cards Grid */}
+        <div className="pillar-grid">
+          {pillars.map((pillar, i) => {
+            const Icon = pillar.icon;
+            return (
+              <motion.article
+                key={pillar.id}
+                id={`pillar-${pillar.id}`}
+                className="pillar-card"
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+                viewport={homeViewport}
+                variants={cardReveal}
+                custom={i * 0.12}
+                whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
+              >
+                <div className="pillar-icon" aria-hidden="true">
+                  <Icon className="pillar-icon-svg" />
+                </div>
+                <span className="pillar-tag">{pillar.tag}</span>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.description}</p>
+              </motion.article>
+            );
+          })}
         </div>
+
+        {/* Vital Heartbeat Waveform Line Divider */}
+        <motion.div
+          className="vital-wrap"
+          initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.98 }}
+          whileInView={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+          viewport={homeViewport}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          aria-hidden="true"
+        >
+          <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
+            <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
+            <circle cx="556" cy="23" r="3" />
+            <circle cx="662" cy="22" r="3" />
+          </svg>
+        </motion.div>
+
+        {/* Footline Banner */}
+        <motion.div
+          className="why-footline"
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+          viewport={homeViewport}
+          variants={fadeUp}
+          custom={0.2}
+        >
+          <span className="bar" aria-hidden="true" />
+          <p>With a strong foundation across these areas, we focus on building professionals who feel prepared.</p>
+        </motion.div>
       </div>
     </section>
   );

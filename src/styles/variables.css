@@ -60,9 +60,11 @@
   --color-info:           #2563eb;
 
   /* ─── Typography — Font Families ─────────────────────────────── */
-  --font-display:   'PP Editorial Old', 'Times New Roman', Georgia, serif;
-  --font-body:      'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-code:      'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --font-primary:   'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-secondary: 'Atkinson Hyperlegible', sans-serif;
+  --font-display:   var(--font-primary);
+  --font-body:      var(--font-primary);
+  --font-code:      var(--font-primary);
 
   /* ─── Typography — Sizes ──────────────────────────────────────── */
   --fs-hero:        84px;
@@ -127,12 +129,12 @@
   --spacing-xl:         24px;
   --spacing-xxl:        32px;
   --spacing-xxxl:       40px;
-  --spacing-section-sm: 48px;
-  --spacing-section:    64px;
-  --spacing-section-lg: 96px;
-  --spacing-hero:       120px;
-  --section-padding-mobile: clamp(3rem, 7vw, 4.25rem);
-  --section-padding-desktop: clamp(4.25rem, 8vw, 6rem);
+  --spacing-section-sm: clamp(3.25rem, 6vw, 4.5rem);
+  --spacing-section:    clamp(4.5rem, 7.5vw, 6rem);
+  --spacing-section-lg: clamp(5.5rem, 9vw, 7.5rem);
+  --spacing-hero:       clamp(5.5rem, 9vw, 8rem);
+  --section-padding-mobile: clamp(3.75rem, 8vw, 4.75rem);
+  --section-padding-desktop: clamp(5.25rem, 8vw, 6.5rem);
 
   /* ─── Border Radius ───────────────────────────────────────────── */
   --rounded-xs:    4px;
@@ -161,7 +163,7 @@
 
   /* ─── Layout ──────────────────────────────────────────────────── */
   --max-width:      1280px;
-  --nav-height:     64px;
+  --nav-height:     80px;
 
   /* ─── Z-index ─────────────────────────────────────────────────── */
   --z-nav:   100;

@@ -1,152 +1,97 @@
-import { motion } from 'framer-motion';
-import {
-  LuCircleCheckBig,
-  LuTarget,
-  LuEye,
-  LuStethoscope,
-  LuShieldCheck,
-  LuMedal,
-  LuBuilding2,
-  LuSettings,
-  LuClipboardCheck,
-  LuTrendingUp,
-  LuUsers,
-  LuCheck,
-} from 'react-icons/lu';
-import SectionTitle from '../components/Common/SectionTitle';
-import FAQAccordion from '../components/Common/FAQAccordion';
-import { faqs } from '../data/faqs';
+import { motion, useReducedMotion } from 'framer-motion';
+import { LuTarget, LuEye } from 'react-icons/lu';
 import Button from '../components/Common/Button';
 import CTABanner from '../components/Layout/CTABanner';
+import SplitText from '../components/ui/SplitText';
+import ScrollReveal from '../components/ui/ScrollReveal';
+import {
+  fadeUp,
+  cardReveal,
+  blurReveal,
+  fadeRight,
+  staggerContainer,
+  staggerItem,
+} from '../animations/variants';
+import { homeViewport } from '../animations/viewport';
 import './About.css';
-
-/* ─── Animation variants ──────────────────────────────────── */
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: (d = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: d },
-  }),
-};
 
 /* ─── What We Do items ────────────────────────────────────── */
 const whatWeDoItems = [
-  { id: 'hqt', icon: LuStethoscope, label: 'Healthcare Quality Training' },
-  { id: 'pst', icon: LuShieldCheck, label: 'Patient Safety Training' },
-  { id: 'hat', icon: LuMedal, label: 'Healthcare Accreditation Training' },
-  { id: 'hqm', icon: LuBuilding2, label: 'Hospital Quality Management' },
-  { id: 'qis', icon: LuSettings, label: 'Quality implementation support' },
-  { id: 'arc', icon: LuClipboardCheck, label: 'Accreditation readiness consultancy' },
-  { id: 'hpi', icon: LuTrendingUp, label: 'Healthcare process improvement' },
-  { id: 'pdp', icon: LuUsers, label: 'Professional development programs' },
+  'Healthcare Quality Training',
+  'Patient Safety Training',
+  'Healthcare Accreditation Training',
+  'Hospital Quality Management',
+  'Quality implementation support',
+  'Accreditation readiness consultancy',
+  'Healthcare process improvement',
+  'Professional development programs',
 ];
 
 /* ─── Consultancy items ───────────────────────────────────── */
 const consultancyItems = [
-  { id: 'c1', label: 'Build effective quality management systems' },
-  { id: 'c2', label: 'Improve patient safety practices' },
-  { id: 'c3', label: 'Strengthen operational processes' },
-  { id: 'c4', label: 'Prepare for accreditation assessments' },
-  { id: 'c5', label: 'Create a culture of continuous improvement' },
+  { num: '01', label: 'Build effective quality management systems' },
+  { num: '02', label: 'Improve patient safety practices' },
+  { num: '03', label: 'Strengthen operational processes' },
+  { num: '04', label: 'Prepare for accreditation assessments' },
+  { num: '05', label: 'Create a culture of continuous improvement' },
 ];
 
-/* ─── Component ───────────────────────────────────────────── */
 const About = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
       {/* ═══════════════════════════════════════════════════════
           1. HERO SECTION
       ════════════════════════════════════════════════════════ */}
-      <section className="about-hero section--dark">
+      <section className="about-hero">
         <div className="about-hero__bg" aria-hidden="true">
-          <div className="about-hero__glow about-hero__glow--1" />
-          <div className="about-hero__glow about-hero__glow--2" />
+          <div className="about-hero__glow" />
           <div className="about-hero__grid" />
         </div>
 
         <div className="container about-hero__inner">
-          {/* Content */}
-          <div className="about-hero__content">
-
-            <motion.span
-              className="eyebrow"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0}
-            >
+          <motion.div
+            className="about-hero__content"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            variants={staggerContainer}
+          >
+            <motion.span className="eyebrow" variants={staggerItem}>
               About Us
             </motion.span>
 
-            <motion.h1
-              className="about-hero__heading"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.1}
-            >
-              Empowering Healthcare Professionals Through{' '}
-              <span className="text-gradient">Expert Consultancy</span>
-            </motion.h1>
+            <SplitText
+              tag="h1"
+              text="Empowering Healthcare Professionals Through Expert Consultancy"
+              highlightText="Expert Consultancy"
+              highlightClass="hero__highlight"
+              className="about-hero__headline"
+              delay={35}
+              duration={0.8}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="left"
+            />
 
-            <motion.p
-              className="about-hero__para"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.2}
-            >
-              At NVR Quality Solutions, we believe that quality is the foundation of safe,
-              effective, and patient-centered healthcare.
-            </motion.p>
-
-            <motion.p
-              className="about-hero__para"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.28}
-            >
-              As a trusted provider of Healthcare Quality Training and healthcare quality
-              consultancy, we are committed to building the knowledge, skills, and systems
-              required to meet quality standards.
-            </motion.p>
-
-            <motion.p
-              className="about-hero__para"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.36}
-            >
-              Our approach combines practical learning with real-world implementation. This way,
-              our participants understand not only what quality standards require, but also how
-              they are successfully applied within environments.
-            </motion.p>
-
-
-          </div>
-
-          {/* Illustration */}
-          <motion.div
-            className="about-hero__visual"
-            initial={{ opacity: 0, x: 48, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          >
-            <div className="about-hero__img-frame">
-              <img
-                src="/about-hero-illustration.png"
-                alt="Healthcare quality professional reviewing quality standards and accreditation documents"
-                className="about-hero__img"
-                loading="eager"
-              />
-              <div className="about-hero__img-tag glass">
-                <LuCircleCheckBig className="about-hero__tag-icon" aria-hidden="true" />
-                <span>Trusted Consultancy</span>
-              </div>
-            </div>
+            <motion.div className="about-hero__lede" variants={staggerItem}>
+              <p>
+                At NVR Quality Solutions, we believe that quality is the foundation of safe,
+                effective, and patient-centered healthcare.
+              </p>
+              <p>
+                As a trusted provider of Healthcare Quality Training and healthcare quality
+                consultancy, we are committed to building the knowledge, skills, and systems
+                required to meet quality standards.
+              </p>
+              <p>
+                Our approach combines practical learning with real-world implementation. This way,
+                our participants understand not only what quality standards require, but also how
+                they are successfully applied within environments.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -154,46 +99,53 @@ const About = () => {
       {/* ═══════════════════════════════════════════════════════
           2. MISSION & VISION
       ════════════════════════════════════════════════════════ */}
-      <section className="section section--light">
+      <section id="mission" className="about-section section--light">
         <div className="container">
-          <div className="about-mv-grid">
+          <div className="block-head">
+            <span className="eyebrow">Foundation &amp; Purpose</span>
+            <h2 className="section-title">Our Mission &amp; Vision</h2>
+          </div>
+
+          <div className="pillar-grid">
             {/* Mission */}
-            <motion.div
-              className="about-mv-card"
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+            <motion.article
+              className="pillar-card"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={cardReveal}
+              whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
             >
-              <div className="about-mv-card__icon-wrap" aria-hidden="true">
-                <LuTarget className="about-mv-card__icon" />
+              <div className="pillar-icon" aria-hidden="true">
+                <LuTarget className="pillar-icon-svg" />
               </div>
-              <span className="about-mv-card__eyebrow">Mission</span>
-              <h2 className="about-mv-card__title">Our Mission</h2>
-              <p className="about-mv-card__body">
+              <span className="pillar-tag">Mission</span>
+              <h3>Our Mission</h3>
+              <p>
                 To empower healthcare professionals and organizations with practical education,
                 expert guidance, and quality-focused solutions.
               </p>
-            </motion.div>
+            </motion.article>
 
             {/* Vision */}
-            <motion.div
-              className="about-mv-card about-mv-card--vision"
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            <motion.article
+              className="pillar-card"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={cardReveal}
+              whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
             >
-              <div className="about-mv-card__icon-wrap about-mv-card__icon-wrap--vision" aria-hidden="true">
-                <LuEye className="about-mv-card__icon" />
+              <div className="pillar-icon" aria-hidden="true">
+                <LuEye className="pillar-icon-svg" />
               </div>
-              <span className="about-mv-card__eyebrow">Vision</span>
-              <h2 className="about-mv-card__title">Our Vision</h2>
-              <p className="about-mv-card__body">
+              <span className="pillar-tag">Vision</span>
+              <h3>Our Vision</h3>
+              <p>
                 To be a trusted partner in advancing healthcare quality by training professionals
                 and healthcare organizations to build sustainable quality systems.
               </p>
-            </motion.div>
+            </motion.article>
           </div>
         </div>
       </section>
@@ -201,211 +153,177 @@ const About = () => {
       {/* ═══════════════════════════════════════════════════════
           3. WHAT WE DO
       ════════════════════════════════════════════════════════ */}
-      <section className="section section--dark about-wwd">
-        <div className="about-wwd__bg" aria-hidden="true">
-          <div className="about-wwd__glow" />
-        </div>
+      <section id="wwd" className="about-section section--light">
         <div className="container">
           <motion.div
-            className="about-wwd__header"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            className="block-head"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={blurReveal}
           >
-            <span className="eyebrow">Our Services</span>
-            <h2 className="about-wwd__heading">What We Do</h2>
-            <p className="about-wwd__intro">
-              NVR Quality Solutions offers a range of training and consultancy services focused
-              on healthcare quality and patient safety.
+            <span className="eyebrow">Services</span>
+
+            <ScrollReveal
+              as="h2"
+              baseOpacity={0.15}
+              enableBlur={true}
+              baseRotation={2}
+              blurStrength={6}
+              textClassName="section-title"
+            >
+              What We Do
+            </ScrollReveal>
+
+            <p className="block-head-desc">
+              NVR Quality Solutions offers a range of training and consultancy services focused on
+              healthcare quality and patient safety. Our expertise includes:
             </p>
-            <p className="about-wwd__sub-label">Our expertise includes:</p>
           </motion.div>
 
-          <div className="about-wwd__grid">
-            {whatWeDoItems.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.id}
-                  id={`wwd-${item.id}`}
-                  className="about-wwd__card glass"
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.07 }}
-                  whileHover={{ y: -5, transition: { duration: 0.25 } }}
-                >
-                  <div className="about-wwd__card-icon" aria-hidden="true">
-                    <Icon className="about-wwd__card-icon-svg" />
-                  </div>
-                  <p className="about-wwd__card-label">{item.label}</p>
-                  <div className="about-wwd__card-accent" aria-hidden="true" />
-                </motion.div>
-              );
-            })}
+          <motion.div
+            className="about-wwd__grid"
+            variants={staggerContainer}
+            initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
+            viewport={homeViewport}
+          >
+            {whatWeDoItems.map((item) => (
+              <motion.div key={item} className="about-wwd__item" variants={staggerItem}>
+                <span className="about-wwd__tick" aria-hidden="true" />
+                <span className="about-wwd__txt">{item}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Vital Waveform Line Divider */}
+          <div className="vital-wrap" aria-hidden="true">
+            <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
+              <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
+              <circle cx="556" cy="23" r="3" />
+              <circle cx="662" cy="22" r="3" />
+            </svg>
           </div>
 
-          <motion.p
-            className="about-wwd__closing"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          <motion.div
+            className="why-footline"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={fadeUp}
           >
-            Every program is designed to provide practical, industry-relevant knowledge. Ones
-            that participants can confidently apply in real healthcare settings.
-          </motion.p>
+            <span className="bar" aria-hidden="true" />
+            <p>Every program is designed to provide practical, industry-relevant knowledge that participants can apply in real healthcare settings.</p>
+          </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════
           4. CONSULTANCY SECTION
       ════════════════════════════════════════════════════════ */}
-      <section className="section section--light about-consult">
+      <section id="consultancy" className="about-section about-consult">
         <div className="container">
-          <motion.div
-            className="about-consult__header"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="eyebrow-light">Consultancy</span>
-            <h2 className="about-consult__heading">
-              Consultancy That Supports{' '}
-              <span className="text-gradient-light">Better Healthcare</span>
-            </h2>
-            <p className="about-consult__intro">
-              Alongside training, NVR Quality Solutions provides expert Healthcare Quality
-              Consultant services. They are ideal for hospitals and healthcare institutions
-              seeking to strengthen quality systems and prepare for accreditation. Our
-              consultancy services help organizations:
-            </p>
-          </motion.div>
+          <div className="about-consult__grid">
+            {/* Left Column: Intro */}
+            <motion.div
+              className="about-consult__intro"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeRight}
+            >
+              <span className="eyebrow eyebrow--light">Consultancy</span>
+              <h2 className="about-consult__heading">
+                Consultancy That Supports Better Healthcare
+              </h2>
+              <p className="about-consult__para">
+                Alongside training, NVR Quality Solutions provides expert Healthcare Quality
+                Consultant services. They are ideal for hospitals and healthcare institutions
+                seeking to strengthen quality systems and prepare for accreditation. Our
+                consultancy services help organizations:
+              </p>
+            </motion.div>
 
-          <div className="about-consult__items">
-            {consultancyItems.map((item, i) => (
-              <motion.div
-                key={item.id}
-                id={`consult-${item.id}`}
-                className="about-consult__item"
-                initial={{ opacity: 0, x: -24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: i * 0.09 }}
-              >
-                <div className="about-consult__item-check" aria-hidden="true">
-                  <LuCheck className="about-consult__check-icon" />
-                </div>
-                <p className="about-consult__item-label">{item.label}</p>
-              </motion.div>
-            ))}
+            {/* Right Column: Numbered List */}
+            <motion.ul
+              className="about-consult__list"
+              variants={staggerContainer}
+              initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
+              viewport={homeViewport}
+            >
+              {consultancyItems.map((item) => (
+                <motion.li
+                  key={item.num}
+                  className="about-consult__list-item"
+                  variants={staggerItem}
+                >
+                  <span className="about-consult__num">{item.num}</span>
+                  <span className="about-consult__label">{item.label}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          5. WHY CHOOSE NVR
+          5. WHY CHOOSE / CLOSING CTA
       ════════════════════════════════════════════════════════ */}
-      <section className="section section--dark about-why">
-        <div className="about-why__bg" aria-hidden="true">
-          <div className="about-why__glow" />
-        </div>
-        <div className="container about-why__inner">
-          {/* Left: Content */}
-          <div className="about-why__content">
-            <motion.span
-              className="eyebrow"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Why Choose Us
-            </motion.span>
-
-            <motion.h2
-              className="about-why__heading"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            >
-              Why Choose{' '}
-              <span className="text-gradient">NVR Quality Solutions?</span>
-            </motion.h2>
-
-            <motion.p
-              className="about-why__para"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            >
-              Choosing the right training partner can make a big difference in your professional
-              journey. We are committed to helping learners develop the confidence and knowledge
-              needed to make a positive impact.
-            </motion.p>
-
-            <motion.p
-              className="about-why__para"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.28 }}
-            >
-              Whether you are taking your first step into healthcare quality or strengthening an
-              existing quality program, we are here to support you.
-            </motion.p>
-          </div>
-
-          {/* Right: Illustration */}
-          <motion.div
-            className="about-why__visual"
-            initial={{ opacity: 0, x: 44 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          >
-            <div className="about-why__img-frame">
-              <img
-                src="/about-whychoose-illustration.png"
-                alt="Healthcare professionals collaborating on quality improvement"
-                className="about-why__img"
-                loading="lazy"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          6. FREQUENTLY ASKED QUESTIONS
-      ════════════════════════════════════════════════════════ */}
-      <section className="section section--light about-faq-section">
+      <section id="closing" className="about-section section--light">
         <div className="container">
-          <SectionTitle
-            eyebrow="FAQ"
-            title="Frequently Asked Questions"
-            description="Find answers to common questions about our healthcare quality training and consultancy services."
-            align="center"
-          />
-          <div className="about-faq-wrap">
-            <FAQAccordion items={faqs} />
+          <div className="about-closing__grid">
+            {/* Left Column: Copy */}
+            <motion.div
+              className="about-closing__copy"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeRight}
+            >
+              <span className="eyebrow">Why Choose Us</span>
+              <h2 className="section-title">Why Choose NVR Quality Solutions?</h2>
+              <p className="block-head-desc">
+                Choosing the right training partner can make a big difference in your professional
+                journey. We are committed to helping learners develop the confidence and knowledge
+                needed to make a positive impact.
+              </p>
+              <p className="block-head-desc" style={{ marginTop: '14px' }}>
+                Whether you are taking your first step into healthcare quality or strengthening an
+                existing quality program, we are here to support you.
+              </p>
+            </motion.div>
+
+            {/* Right Column: CTA Box */}
+            <motion.div
+              className="about-closing__cta-box"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={cardReveal}
+            >
+              <span className="eyebrow">Next Step</span>
+              <p className="about-closing__cta-text">
+                Take the first step toward a stronger quality program or a rewarding career in
+                healthcare quality.
+              </p>
+              <Button as="link" to="/training-programs" variant="primary" className="btn-solid">
+                Explore Our Training Programs
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          7. CTA SECTION
-      ════════════════════════════════════════════════════════ */}
+      {/* Global CTA Banner */}
       <CTABanner
         eyebrow="Get Started"
         title="Explore Our Training Programs"
-        description=""
+        description="Build strong healthcare operational foundations and prepare for accreditation with expert-led training."
         primaryLabel="Explore Our Training Programs"
         primaryTo="/training-programs"
+        secondaryLabel="Contact Us"
+        secondaryTo="/contact"
       />
     </>
   );

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   LuChartBar,
   LuShieldCheck,
@@ -6,32 +6,28 @@ import {
   LuGlobe,
   LuAward,
   LuCheck,
-  LuCircleCheckBig,
-  LuUsers,
-  LuBookOpen,
-  LuLightbulb,
-  LuBrainCircuit,
-  LuGraduationCap,
-  LuStethoscope,
 } from 'react-icons/lu';
+import Button from '../components/Common/Button';
 import CTABanner from '../components/Layout/CTABanner';
+import SplitText from '../components/ui/SplitText';
+import ScrollReveal from '../components/ui/ScrollReveal';
+import {
+  fadeUp,
+  cardReveal,
+  blurReveal,
+  fadeRight,
+  staggerContainer,
+  staggerItem,
+} from '../animations/variants';
+import { homeViewport } from '../animations/viewport';
 import './TrainingPrograms.css';
-
-/* ─── Animation helpers ────────────────────────────── */
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: (d = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: d },
-  }),
-};
 
 /* ─── Training programs data ───────────────────────── */
 const programs = [
   {
     id: 'healthcare-quality-training',
     icon: LuChartBar,
+    tag: 'Quality Practice',
     number: '01',
     title: 'Healthcare Quality Training',
     description:
@@ -47,6 +43,7 @@ const programs = [
   {
     id: 'patient-safety-training',
     icon: LuShieldCheck,
+    tag: 'Risk & Safety',
     number: '02',
     title: 'Patient Safety Training',
     description:
@@ -62,6 +59,7 @@ const programs = [
   {
     id: 'nabh-training',
     icon: LuMedal,
+    tag: 'Accreditation',
     number: '03',
     title: 'NABH Training',
     description:
@@ -77,6 +75,7 @@ const programs = [
   {
     id: 'jci-training',
     icon: LuGlobe,
+    tag: 'Global Standards',
     number: '04',
     title: 'JCI Training',
     description:
@@ -92,6 +91,7 @@ const programs = [
   {
     id: 'camhp-training',
     icon: LuAward,
+    tag: 'Compliance',
     number: '05',
     title: 'CAMHP Training',
     description:
@@ -108,107 +108,77 @@ const programs = [
 
 /* ─── Who can join items ───────────────────────────── */
 const whoItems = [
-  { id: 'w1', icon: LuGraduationCap, label: 'Students interested in healthcare quality' },
-  { id: 'w2', icon: LuStethoscope,   label: 'Doctors and nurses' },
-  { id: 'w3', icon: LuUsers,         label: 'Allied healthcare professionals' },
-  { id: 'w4', icon: LuBookOpen,      label: 'Hospital administrators' },
-  { id: 'w5', icon: LuChartBar,      label: 'Quality executives' },
-  { id: 'w6', icon: LuUsers,         label: 'Clinical and non-clinical staff' },
-  { id: 'w7', icon: LuBrainCircuit,  label: 'Professionals transitioning into quality roles' },
+  { num: '01', label: 'Students interested in healthcare quality' },
+  { num: '02', label: 'Doctors and nurses' },
+  { num: '03', label: 'Allied healthcare professionals' },
+  { num: '04', label: 'Hospital administrators' },
+  { num: '05', label: 'Quality executives' },
+  { num: '06', label: 'Clinical and non-clinical staff' },
+  { num: '07', label: 'Professionals transitioning into quality roles' },
 ];
 
 /* ─── What makes us different items ───────────────── */
 const differentItems = [
-  { id: 'd1', icon: LuLightbulb,     label: 'Expert-led instruction' },
-  { id: 'd2', icon: LuBrainCircuit,  label: 'Real-world case discussions' },
-  { id: 'd3', icon: LuUsers,         label: 'Interactive learning' },
-  { id: 'd4', icon: LuChartBar,      label: 'Industry-relevant examples' },
-  { id: 'd5', icon: LuCircleCheckBig,label: 'Implementation-focused guidance' },
+  'Expert-led instruction',
+  'Real-world case discussions',
+  'Interactive learning',
+  'Industry-relevant examples',
+  'Implementation-focused guidance',
 ];
 
-/* ─── Component ────────────────────────────────────── */
 const TrainingPrograms = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
       {/* ═══════════════════════════════════════════════
           1. HERO SECTION
       ════════════════════════════════════════════════ */}
-      <section className="tp-hero section--dark">
+      <section className="tp-hero">
         <div className="tp-hero__bg" aria-hidden="true">
-          <div className="tp-hero__glow tp-hero__glow--1" />
-          <div className="tp-hero__glow tp-hero__glow--2" />
+          <div className="tp-hero__glow" />
           <div className="tp-hero__grid" />
         </div>
 
         <div className="container tp-hero__inner">
-          {/* Content */}
-          <div className="tp-hero__content">
-            <motion.span
-              className="eyebrow"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.05}
-            >
+          <motion.div
+            className="tp-hero__content"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            variants={staggerContainer}
+          >
+            <motion.span className="eyebrow" variants={staggerItem}>
               Training Programs
             </motion.span>
 
-            <motion.h1
-              className="tp-hero__heading"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.12}
-            >
-              Learn Quality Standards from{' '}
-              <span className="text-gradient">Industry Experts</span>
-            </motion.h1>
+            <SplitText
+              tag="h1"
+              text="Learn Quality Standards from Industry Experts"
+              highlightText="Industry Experts"
+              highlightClass="hero__highlight"
+              className="tp-hero__headline"
+              delay={35}
+              duration={0.8}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="left"
+            />
 
-            <motion.p
-              className="tp-hero__para"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.2}
-            >
-              Healthcare quality is a constantly changing discipline. It requires technical
-              knowledge, critical thinking, and an understanding of how healthcare systems
-              operate.
-            </motion.p>
-
-            <motion.p
-              className="tp-hero__para"
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0.28}
-            >
-              This is why we have structured training programs that prepare students and
-              healthcare professionals to learn nationally and internationally recognized
-              quality standards. Every program is designed with one goal — to help you become
-              job-ready for quality-focused roles in healthcare.
-            </motion.p>
-          </div>
-
-          {/* Illustration */}
-          <motion.div
-            className="tp-hero__visual"
-            initial={{ opacity: 0, x: 48, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
-          >
-            <div className="tp-hero__img-frame">
-              <img
-                src="/training-hero-illustration.png"
-                alt="Healthcare quality training programs with industry experts"
-                className="tp-hero__img"
-                loading="eager"
-              />
-              <div className="tp-hero__img-tag glass">
-                <LuCircleCheckBig className="tp-hero__tag-icon" aria-hidden="true" />
-                <span>Job-Ready Training</span>
-              </div>
-            </div>
+            <motion.div className="tp-hero__lede" variants={staggerItem}>
+              <p>
+                Healthcare quality is a constantly changing discipline. It requires technical
+                knowledge, critical thinking, and an understanding of how healthcare systems
+                operate.
+              </p>
+              <p>
+                This is why we have structured training programs that prepare students and
+                healthcare professionals to learn nationally and internationally recognized
+                quality standards. Every program is designed with one goal — to help you become
+                job-ready for quality-focused roles in healthcare.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -216,46 +186,52 @@ const TrainingPrograms = () => {
       {/* ═══════════════════════════════════════════════
           2. EXPLORE OUR TRAINING PROGRAMS
       ════════════════════════════════════════════════ */}
-      <section className="section section--light tp-programs">
+      <section className="tp-section section--light">
         <div className="container">
           <motion.div
-            className="tp-section-header"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            className="block-head"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={blurReveal}
           >
-            <span className="eyebrow-light">Programs</span>
-            <h2 className="tp-section-heading">Explore Our Training Programs</h2>
-            <p className="tp-section-sub">Our top programs include:</p>
+            <span className="eyebrow">Programs</span>
+
+            <ScrollReveal
+              as="h2"
+              baseOpacity={0.15}
+              enableBlur={true}
+              baseRotation={2}
+              blurStrength={6}
+              textClassName="section-title"
+            >
+              Explore Our Training Programs
+            </ScrollReveal>
+
+            <p className="block-head-desc">Our top specialized programs include:</p>
           </motion.div>
 
-          <div className="tp-programs__grid">
-            {programs.map((prog, i) => {
+          <div className="pillar-grid">
+            {programs.map((prog) => {
               const Icon = prog.icon;
               return (
                 <motion.article
                   key={prog.id}
                   id={`tp-${prog.id}`}
-                  className="tp-card"
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                  className="pillar-card"
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                  whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+                  viewport={homeViewport}
+                  variants={cardReveal}
+                  whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
                 >
-                  {/* Card header */}
-                  <div className="tp-card__header">
-                    <div className="tp-card__icon-wrap" aria-hidden="true">
-                      <Icon className="tp-card__icon" />
-                    </div>
-                    <span className="tp-card__number" aria-hidden="true">{prog.number}</span>
+                  <div className="pillar-icon" aria-hidden="true">
+                    <Icon className="pillar-icon-svg" />
                   </div>
+                  <span className="pillar-tag">{prog.tag}</span>
+                  <h3>{prog.title}</h3>
+                  <p>{prog.description}</p>
 
-                  <h3 className="tp-card__title">{prog.title}</h3>
-                  <p className="tp-card__desc">{prog.description}</p>
-
-                  {/* Key Learning Areas */}
                   <div className="tp-card__areas">
                     <p className="tp-card__areas-label">Key Learning Areas</p>
                     <ul className="tp-card__areas-list">
@@ -267,204 +243,140 @@ const TrainingPrograms = () => {
                       ))}
                     </ul>
                   </div>
-
-                  {/* Bottom accent */}
-                  <div className="tp-card__accent" aria-hidden="true" />
                 </motion.article>
               );
             })}
           </div>
+
+          {/* Vital Waveform Line Divider */}
+          <div className="vital-wrap" aria-hidden="true">
+            <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
+              <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
+              <circle cx="556" cy="23" r="3" />
+              <circle cx="662" cy="22" r="3" />
+            </svg>
+          </div>
+
+          <motion.div
+            className="why-footline"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            viewport={homeViewport}
+            variants={fadeUp}
+          >
+            <span className="bar" aria-hidden="true" />
+            <p>Empowering healthcare leaders and students with job-ready skills and global accreditation knowledge.</p>
+          </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════
           3. WHO CAN JOIN
       ════════════════════════════════════════════════ */}
-      <section className="section section--dark tp-who">
-        <div className="tp-who__bg" aria-hidden="true">
-          <div className="tp-who__glow" />
-        </div>
+      <section className="tp-section about-consult">
         <div className="container">
-          <motion.div
-            className="tp-section-header tp-section-header--dark"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="eyebrow">Audience</span>
-            <h2 className="tp-section-heading tp-section-heading--dark">Who Can Join?</h2>
-            <p className="tp-section-intro--dark">
-              Our training programs are suitable for students at different stages of their
-              professional journey, including:
-            </p>
-          </motion.div>
+          <div className="about-consult__grid">
+            {/* Left Column: Intro */}
+            <motion.div
+              className="about-consult__intro"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeRight}
+            >
+              <span className="eyebrow eyebrow--light">Audience</span>
+              <h2 className="about-consult__heading">Who Can Join?</h2>
+              <p className="about-consult__para">
+                Our training programs are suitable for students and professionals at different
+                stages of their career journey.
+              </p>
+              <p className="about-consult__para" style={{ marginTop: '14px', fontStyle: 'italic', opacity: 0.8 }}>
+                Whether you&apos;re entering the field or expanding your expertise, our programs provide knowledge that supports long-term career growth.
+              </p>
+            </motion.div>
 
-          <div className="tp-who__grid">
-            {whoItems.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.id}
-                  id={`who-${item.id}`}
-                  className="tp-who__card glass"
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.07 }}
-                  whileHover={{ y: -4, transition: { duration: 0.22 } }}
-                >
-                  <div className="tp-who__card-icon" aria-hidden="true">
-                    <Icon className="tp-who__card-icon-svg" />
-                  </div>
-                  <p className="tp-who__card-label">{item.label}</p>
-                </motion.div>
-              );
-            })}
+            {/* Right Column: Numbered List */}
+            <motion.ul
+              className="about-consult__list"
+              variants={staggerContainer}
+              initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
+              viewport={homeViewport}
+            >
+              {whoItems.map((item) => (
+                <motion.li key={item.num} className="about-consult__list-item" variants={staggerItem}>
+                  <span className="about-consult__num">{item.num}</span>
+                  <span className="about-consult__label">{item.label}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
-
-          <motion.p
-            className="tp-who__closing"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-          >
-            Whether you're entering the field or expanding your expertise, we can help. Our
-            programs provide knowledge that supports long-term career growth.
-          </motion.p>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════
           4. WHAT MAKES OUR TRAINING DIFFERENT
       ════════════════════════════════════════════════ */}
-      <section className="section section--light tp-different">
-        <div className="container tp-different__inner">
-          {/* Left: Text */}
-          <motion.div
-            className="tp-different__content"
-            initial={{ opacity: 0, x: -36 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="eyebrow-light">Our Approach</span>
-            <h2 className="tp-different__heading">
-              What Makes Our Training{' '}
-              <span className="text-gradient-light">Different?</span>
-            </h2>
-            <p className="tp-different__para">
-              Learning healthcare quality goes beyond understanding standards. It requires
-              knowing how those standards are applied in real healthcare settings. Every session
-              is designed to combine theory with practical context through:
-            </p>
-
-            <div className="tp-different__items">
-              {differentItems.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.id}
-                    id={`diff-${item.id}`}
-                    className="tp-different__item"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
-                  >
-                    <div className="tp-different__item-icon" aria-hidden="true">
-                      <Icon className="tp-different__item-icon-svg" />
-                    </div>
-                    <span className="tp-different__item-label">{item.label}</span>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            <motion.p
-              className="tp-different__closing"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            >
-              The result is a learning experience that prepares participants to contribute
-              with confidence from day one.
-            </motion.p>
-          </motion.div>
-
-          {/* Right: Visual summary card */}
-          <motion.div
-            className="tp-different__panel"
-            initial={{ opacity: 0, x: 36 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          >
-            <div className="tp-different__stat-card">
-              <div className="tp-different__stat">
-                <span className="tp-different__stat-val">5</span>
-                <span className="tp-different__stat-label">Specialized<br />Programs</span>
-              </div>
-              <div className="tp-different__stat-divider" aria-hidden="true" />
-              <div className="tp-different__stat">
-                <span className="tp-different__stat-val">3</span>
-                <span className="tp-different__stat-label">Global<br />Standards</span>
-              </div>
-              <div className="tp-different__stat-divider" aria-hidden="true" />
-              <div className="tp-different__stat">
-                <span className="tp-different__stat-val">100%</span>
-                <span className="tp-different__stat-label">Practical<br />Focus</span>
-              </div>
-            </div>
-
-            <div className="tp-different__badge-list">
-              {['NABH', 'JCI', 'CAMHP'].map(badge => (
-                <span key={badge} className="tp-different__badge">{badge}</span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════
-          5. TAKE THE NEXT STEP
-      ════════════════════════════════════════════════ */}
-      <section className="section section--dark tp-nextstep">
-        <div className="tp-nextstep__bg" aria-hidden="true">
-          <div className="tp-nextstep__glow" />
-        </div>
+      <section className="tp-section section--light">
         <div className="container">
-          <motion.div
-            className="tp-nextstep__inner"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="eyebrow">Next Steps</span>
-            <h2 className="tp-nextstep__heading">Take the Next Step</h2>
-            <p className="tp-nextstep__para">
-              Whether you're looking to strengthen your professional profile, transition into
-              healthcare quality, or gain accreditations, our training programs are ideal. We
-              provide the knowledge and confidence to help you move forward.
-            </p>
-          </motion.div>
+          <div className="about-closing__grid">
+            {/* Left Column: Copy & Grid */}
+            <motion.div
+              className="about-closing__copy"
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeRight}
+            >
+              <span className="eyebrow">Our Approach</span>
+              <h2 className="section-title">What Makes Our Training Different?</h2>
+              <p className="block-head-desc">
+                Learning healthcare quality goes beyond understanding standards. It requires knowing
+                how those standards are applied in real healthcare settings. Every session is
+                designed to combine theory with practical context through:
+              </p>
+
+              <div className="about-wwd__grid" style={{ marginTop: '24px' }}>
+                {differentItems.map((item) => (
+                  <div key={item} className="about-wwd__item">
+                    <span className="about-wwd__tick" aria-hidden="true" />
+                    <span className="about-wwd__txt">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right Column: CTA Box */}
+            <motion.div
+              className="about-closing__cta-box"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={cardReveal}
+            >
+              <span className="eyebrow">Next Step</span>
+              <p className="about-closing__cta-text">
+                Ready to take the next step toward a rewarding career in healthcare quality?
+              </p>
+              <Button as="link" to="/contact" variant="primary" className="btn-solid">
+                Enroll or Contact Our Team
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════
-          6. CTA BANNER
+          5. CTA BANNER
       ════════════════════════════════════════════════ */}
       <CTABanner
         eyebrow="Get Started"
         title="Ready to Begin Your Healthcare Quality Journey?"
-        description=""
-        primaryLabel="View Upcoming Programs"
-        primaryTo="/training-programs"
-        secondaryLabel="Get in Touch"
-        secondaryTo="/contact"
+        description="Build strong healthcare operational foundations and prepare for accreditation with expert-led training."
+        primaryLabel="Contact Our Team"
+        primaryTo="/contact"
+        secondaryLabel="Explore Services"
+        secondaryTo="/services"
       />
     </>
   );

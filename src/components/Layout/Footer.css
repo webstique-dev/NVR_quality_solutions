@@ -33,7 +33,7 @@
   justify-items: stretch;
 }
 
-.footer__top > * {
+.footer__top>* {
   min-width: 0;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .footer__logo-img {
-  height: 48px;
+  height: 102px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -384,5 +384,3 @@
     padding: var(--spacing-xl) 12px;
   }
 }
-
-

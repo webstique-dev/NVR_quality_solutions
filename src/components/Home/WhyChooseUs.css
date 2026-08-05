@@ -1,236 +1,220 @@
-/* ===========================
-   Why Choose Us Section
-   =========================== */
-.why-choose {
-  background-color: var(--color-surface);
-}
+/* ===================================================================
+   Why Choose Us Section — Redesigned Pillar UI
+   =================================================================== */
 
-.why-choose__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xxl);
-  align-items: center;
-}
-
-/* --- Visual (Left) --- */
-.why-choose__visual {
+.why-section {
   position: relative;
 }
 
-.why-choose__img-wrap {
-  position: relative;
-  border-radius: var(--rounded-lg);
-  overflow: visible;
+.block-head {
+  max-width: 680px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
 }
 
-.why-choose__img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--rounded-lg);
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.1));
-}
-
-.why-choose__img-badge {
-  position: absolute;
-  bottom: -12px;
-  right: 0;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-  background: var(--color-canvas);
-  border: 1px solid var(--color-hairline-soft);
-  border-radius: var(--rounded-lg);
-  padding: 0.8rem 1.1rem;
-  box-shadow: var(--shadow-2);
-  max-width: 240px;
-}
-
-.why-choose__badge-icon-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.why-choose__badge-icon {
-  width: 24px;
-  height: 24px;
-  color: var(--color-primary-blue);
-}
-
-.why-choose__img-badge strong {
-  font-family: var(--font-body);
-  font-size: var(--fs-body-sm-resp);
+.block-head .eyebrow {
+  font-family: var(--font-primary);
+  font-size: 0.74rem;
   font-weight: 600;
-  color: var(--color-ink);
-  display: block;
-  margin-bottom: 0.15rem;
-}
-
-.why-choose__img-badge p {
-  font-size: var(--fs-caption-resp);
-  color: var(--color-slate);
-  margin: 0;
-  line-height: 1.4;
-}
-
-/* --- Content (Right) --- */
-.why-choose__content {
-  display: flex;
-  flex-direction: column;
-}
-
-.eyebrow-light {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary-blue, #0F3FB8);
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  font-family: var(--font-body);
-  font-size: var(--fs-body-sm);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-primary-blue);
-  margin-bottom: var(--spacing-sm);
+  gap: 0.5em;
+  margin-bottom: 14px;
 }
 
-.eyebrow-light::before {
-  content: '';
-  width: 6px;
-  height: 6px;
+.block-head .eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: var(--color-primary-blue);
+  background: var(--color-primary-red, #E31B23);
+  flex: none;
 }
 
 .why-choose__heading {
-  font-family: var(--font-body);
-  font-size: var(--fs-h2-resp);
-  line-height: var(--lh-h2);
-  letter-spacing: var(--ls-h2);
-  color: var(--color-primary-blue);
-  max-width: 18ch;
-  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-primary);
+  font-size: var(--fs-section-heading);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-section-title);
+  color: var(--color-ink, #0f172a);
+  margin-top: 10px;
+  margin-bottom: 16px;
 }
 
-.text-gradient-light {
-  color: var(--color-primary-red);
+.block-head-desc {
+  color: var(--color-slate, #475569);
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 60ch;
+  margin: 0;
 }
 
-/* --- Feature List --- */
-.why-choose__features {
+/* ─── Pillar Cards Grid ───────────────────────────────────────────── */
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.pillar-card {
+  background: var(--color-canvas, #ffffff);
+  border: 1px solid var(--color-hairline-soft, #e2e8f0);
+  border-radius: 20px;
+  padding: 36px 30px;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 14px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+  transition:
+    box-shadow 300ms ease,
+    transform 300ms ease,
+    border-color 300ms ease;
 }
 
-.why-choose__feature {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-md);
-  padding: var(--spacing-lg);
-  background: var(--color-canvas);
-  border-radius: var(--rounded-md);
-  border: 1px solid var(--color-hairline-soft);
-  box-shadow: var(--shadow-2);
-  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
+.pillar-card:hover {
+  box-shadow: 0 26px 50px -25px rgba(15, 63, 184, 0.22);
+  transform: translateY(-4px);
+  border-color: rgba(15, 63, 184, 0.3);
 }
 
-.why-choose__feature:hover {
-  transform: translateY(-2px);
-  border-color: var(--color-royal-blue);
-  box-shadow: 0 12px 30px rgba(15, 63, 184, 0.12);
-}
-
-.why-choose__feature-icon {
-  width: 44px;
-  height: 44px;
+.pillar-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px dashed rgba(227, 27, 35, 0.45);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-blue-50);
-  border: 1px solid var(--color-hairline-soft);
-  border-radius: var(--rounded-md);
-  flex-shrink: 0;
+  color: var(--color-primary-blue, #0F3FB8);
+  margin-bottom: 4px;
+  background: rgba(15, 63, 184, 0.03);
 }
 
-.why-choose__feature-icon-svg {
+.pillar-icon::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 63, 184, 0.25);
+}
+
+.pillar-icon-svg {
   width: 20px;
   height: 20px;
-  color: var(--color-primary-blue);
+  color: var(--color-primary-blue, #0F3FB8);
 }
 
-.why-choose__feature-title {
-  font-family: var(--font-body);
-  font-size: var(--fs-h5);
-  font-weight: 500;
-  color: var(--color-ink);
-  line-height: var(--lh-h5);
-  letter-spacing: var(--ls-h2);
-  margin-bottom: 0.25rem;
+.pillar-tag {
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-red, #E31B23);
 }
 
-.why-choose__feature-text {
-  font-family: var(--font-body);
-  font-size: var(--fs-body-sm);
-  color: var(--color-slate);
-  line-height: var(--lh-card-desc);
-  letter-spacing: var(--ls-body);
+.pillar-card h3 {
+  font-family: var(--font-primary);
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-ink, #0f172a);
+  line-height: 1.3;
 }
 
-/* ===========================
-   Responsive — Tablet (≤1024px)
-   =========================== */
-@media (max-width: 1024px) {
-  .why-choose__inner {
+.pillar-card p {
+  margin: 0;
+  color: var(--color-slate, #475569);
+  font-family: var(--font-primary);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+/* ─── Vital Line Divider ─────────────────────────────────────────── */
+
+.vital-wrap {
+  padding: clamp(2.5rem, 5vw, 3.5rem) 0 12px;
+}
+
+.vital {
+  display: block;
+  width: 100%;
+  height: 26px;
+  overflow: visible;
+}
+
+.vital path {
+  fill: none;
+  stroke: var(--color-primary-blue, #0F3FB8);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vital circle {
+  fill: var(--color-primary-red, #E31B23);
+}
+
+/* ─── Footline Banner ─────────────────────────────────────────────── */
+
+.why-footline {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 28px 34px;
+  background: var(--color-blue-50, #f5f9ff);
+  border-radius: 18px;
+  border: 1px solid rgba(15, 63, 184, 0.15);
+  box-shadow: 0 4px 16px rgba(15, 63, 184, 0.04);
+}
+
+.why-footline .bar {
+  width: 4px;
+  align-self: stretch;
+  background: var(--color-primary-red, #E31B23);
+  border-radius: 2px;
+  flex: none;
+}
+
+.why-footline p {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(1.25rem, 1.6vw + 0.8rem, 1.75rem);
+  font-weight: 700;
+  color: var(--color-ink, #0f172a);
+  line-height: 1.35;
+}
+
+/* ─── Responsive Breakpoints ──────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .pillar-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    gap: 20px;
   }
 
-  .why-choose__visual {
-    order: -1;
+  .why-footline {
+    padding: 22px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
   }
 
-  .why-choose__img {
-    max-width: 480px;
-    margin: 0 auto;
-    display: block;
-  }
-
-  .why-choose__heading {
-    max-width: 26ch;
+  .why-footline .bar {
+    width: 100%;
+    height: 3px;
   }
 }
 
-/* ===========================
-   Responsive — Mobile (≤640px)
-   =========================== */
 @media (max-width: 640px) {
-  .why-choose__img-badge {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    margin-top: 0.75rem;
-    max-width: 100%;
-    padding: 0.8rem 0.95rem;
-  }
-
-  .why-choose__heading {
-    max-width: none;
-    font-size: clamp(1.75rem, 6vw, 2.5rem);
-  }
-
-  .why-choose__feature {
-    gap: var(--spacing-sm);
+  .pillar-card {
+    padding: 28px 22px;
   }
 }
-
-/* ===========================
-   2K / 4K
-   =========================== */
-@media (min-width: 2000px) {
-  .why-choose__img {
-    max-width: 600px;
-  }
-}
-
