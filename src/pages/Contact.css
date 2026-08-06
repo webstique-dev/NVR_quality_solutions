@@ -173,8 +173,15 @@
 }
 
 @keyframes mapPulse {
-  0% { transform: scale(0.9); opacity: 1; }
-  100% { transform: scale(1.4); opacity: 0; }
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
 }
 
 .cnt-map-card__label {
@@ -399,6 +406,7 @@
 /* ─── Responsive Breakpoints ──────────────────────────────────────── */
 
 @media (max-width: 980px) {
+
   .cnt-details__layout,
   .cnt-help__grid,
   .cnt-form-grid {
