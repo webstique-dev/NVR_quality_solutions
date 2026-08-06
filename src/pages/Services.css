@@ -278,6 +278,7 @@
 .svc-consult__num {
   font-family: var(--font-primary);
   font-size: 0.82rem;
+  word-break: keep-all;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--color-primary-red, #E31B23);
@@ -405,5 +406,33 @@
   .svc-closing__cta-box {
     padding: 24px 20px;
     border-radius: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .svc-card,
+  .svc-closing__cta-box {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .svc-consult__list-item {
+    gap: 12px;
+    padding: 16px 0;
+    font-size: 0.98rem;
+  }
+
+  .svc-closing__cta-box .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .svc-card,
+  .svc-closing__cta-box {
+    padding: 18px 14px;
   }
 }

@@ -292,6 +292,7 @@
   font-family: var(--font-primary);
   font-size: 0.82rem;
   font-weight: 700;
+  word-break: keep-all;
   letter-spacing: 0.08em;
   color: var(--color-primary-red, #E31B23);
   background: rgba(227, 27, 35, 0.12);
@@ -418,5 +419,30 @@
 @media (max-width: 640px) {
   .cnt-cards-2col {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .cnt-form-card,
+  .cnt-side-card,
+  .cnt-map-card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .cnt-help__list-item {
+    gap: 12px;
+    padding: 16px 0;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .cnt-form-card,
+  .cnt-side-card,
+  .cnt-map-card {
+    padding: 18px 14px;
   }
 }

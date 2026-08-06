@@ -75,6 +75,12 @@ p + p {
   }
 }
 
+@media (max-width: 320px) {
+  .container {
+    padding: 0 10px;
+  }
+}
+
 /* ─── Section Rhythm ─────────────────────────────────────────────── */
 .section {
   padding: var(--section-padding-desktop) 0;

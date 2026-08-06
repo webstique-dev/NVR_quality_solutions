@@ -156,6 +156,19 @@
   }
 }
 
+@media (max-width: 360px) {
+  .expertise__card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .expertise__card {
+    padding: 18px 14px;
+  }
+}
+
 @media (min-width: 2000px) {
   .expertise__grid {
     grid-template-columns: repeat(4, 1fr);

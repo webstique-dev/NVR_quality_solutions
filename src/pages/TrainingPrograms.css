@@ -167,6 +167,7 @@
   font-family: var(--font-primary);
   font-size: 0.82rem;
   font-weight: 700;
+  word-break: keep-all;
   letter-spacing: 0.08em;
   color: var(--color-primary-red, #E31B23);
   background: rgba(227, 27, 35, 0.08);
@@ -314,6 +315,7 @@
 .tp-who__num {
   font-family: var(--font-primary);
   font-size: 0.82rem;
+  word-break: keep-all;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--color-primary-red, #E31B23);
@@ -441,5 +443,33 @@
   .tp-closing__cta-box {
     padding: 24px 20px;
     border-radius: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .tp-card,
+  .tp-closing__cta-box {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .tp-who__list-item {
+    gap: 12px;
+    padding: 16px 0;
+    font-size: 0.98rem;
+  }
+
+  .tp-closing__cta-box .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .tp-card,
+  .tp-closing__cta-box {
+    padding: 18px 14px;
   }
 }

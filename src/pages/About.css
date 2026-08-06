@@ -433,3 +433,29 @@
     border-radius: 18px;
   }
 }
+
+@media (max-width: 360px) {
+  .about-mv__card,
+  .about-closing__cta-box {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .about-consult__list-item {
+    gap: 12px;
+    padding: 16px 0;
+    font-size: 0.98rem;
+  }
+
+  .about-closing__cta-box .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 320px) {
+  .about-mv__card,
+  .about-closing__cta-box {
+    padding: 18px 14px;
+  }
+}
