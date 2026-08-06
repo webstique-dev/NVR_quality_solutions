@@ -243,6 +243,14 @@
   overflow: hidden;
 }
 
+.tp-who .eyebrow {
+  color: #60A5FA;
+}
+
+.tp-who .eyebrow::before {
+  background: #60A5FA;
+}
+
 .tp-who__grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -328,6 +336,11 @@
   grid-template-columns: 1.2fr 0.8fr;
   gap: clamp(2.5rem, 5vw, 4rem);
   align-items: center;
+}
+
+.tp-closing__copy {
+  display: flex;
+  flex-direction: column;
 }
 
 .tp-closing__heading {

@@ -213,7 +213,117 @@
   color: #ffffff;
 }
 
-/* ─── 3. FORM CARD & SIDE PANEL ────────────────────────────────────── */
+/* ─── 3. HOW CAN WE HELP (DARK BAND) ────────────────────────────────── */
+
+.cnt-help {
+  background: radial-gradient(ellipse at 85% 20%, rgba(15, 63, 184, 0.22), transparent 60%), #0B1F2A;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.cnt-help .eyebrow {
+  color: #60A5FA;
+}
+
+.cnt-help .eyebrow::before {
+  background: #60A5FA;
+}
+
+.cnt-help__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.cnt-help__heading {
+  font-family: var(--font-primary);
+  font-size: var(--fs-section-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: var(--ls-section-title);
+  color: #ffffff;
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+
+.cnt-help__para {
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.cnt-help__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cnt-help__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.cnt-help__list-item:first-child {
+  border-top: none;
+}
+
+.cnt-help__num {
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-primary-red, #E31B23);
+  background: rgba(227, 27, 35, 0.12);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(227, 27, 35, 0.25);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.cnt-help__label {
+  flex: 1;
+}
+
+/* ─── 4. FORM CARD & SIDE PANEL ────────────────────────────────────── */
+
+.cnt-form-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.cnt-form-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.cnt-side-card {
+  background: var(--color-blue-50, #f5f9ff);
+  border: 1px solid rgba(15, 63, 184, 0.16);
+  border-radius: 24px;
+  padding: clamp(2rem, 4vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  box-shadow: 0 10px 30px -10px rgba(15, 63, 184, 0.08);
+}
 
 .cnt-form-card {
   background: #ffffff;
@@ -289,7 +399,9 @@
 /* ─── Responsive Breakpoints ──────────────────────────────────────── */
 
 @media (max-width: 980px) {
-  .cnt-details__layout {
+  .cnt-details__layout,
+  .cnt-help__grid,
+  .cnt-form-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }

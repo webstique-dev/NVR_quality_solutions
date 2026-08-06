@@ -269,25 +269,28 @@ const TrainingPrograms = () => {
       {/* ═══════════════════════════════════════════════
           3. WHO CAN JOIN
       ════════════════════════════════════════════════ */}
-      <section className="tp-section about-consult">
+      {/* ═══════════════════════════════════════════════
+          3. WHO CAN JOIN
+      ════════════════════════════════════════════════ */}
+      <section className="tp-section tp-who">
         <div className="container">
-          <div className="about-consult__grid">
+          <div className="tp-who__grid">
             {/* Left Column: Intro */}
             <Magnetic strength={0.06} className="magnetic--block">
             <motion.div
-              className="about-consult__intro"
+              className="tp-who__intro"
               initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
               whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
               viewport={homeViewport}
               variants={fadeRight}
             >
-              <span className="eyebrow eyebrow--light">Audience</span>
-              <h2 className="about-consult__heading">Who Can Join?</h2>
-              <p className="about-consult__para">
+              <span className="eyebrow">Audience</span>
+              <h2 className="tp-who__heading">Who Can Join?</h2>
+              <p className="tp-who__para">
                 Our training programs are suitable for students and professionals at different
                 stages of their career journey.
               </p>
-              <p className="about-consult__para" style={{ marginTop: '14px', fontStyle: 'italic', opacity: 0.8 }}>
+              <p className="tp-who__closing">
                 Whether you&apos;re entering the field or expanding your expertise, our programs provide knowledge that supports long-term career growth.
               </p>
             </motion.div>
@@ -296,19 +299,19 @@ const TrainingPrograms = () => {
             {/* Right Column: Numbered List */}
             <Magnetic strength={0.05} className="magnetic--block">
             <motion.ul
-              className="about-consult__list"
+              className="tp-who__list"
               variants={staggerContainer}
               initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
               whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
               viewport={homeViewport}
             >
               {whoItems.map((item) => (
-                <motion.li key={item.num} className="about-consult__list-item" variants={staggerItem}>
+                <motion.li key={item.num} className="tp-who__list-item" variants={staggerItem}>
                   <Magnetic strength={0.12} className="magnetic--chip">
-                    <span className="about-consult__num">{item.num}</span>
+                    <span className="tp-who__num">{item.num}</span>
                   </Magnetic>
                   <Magnetic strength={0.1} className="magnetic--chip">
-                    <span className="about-consult__label">{item.label}</span>
+                    <span className="tp-who__label">{item.label}</span>
                   </Magnetic>
                 </motion.li>
               ))}
@@ -323,19 +326,19 @@ const TrainingPrograms = () => {
       ════════════════════════════════════════════════ */}
       <section className="tp-section section--light">
         <div className="container">
-          <div className="about-closing__grid">
+          <div className="tp-closing__grid">
             {/* Left Column: Copy & Grid */}
             <Magnetic strength={0.06} className="magnetic--block">
             <motion.div
-              className="about-closing__copy"
+              className="tp-closing__copy"
               initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
               whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
               viewport={homeViewport}
               variants={fadeRight}
             >
               <span className="eyebrow">Our Approach</span>
-              <h2 className="section-title">What Makes Our Training Different?</h2>
-              <p className="block-head-desc">
+              <h2 className="tp-closing__heading">What Makes Our Training Different?</h2>
+              <p className="tp-closing__para">
                 Learning healthcare quality goes beyond understanding standards. It requires knowing
                 how those standards are applied in real healthcare settings. Every session is
                 designed to combine theory with practical context through:
@@ -365,14 +368,14 @@ const TrainingPrograms = () => {
             {/* Right Column: CTA Box */}
             <Magnetic strength={0.2} className="magnetic--block">
               <motion.div
-                className="about-closing__cta-box"
+                className="tp-closing__cta-box"
                 initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
                 whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
                 viewport={homeViewport}
                 variants={cardReveal}
               >
                 <span className="eyebrow">Next Step</span>
-                <p className="about-closing__cta-text">
+                <p className="tp-closing__cta-text">
                   Ready to take the next step toward a rewarding career in healthcare quality?
                 </p>
                 <Button as="link" to="/contact" variant="primary" className="btn-solid">

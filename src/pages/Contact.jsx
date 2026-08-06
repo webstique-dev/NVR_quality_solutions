@@ -266,21 +266,24 @@ const Contact = () => {
       {/* ═══════════════════════════════════════════════
           3. HOW CAN WE HELP DARK BAND
       ════════════════════════════════════════════════ */}
-      <section className="cnt-section about-consult">
+      {/* ═══════════════════════════════════════════════
+          3. HOW CAN WE HELP DARK BAND
+      ════════════════════════════════════════════════ */}
+      <section className="cnt-section cnt-help">
         <div className="container">
-          <div className="about-consult__grid">
+          <div className="cnt-help__grid">
             {/* Left Column: Intro */}
             <Magnetic strength={0.06} className="magnetic--block">
             <motion.div
-              className="about-consult__intro"
+              className="cnt-help__intro"
               initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
               whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
               viewport={homeViewport}
               variants={fadeRight}
             >
-              <span className="eyebrow eyebrow--light">Our Support</span>
-              <h2 className="about-consult__heading">How Can We Help?</h2>
-              <p className="about-consult__para">
+              <span className="eyebrow">Our Support</span>
+              <h2 className="cnt-help__heading">How Can We Help?</h2>
+              <p className="cnt-help__para">
                 Our team is ready to assist you with tailored guidance based on your learning or
                 organizational requirements.
               </p>
@@ -290,19 +293,19 @@ const Contact = () => {
             {/* Right Column: Numbered List */}
             <Magnetic strength={0.05} className="magnetic--block">
             <motion.ul
-              className="about-consult__list"
+              className="cnt-help__list"
               variants={staggerContainer}
               initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
               whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
               viewport={homeViewport}
             >
               {helpItems.map((item) => (
-                <motion.li key={item.num} className="about-consult__list-item" variants={staggerItem}>
+                <motion.li key={item.num} className="cnt-help__list-item" variants={staggerItem}>
                   <Magnetic strength={0.12} className="magnetic--chip">
-                    <span className="about-consult__num">{item.num}</span>
+                    <span className="cnt-help__num">{item.num}</span>
                   </Magnetic>
                   <Magnetic strength={0.1} className="magnetic--chip">
-                    <span className="about-consult__label">{item.label}</span>
+                    <span className="cnt-help__label">{item.label}</span>
                   </Magnetic>
                 </motion.li>
               ))}
@@ -317,7 +320,7 @@ const Contact = () => {
       ════════════════════════════════════════════════ */}
       <section className="cnt-section section--light">
         <div className="container">
-          <div className="about-closing__grid">
+          <div className="cnt-form-grid">
             {/* Main Form Column */}
             <motion.div
               className="cnt-form-main"
@@ -347,7 +350,7 @@ const Contact = () => {
             {/* Side Panel Column */}
             <Magnetic strength={0.2} className="magnetic--block">
               <motion.div
-                className="about-closing__cta-box"
+                className="cnt-side-card"
                 initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
                 whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
                 viewport={homeViewport}
