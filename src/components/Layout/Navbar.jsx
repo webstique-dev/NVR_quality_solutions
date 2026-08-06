@@ -1,7 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiArrowUpRight } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../Common/Button';
+import Magnetic from '../ui/Magnetic';
 import './Navbar.css';
 
 const NAV_LINKS = [
@@ -11,6 +13,22 @@ const NAV_LINKS = [
   { label: 'Training Programs', to: '/training-programs' },
   { label: 'Contact', to: '/contact' },
 ];
+
+const drawerLinkVariants = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+const drawerListVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.15 },
+  },
+};
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -57,7 +75,7 @@ const Navbar = () => {
     };
   }, [menuOpen]);
 
-  // Handle Escape key and outside clicks to close menu
+  // Handle Escape key to close menu
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && menuOpen) {
@@ -65,34 +83,17 @@ const Navbar = () => {
       }
     };
 
-    const handleClickOutside = (e) => {
-      if (menuOpen && navRef.current && !navRef.current.contains(e.target)) {
-        setMenuOpen(false);
-      }
-    };
-
     window.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [menuOpen]);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   return (
     <>
-      {/* Semi-transparent backdrop overlay on mobile drawer open */}
-      <div
-        className={`navbar__backdrop ${menuOpen ? 'navbar__backdrop--open' : ''}`}
-        onClick={closeMenu}
-        aria-hidden="true"
-      />
-
       <header
         className={[
           'navbar',
@@ -115,85 +116,149 @@ const Navbar = () => {
           >
             <div className="navbar__inner">
               <div className="navbar__logo-wrapper">
-                <NavLink to="/" className="navbar__logo" onClick={closeMenu} aria-label="NVR Quality Solutions Home">
-                  <img src="/nvr-logo.png" alt="NVR Quality Solutions Logo" className="navbar__logo-img" />
-                </NavLink>
+                <Magnetic strength={0.15} className="magnetic--chip">
+                  <NavLink to="/" className="navbar__logo" onClick={closeMenu} aria-label="NVR Quality Solutions Home">
+                    <img src="https://res.cloudinary.com/rlokioxu/image/upload/v1786013954/nvr-logo_vadrpc.png" alt="NVR Quality Solutions Logo" width={443} height={268} className="navbar__logo-img" loading="eager" decoding="async" />
+                  </NavLink>
+                </Magnetic>
               </div>
 
               <div className="navbar__pill-wrapper">
                 <nav className="navbar__pill" aria-label="Primary navigation">
                   {NAV_LINKS.map((link) => (
-                    <NavLink
-                      key={link.to}
-                      to={link.to}
-                      end={link.to === '/'}
-                      className={({ isActive }) =>
-                        `navbar__link ${isActive ? 'navbar__link--active' : ''}`
-                      }
-                    >
-                      {({ isActive }) => (
-                        <span className="navbar__link-text" aria-current={isActive ? 'page' : undefined}>
-                          {link.label}
-                        </span>
-                      )}
-                    </NavLink>
+                    <Magnetic key={link.to} strength={0.15} className="magnetic--chip">
+                      <NavLink
+                        to={link.to}
+                        end={link.to === '/'}
+                        className={({ isActive }) =>
+                          `navbar__link ${isActive ? 'navbar__link--active' : ''}`
+                        }
+                      >
+                        {({ isActive }) => (
+                          <span className="navbar__link-text" aria-current={isActive ? 'page' : undefined}>
+                            {link.label}
+                          </span>
+                        )}
+                      </NavLink>
+                    </Magnetic>
                   ))}
                 </nav>
               </div>
 
               <div className="navbar__cta-wrapper">
                 <div className="navbar__cta">
-                  <Button as="link" to="/contact" variant="dark" showIcon={false}>
+                  <Button as="link" to="/contact" variant="dark">
                     Get in Touch
                   </Button>
                 </div>
 
-                <button
-                  className="navbar__toggle"
-                  type="button"
-                  onClick={() => setMenuOpen((value) => !value)}
-                  aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-                  aria-expanded={menuOpen}
-                >
-                  {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Floating Glass Mobile Menu Drawer (< 1024px) */}
-          <div
-            className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}
-            aria-hidden={!menuOpen}
-          >
-            <div className="navbar__mobile-inner">
-              {NAV_LINKS.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  end={link.to === '/'}
-                  className={({ isActive }) =>
-                    `navbar__mobile-link ${isActive ? 'navbar__mobile-link--active' : ''}`
-                  }
-                  onClick={closeMenu}
-                >
-                  {({ isActive }) => (
-                    <span aria-current={isActive ? 'page' : undefined}>
-                      {link.label}
-                    </span>
-                  )}
-                </NavLink>
-              ))}
-
-              <div className="navbar__mobile-cta">
-                <Button as="link" to="/contact" variant="primary" onClick={closeMenu}>
-                  Get in Touch
-                </Button>
+                <Magnetic strength={0.15} className="magnetic--chip">
+                  <button
+                    className="navbar__toggle"
+                    type="button"
+                    onClick={() => setMenuOpen((value) => !value)}
+                    aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={menuOpen}
+                  >
+                    {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+                  </button>
+                </Magnetic>
               </div>
             </div>
           </div>
         </div>
       </header>
+
+      {/* Premium Full-Screen Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <motion.div
+              className="navbar__backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              onClick={closeMenu}
+              aria-hidden="true"
+            />
+
+            <motion.aside
+              className="navbar__drawer"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="navbar__drawer-head">
+                <img
+                  src="https://res.cloudinary.com/rlokioxu/image/upload/v1786013954/nvr-logo_vadrpc.png"
+                  alt="NVR Quality Solutions"
+                  width={443}
+                  height={268}
+                  className="navbar__drawer-logo"
+                  decoding="async"
+                />
+              </div>
+
+              {/* <button
+                type="button"
+                className="navbar__drawer-close"
+                onClick={closeMenu}
+                aria-label="Close menu"
+              >
+                <FiX size={20} />
+              </button> */}
+
+              <motion.nav
+                className="navbar__drawer-links"
+                variants={drawerListVariants}
+                initial="hidden"
+                animate="show"
+              >
+                {NAV_LINKS.map((link, i) => (
+                  <motion.div key={link.to} variants={drawerLinkVariants}>
+                    <NavLink
+                      to={link.to}
+                      end={link.to === '/'}
+                      onClick={closeMenu}
+                      className={({ isActive }) =>
+                        `navbar__drawer-link ${isActive ? 'navbar__drawer-link--active' : ''}`
+                      }
+                    >
+                      {() => (
+                        <span className="navbar__drawer-link-row">
+                          <span className="navbar__drawer-link-index" aria-hidden="true">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          <span className="navbar__drawer-link-text">{link.label}</span>
+                          <span className="navbar__drawer-link-arrow" aria-hidden="true">
+                            <FiArrowUpRight />
+                          </span>
+                        </span>
+                      )}
+                    </NavLink>
+                  </motion.div>
+                ))}
+              </motion.nav>
+
+              <motion.div
+                className="navbar__drawer-foot"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.4, ease: 'easeOut' }}
+              >
+                <Button as="link" to="/contact" variant="primary" onClick={closeMenu}>
+                  Get in Touch
+                </Button>
+              </motion.div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };

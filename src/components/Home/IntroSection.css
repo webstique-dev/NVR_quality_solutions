@@ -1,0 +1,66 @@
+/* ===================================================================
+   Intro Section — Premium Intro Below Home Hero
+   =================================================================== */
+
+.intro-section {
+  padding-top: var(--spacing-section);
+  padding-bottom: var(--spacing-section);
+}
+
+.intro-section__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 clamp(0.25rem, 3vw, 1.5rem);
+}
+
+.intro-section__head {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Heading — matches .section-title__heading */
+.intro-section__heading {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 3vw + 0.35rem, 2.25rem);
+  font-weight: 500;
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+  color: var(--color-ink);
+  margin-top: var(--spacing-xs);
+}
+
+/* Description block */
+.intro-section__body {
+  margin-top: var(--spacing-lg);
+}
+
+.intro-section__para {
+  max-width: 68ch;
+  margin: 0 auto;
+  font-family: var(--font-body);
+  font-size: var(--fs-body-resp);
+  line-height: var(--lh-body-md);
+  letter-spacing: var(--ls-body);
+  color: var(--color-slate);
+}
+
+.intro-section__para + .intro-section__para {
+  margin-top: var(--spacing-md);
+}
+
+/* Subtle accent for standards — NABH / JCI / CAMHP */
+.intro-section__highlight {
+  color: var(--color-royal-blue);
+  font-weight: 600;
+  background: rgba(30, 99, 233, 0.08);
+  padding: 0 0.2em;
+  border-radius: var(--rounded-sm);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .intro-section__highlight {
+    white-space: normal;
+  }
+}

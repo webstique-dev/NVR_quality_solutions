@@ -7,7 +7,6 @@ const TermsConditions = () => {
       <PageBanner
         eyebrow="Legal"
         title="Terms & Conditions"
-        breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Terms & Conditions' }]}
       />
       <section className="section section--light">
         <div className="container" style={{ maxWidth: 800 }}>

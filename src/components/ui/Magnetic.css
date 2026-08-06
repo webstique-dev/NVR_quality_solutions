@@ -1,0 +1,62 @@
+/* ===================================================================
+   Magnetic — Premium cursor-attraction wrapper
+   Only transform is animated (GPU compositor). No layout properties.
+   =================================================================== */
+
+.magnetic {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Variant used for full-bleed cards / grid cells: fill the parent so
+   the card keeps its layout while the wrapper transforms in place. */
+.magnetic--card {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure the wrapped card fills the wrapper so equal-height grid cells
+   keep their stretch behaviour (the wrapper becomes the grid child). */
+.magnetic--card > * {
+  height: 100%;
+}
+
+/* Inline stat blocks inside a flex row — keep the inline size. */
+.magnetic--stat {
+  display: inline-block;
+}
+
+/* Small chips — keep them inline so the flex row layout is preserved. */
+.magnetic--chip {
+  display: inline-block;
+}
+
+/* Block-level interactive rows (e.g. service-card links) — the wrapper
+   becomes the block-level child so the link keeps its full row width. */
+.magnetic--block {
+  display: block;
+  width: 100%;
+}
+
+/* Fixed-position floating buttons (e.g. scroll-to-top). The wrapper
+   becomes the positioned element so the child stays layout-neutral —
+   without this, `will-change: transform` would re-parent fixed children. */
+.magnetic--fixed {
+  display: block;
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: var(--z-nav, 100);
+  width: 44px;
+  height: 44px;
+}
+
+@media (max-width: 640px) {
+  .magnetic--fixed {
+    bottom: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+  }
+}

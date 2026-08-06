@@ -27,11 +27,6 @@ const TrainingDetail = () => {
       <PageBanner
         eyebrow="Training Program"
         title={program.title}
-        breadcrumb={[
-          { label: 'Home', to: '/' },
-          { label: 'Training Programs', to: '/training-programs' },
-          { label: program.title },
-        ]}
       />
 
       <section className="section section--light">

@@ -6,6 +6,7 @@ import {
   LuMedal,
   LuHandshake,
 } from 'react-icons/lu';
+import Magnetic from '../ui/Magnetic';
 import { fadeUp, cardReveal, blurReveal } from '../../animations/variants';
 import { homeViewport } from '../../animations/viewport';
 import './OurExpertise.css';
@@ -60,6 +61,7 @@ const OurExpertise = () => {
       </div>
       <div className="container">
         {/* Header Block */}
+        <Magnetic strength={0.06} className="magnetic--block">
         <motion.div
           className="expertise__header block-head"
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -82,36 +84,38 @@ const OurExpertise = () => {
             We deliver specialized training programs and strategic quality consultancy to build strong healthcare operational foundations, ensure accreditation readiness, and improve patient safety.
           </motion.p>
         </motion.div>
+        </Magnetic>
 
         {/* Pillar Card Grid */}
         <div className="expertise__grid pillar-grid">
           {expertiseCards.map((card, i) => {
             const Icon = card.icon;
             return (
-              <motion.article
-                key={card.id}
-                id={`expertise-card-${card.id}`}
-                className="expertise__card pillar-card"
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-                whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-                viewport={homeViewport}
-                variants={cardReveal}
-                custom={i * 0.1}
-                whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
-              >
-                <div className="expertise__card-header">
-                  <div className="pillar-icon" aria-hidden="true">
-                    <Icon className="pillar-icon-svg" />
+              <Magnetic key={card.id} strength={0.2} className="magnetic--card">
+                <motion.article
+                  id={`expertise-card-${card.id}`}
+                  className="expertise__card pillar-card"
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                  whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+                  viewport={homeViewport}
+                  variants={cardReveal}
+                  custom={i * 0.1}
+                  whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
+                >
+                  <div className="expertise__card-header">
+                    <div className="pillar-icon" aria-hidden="true">
+                      <Icon className="pillar-icon-svg" />
+                    </div>
+                    <span className="expertise__card-number" aria-hidden="true">
+                      {card.number}
+                    </span>
                   </div>
-                  <span className="expertise__card-number" aria-hidden="true">
-                    {card.number}
-                  </span>
-                </div>
-                <span className="pillar-tag">{card.tag}</span>
-                <h3 className="expertise__card-title">{card.title}</h3>
-                <p className="expertise__card-description">{card.description}</p>
-                <div className="expertise__card-accent" aria-hidden="true" />
-              </motion.article>
+                  <span className="pillar-tag">{card.tag}</span>
+                  <h3 className="expertise__card-title">{card.title}</h3>
+                  <p className="expertise__card-description">{card.description}</p>
+                  <div className="expertise__card-accent" aria-hidden="true" />
+                </motion.article>
+              </Magnetic>
             );
           })}
         </div>

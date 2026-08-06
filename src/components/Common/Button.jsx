@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import Magnetic from '../ui/Magnetic';
 import './Button.css';
 
 const MotionLink = motion.create(Link);
@@ -14,7 +15,8 @@ const Button = ({
   onClick,
   className = '',
   disabled = false,
-  showIcon,
+  magnetic = true,
+  magneticStrength = 0.3,
   ...rest
 }) => {
   const shouldReduceMotion = useReducedMotion();
@@ -36,34 +38,39 @@ const Button = ({
         transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] },
       };
 
+  let element;
   if (as === 'link') {
-    return (
+    element = (
       <MotionLink to={to} className={classes} {...motionProps} {...rest}>
         {children}
       </MotionLink>
     );
-  }
-
-  if (as === 'a') {
-    return (
+  } else if (as === 'a') {
+    element = (
       <motion.a href={href} className={classes} {...motionProps} {...rest}>
         {children}
       </motion.a>
     );
+  } else {
+    element = (
+      <motion.button
+        type={type}
+        className={classes}
+        onClick={onClick}
+        disabled={disabled}
+        {...motionProps}
+        {...rest}
+      >
+        {children}
+      </motion.button>
+    );
   }
 
-  return (
-    <motion.button
-      type={type}
-      className={classes}
-      onClick={onClick}
-      disabled={disabled}
-      {...motionProps}
-      {...rest}
-    >
-      {children}
-    </motion.button>
-  );
+  if (!magnetic) {
+    return element;
+  }
+
+  return <Magnetic strength={magneticStrength}>{element}</Magnetic>;
 };
 
 export default Button;

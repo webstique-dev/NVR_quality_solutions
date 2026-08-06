@@ -27,11 +27,6 @@ const ServiceDetail = () => {
       <PageBanner
         eyebrow="Service"
         title={service.name}
-        breadcrumb={[
-          { label: 'Home', to: '/' },
-          { label: 'Services', to: '/services' },
-          { label: service.name },
-        ]}
       />
 
       <section className="section section--light">

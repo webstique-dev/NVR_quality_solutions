@@ -9,7 +9,6 @@ const FAQ = () => {
       <PageBanner
         eyebrow="FAQ"
         title="Frequently Asked Questions"
-        breadcrumb={[{ label: 'Home', to: '/' }, { label: 'FAQ' }]}
       />
 
       <section className="section section--light">

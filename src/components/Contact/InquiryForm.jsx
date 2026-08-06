@@ -25,7 +25,7 @@ const InquiryForm = () => {
       <div className="inquiry-form__success" role="status">
         <h3>Thank you — your message has been received.</h3>
         <p>A member of our team will get back to you as soon as possible.</p>
-        <Button variant="secondary" onClick={() => setSubmitted(false)} showIcon={false}>
+        <Button variant="secondary" onClick={() => setSubmitted(false)}>
           Send another message
         </Button>
       </div>
@@ -81,7 +81,7 @@ const InquiryForm = () => {
         register={register('message', { required: 'Message is required' })}
       />
 
-      <Button type="submit" variant="primary" showIcon={false} disabled={isSubmitting}>
+      <Button type="submit" variant="dark" magneticStrength={0.15} disabled={isSubmitting}>
         {isSubmitting ? 'Submitting…' : 'Submit'}
       </Button>
     </form>

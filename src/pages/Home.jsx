@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import Hero from '../components/Home/Hero';
+import IntroSection from '../components/Home/IntroSection';
 import WhyChooseUs from '../components/Home/WhyChooseUs';
 import OurExpertise from '../components/Home/OurExpertise';
 import WhoWeWorkWith from '../components/Home/WhoWeWorkWith';
@@ -19,6 +20,9 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <Hero />
+
+      {/* Intro Section */}
+      <IntroSection />
 
       {/* Why Choose NVR Quality Solutions */}
       <WhyChooseUs />

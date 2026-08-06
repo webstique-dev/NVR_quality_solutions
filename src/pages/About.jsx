@@ -1,9 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { LuTarget, LuEye } from 'react-icons/lu';
+import { FiCheck } from 'react-icons/fi';
 import Button from '../components/Common/Button';
+import Magnetic from '../components/ui/Magnetic';
 import CTABanner from '../components/Layout/CTABanner';
-import SplitText from '../components/ui/SplitText';
-import ScrollReveal from '../components/ui/ScrollReveal';
+import { usePreloader } from '../context/PreloaderContext';
 import {
   fadeUp,
   cardReveal,
@@ -38,6 +39,7 @@ const consultancyItems = [
 
 const About = () => {
   const shouldReduceMotion = useReducedMotion();
+  const { isPreloaderGone } = usePreloader();
 
   return (
     <>
@@ -51,30 +53,23 @@ const About = () => {
         </div>
 
         <div className="container about-hero__inner">
+          <Magnetic strength={0.06} className="magnetic--block">
           <motion.div
             className="about-hero__content"
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            animate={
+              shouldReduceMotion ? { opacity: 1, y: 0 } : isPreloaderGone ? 'show' : 'hidden'
+            }
             variants={staggerContainer}
           >
             <motion.span className="eyebrow" variants={staggerItem}>
               About Us
             </motion.span>
 
-            <SplitText
-              tag="h1"
-              text="Empowering Healthcare Professionals Through Expert Consultancy"
-              highlightText="Expert Consultancy"
-              highlightClass="hero__highlight"
-              className="about-hero__headline"
-              delay={35}
-              duration={0.8}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
-              textAlign="left"
-            />
+            <motion.h1 className="about-hero__headline" variants={staggerItem}>
+              Empowering Healthcare Professionals Through{' '}
+              <span className="hero__highlight">Expert Consultancy</span>
+            </motion.h1>
 
             <motion.div className="about-hero__lede" variants={staggerItem}>
               <p>
@@ -93,6 +88,7 @@ const About = () => {
               </p>
             </motion.div>
           </motion.div>
+          </Magnetic>
         </div>
       </section>
 
@@ -106,46 +102,62 @@ const About = () => {
             <h2 className="section-title">Our Mission &amp; Vision</h2>
           </div>
 
-          <div className="pillar-grid">
+          <div className="about-mv__grid">
             {/* Mission */}
-            <motion.article
-              className="pillar-card"
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-              viewport={homeViewport}
-              variants={cardReveal}
-              whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
-            >
-              <div className="pillar-icon" aria-hidden="true">
-                <LuTarget className="pillar-icon-svg" />
-              </div>
-              <span className="pillar-tag">Mission</span>
-              <h3>Our Mission</h3>
-              <p>
-                To empower healthcare professionals and organizations with practical education,
-                expert guidance, and quality-focused solutions.
-              </p>
-            </motion.article>
+            <Magnetic strength={0.2} className="magnetic--card">
+              <motion.article
+                className="about-mv__card"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 'some' }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Magnetic strength={0.15} className="magnetic--chip">
+                  <div className="about-mv__card-icon-wrap" aria-hidden="true">
+                    <LuTarget className="about-mv__card-icon" />
+                  </div>
+                </Magnetic>
+                <span className="about-mv__card-tag">Mission</span>
+                <Magnetic strength={0.1} className="magnetic--block">
+                  <h3 className="about-mv__card-title">Our Mission</h3>
+                </Magnetic>
+                <Magnetic strength={0.06} className="magnetic--block">
+                  <p className="about-mv__card-body">
+                    To empower healthcare professionals and organizations with practical education,
+                    expert guidance, and quality-focused solutions.
+                  </p>
+                </Magnetic>
+                <span className="about-mv__card-accent" aria-hidden="true" />
+              </motion.article>
+            </Magnetic>
 
             {/* Vision */}
-            <motion.article
-              className="pillar-card"
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-              viewport={homeViewport}
-              variants={cardReveal}
-              whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
-            >
-              <div className="pillar-icon" aria-hidden="true">
-                <LuEye className="pillar-icon-svg" />
-              </div>
-              <span className="pillar-tag">Vision</span>
-              <h3>Our Vision</h3>
-              <p>
-                To be a trusted partner in advancing healthcare quality by training professionals
-                and healthcare organizations to build sustainable quality systems.
-              </p>
-            </motion.article>
+            <Magnetic strength={0.2} className="magnetic--card">
+              <motion.article
+                className="about-mv__card"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 'some' }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              >
+                <Magnetic strength={0.15} className="magnetic--chip">
+                  <div className="about-mv__card-icon-wrap" aria-hidden="true">
+                    <LuEye className="about-mv__card-icon" />
+                  </div>
+                </Magnetic>
+                <span className="about-mv__card-tag">Vision</span>
+                <Magnetic strength={0.1} className="magnetic--block">
+                  <h3 className="about-mv__card-title">Our Vision</h3>
+                </Magnetic>
+                <Magnetic strength={0.06} className="magnetic--block">
+                  <p className="about-mv__card-body">
+                    To be a trusted partner in advancing healthcare quality by training professionals
+                    and healthcare organizations to build sustainable quality systems.
+                  </p>
+                </Magnetic>
+                <span className="about-mv__card-accent" aria-hidden="true" />
+              </motion.article>
+            </Magnetic>
           </div>
         </div>
       </section>
@@ -155,6 +167,7 @@ const About = () => {
       ════════════════════════════════════════════════════════ */}
       <section id="wwd" className="about-section section--light">
         <div className="container">
+          <Magnetic strength={0.06} className="magnetic--block">
           <motion.div
             className="block-head"
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -164,39 +177,42 @@ const About = () => {
           >
             <span className="eyebrow">Services</span>
 
-            <ScrollReveal
-              as="h2"
-              baseOpacity={0.15}
-              enableBlur={true}
-              baseRotation={2}
-              blurStrength={6}
-              textClassName="section-title"
-            >
+            <motion.h2 className="section-title" variants={fadeUp}>
               What We Do
-            </ScrollReveal>
+            </motion.h2>
 
             <p className="block-head-desc">
               NVR Quality Solutions offers a range of training and consultancy services focused on
               healthcare quality and patient safety. Our expertise includes:
             </p>
           </motion.div>
+          </Magnetic>
 
-          <motion.div
-            className="about-wwd__grid"
-            variants={staggerContainer}
-            initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
-            whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
-            viewport={homeViewport}
-          >
-            {whatWeDoItems.map((item) => (
-              <motion.div key={item} className="about-wwd__item" variants={staggerItem}>
-                <span className="about-wwd__tick" aria-hidden="true" />
-                <span className="about-wwd__txt">{item}</span>
+              <motion.div
+                className="about-wwd__grid"
+                initial={shouldReduceMotion ? 'hidden' : 'hidden'}
+                whileInView={shouldReduceMotion ? 'show' : 'show'}
+                viewport={homeViewport}
+                variants={staggerContainer}
+              >
+                {whatWeDoItems.map((item) => (
+                  <Magnetic key={item} strength={0.2} className="magnetic--card">
+                    <motion.div
+                      className="about-wwd__item"
+                      variants={staggerItem}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <span className="about-wwd__tick" aria-hidden="true">
+                        <FiCheck />
+                      </span>
+                      <span className="about-wwd__txt">{item}</span>
+                    </motion.div>
+                  </Magnetic>
+                ))}
               </motion.div>
-            ))}
-          </motion.div>
 
-          {/* Vital Waveform Line Divider */}
+              {/* Vital Waveform Line Divider */}
+          <Magnetic strength={0.05} className="magnetic--block">
           <div className="vital-wrap" aria-hidden="true">
             <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
               <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
@@ -204,7 +220,9 @@ const About = () => {
               <circle cx="662" cy="22" r="3" />
             </svg>
           </div>
+          </Magnetic>
 
+          <Magnetic strength={0.05} className="magnetic--block">
           <motion.div
             className="why-footline"
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -215,6 +233,7 @@ const About = () => {
             <span className="bar" aria-hidden="true" />
             <p>Every program is designed to provide practical, industry-relevant knowledge that participants can apply in real healthcare settings.</p>
           </motion.div>
+          </Magnetic>
         </div>
       </section>
 
@@ -225,6 +244,7 @@ const About = () => {
         <div className="container">
           <div className="about-consult__grid">
             {/* Left Column: Intro */}
+            <Magnetic strength={0.06} className="magnetic--block">
             <motion.div
               className="about-consult__intro"
               initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
@@ -243,8 +263,10 @@ const About = () => {
                 consultancy services help organizations:
               </p>
             </motion.div>
+            </Magnetic>
 
             {/* Right Column: Numbered List */}
+            <Magnetic strength={0.05} className="magnetic--block">
             <motion.ul
               className="about-consult__list"
               variants={staggerContainer}
@@ -258,11 +280,16 @@ const About = () => {
                   className="about-consult__list-item"
                   variants={staggerItem}
                 >
-                  <span className="about-consult__num">{item.num}</span>
-                  <span className="about-consult__label">{item.label}</span>
+                  <Magnetic strength={0.12} className="magnetic--chip">
+                    <span className="about-consult__num">{item.num}</span>
+                  </Magnetic>
+                  <Magnetic strength={0.1} className="magnetic--chip">
+                    <span className="about-consult__label">{item.label}</span>
+                  </Magnetic>
                 </motion.li>
               ))}
             </motion.ul>
+            </Magnetic>
           </div>
         </div>
       </section>
@@ -274,6 +301,7 @@ const About = () => {
         <div className="container">
           <div className="about-closing__grid">
             {/* Left Column: Copy */}
+            <Magnetic strength={0.06} className="magnetic--block">
             <motion.div
               className="about-closing__copy"
               initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
@@ -293,24 +321,27 @@ const About = () => {
                 existing quality program, we are here to support you.
               </p>
             </motion.div>
+            </Magnetic>
 
             {/* Right Column: CTA Box */}
-            <motion.div
-              className="about-closing__cta-box"
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-              viewport={homeViewport}
-              variants={cardReveal}
-            >
-              <span className="eyebrow">Next Step</span>
-              <p className="about-closing__cta-text">
-                Take the first step toward a stronger quality program or a rewarding career in
-                healthcare quality.
-              </p>
-              <Button as="link" to="/training-programs" variant="primary" className="btn-solid">
-                Explore Our Training Programs
-              </Button>
-            </motion.div>
+            <Magnetic strength={0.2} className="magnetic--block">
+              <motion.div
+                className="about-closing__cta-box"
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+                viewport={homeViewport}
+                variants={cardReveal}
+              >
+                <span className="eyebrow">Next Step</span>
+                <p className="about-closing__cta-text">
+                  Take the first step toward a stronger quality program or a rewarding career in
+                  healthcare quality.
+                </p>
+                <Button as="link" to="/training-programs" variant="primary" className="btn-solid">
+                  Explore Our Training Programs
+                </Button>
+              </motion.div>
+            </Magnetic>
           </div>
         </div>
       </section>

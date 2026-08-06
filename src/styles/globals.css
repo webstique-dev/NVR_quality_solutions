@@ -116,6 +116,62 @@ p + p {
   color: var(--color-ink);
 }
 
+/* ─── Route Suspense Fallback — reserves space, no visual flash ──── */
+.route-fallback {
+  min-height: 100vh;
+  background-color: var(--color-canvas);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(6rem, 12vh, 9rem) 0;
+  animation: route-fallback-fade 0.4s ease-out both;
+}
+
+@keyframes route-fallback-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.route-fallback__inner {
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.route-fallback__line {
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(15, 63, 184, 0.08), rgba(15, 63, 184, 0.18), rgba(15, 63, 184, 0.08));
+  background-size: 200% 100%;
+  animation: route-fallback-shimmer 1.6s ease-in-out infinite;
+}
+
+.route-fallback__line--sm { width: 38%; height: 14px; }
+.route-fallback__line--md { width: 72%; }
+.route-fallback__line--lg { width: 100%; }
+
+.route-fallback__card {
+  height: 96px;
+  border-radius: var(--rounded-lg, 16px);
+  background: linear-gradient(90deg, rgba(15, 63, 184, 0.05), rgba(15, 63, 184, 0.14), rgba(15, 63, 184, 0.05));
+  background-size: 200% 100%;
+  animation: route-fallback-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes route-fallback-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-fallback,
+  .route-fallback__line,
+  .route-fallback__card {
+    animation: none;
+  }
+}
+
 .section--surface {
   background-color: var(--color-surface);
   color: var(--color-ink);
@@ -170,61 +226,78 @@ p + p {
   flex-shrink: 0;
 }
 
-/* ─── NVR Signature Stripe Band ───────────────────────────────────── */
-.sunset-stripe-band {
-  width: 100%;
-  height: 8px;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary-blue) 0%,
-    var(--color-royal-blue)   35%,
-    var(--color-accent-blue)  65%,
-    var(--color-primary-red)  100%
-  );
-  flex-shrink: 0;
-}
-
-/* ─── Badge Utilities ────────────────────────────────────────────── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-body);
-  font-size: var(--fs-caption);
-  font-weight: 600;
-  line-height: var(--lh-caption);
-  border-radius: var(--rounded-full);
-  padding: 0.25rem 0.75rem;
-  white-space: nowrap;
-}
-
-.badge--orange,
-.badge--red {
-  background-color: var(--color-primary-red);
-  color: var(--color-on-primary);
-}
-
-.badge--cream,
-.badge--blue {
-  background-color: var(--color-blue-50);
-  border: 1px solid var(--color-hairline-soft);
-  color: var(--color-primary-blue);
-}
-
-.badge--dark {
-  background-color: var(--color-primary-blue);
-  color: var(--color-on-dark);
-}
-
-/* ─── Text Utilities ─────────────────────────────────────────────── */
-.text-primary   { color: var(--color-primary-red); }
-.text-blue      { color: var(--color-primary-blue); }
-.text-ink       { color: var(--color-ink); }
-.text-slate     { color: var(--color-slate); }
-.text-steel     { color: var(--color-steel); }
-.text-on-dark   { color: var(--color-ink); }
-
 /* ─── FAQ wrapper ────────────────────────────────────────────────── */
 .home-faq-wrap {
   max-width: 760px;
   margin: 0 auto;
+}
+
+/* ===================================================================
+   Shared premium feature-card grid
+   Used by "What We Do" (About), "Why Choose" (Services) and
+   "What Makes Our Training Different" (Training Programs).
+   =================================================================== */
+
+.about-wwd__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.about-wwd__item {
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  transition:
+    background-color 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    transform 260ms ease;
+}
+
+.about-wwd__item:hover {
+  background-color: var(--color-blue-50, #f5f9ff);
+  border-color: rgba(15, 63, 184, 0.22);
+  box-shadow: 0 16px 32px -16px rgba(15, 63, 184, 0.16);
+  transform: translateY(-3px);
+}
+
+.about-wwd__tick {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(15, 63, 184, 0.08);
+  color: var(--color-primary-blue, #0f3fb8);
+  font-size: 15px;
+}
+
+.about-wwd__txt {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: var(--color-ink, #0f172a);
+}
+
+@media (max-width: 640px) {
+  .about-wwd__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .about-wwd__item {
+    padding: 18px 20px;
+  }
 }

@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { LuBuilding2, LuTrendingUp, LuShieldCheck } from 'react-icons/lu';
+import Magnetic from '../ui/Magnetic';
 import { fadeUp, cardReveal, blurReveal } from '../../animations/variants';
 import { homeViewport } from '../../animations/viewport';
 import './WhyChooseUs.css';
@@ -38,6 +39,7 @@ const WhyChooseUs = () => {
     <section className="why-section section section--light">
       <div className="container">
         {/* Header Block */}
+        <Magnetic strength={0.06} className="magnetic--block">
         <motion.div
           className="block-head"
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -59,38 +61,41 @@ const WhyChooseUs = () => {
             viewport={homeViewport}
             custom={0.15}
           >
-            Healthcare quality demands more than classroom learning. It requires practical understanding, industry insight, and the ability to apply standards in real healthcare environments. Our training programs are designed to help you develop quality improvement skills across hospitals and healthcare institutions.
+            Healthcare quality demands more than classroom learning. It requires practical understanding, industry insight, and the ability to apply standards in real healthcare environments.             Our training programs are designed to help you develop quality improvement skills across hospitals and healthcare institutions.
           </motion.p>
         </motion.div>
+        </Magnetic>
 
         {/* 3 Pillar Cards Grid */}
         <div className="pillar-grid">
           {pillars.map((pillar, i) => {
             const Icon = pillar.icon;
             return (
-              <motion.article
-                key={pillar.id}
-                id={`pillar-${pillar.id}`}
-                className="pillar-card"
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-                whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-                viewport={homeViewport}
-                variants={cardReveal}
-                custom={i * 0.12}
-                whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
-              >
-                <div className="pillar-icon" aria-hidden="true">
-                  <Icon className="pillar-icon-svg" />
-                </div>
-                <span className="pillar-tag">{pillar.tag}</span>
-                <h3>{pillar.title}</h3>
-                <p>{pillar.description}</p>
-              </motion.article>
+              <Magnetic key={pillar.id} strength={0.2} className="magnetic--card">
+                <motion.article
+                  id={`pillar-${pillar.id}`}
+                  className="pillar-card"
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                  whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+                  viewport={homeViewport}
+                  variants={cardReveal}
+                  custom={i * 0.12}
+                  whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
+                >
+                  <div className="pillar-icon" aria-hidden="true">
+                    <Icon className="pillar-icon-svg" />
+                  </div>
+                  <span className="pillar-tag">{pillar.tag}</span>
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.description}</p>
+                </motion.article>
+              </Magnetic>
             );
           })}
         </div>
 
         {/* Vital Heartbeat Waveform Line Divider */}
+        <Magnetic strength={0.05} className="magnetic--block">
         <motion.div
           className="vital-wrap"
           initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.98 }}
@@ -105,8 +110,10 @@ const WhyChooseUs = () => {
             <circle cx="662" cy="22" r="3" />
           </svg>
         </motion.div>
+        </Magnetic>
 
         {/* Footline Banner */}
+        <Magnetic strength={0.05} className="magnetic--block">
         <motion.div
           className="why-footline"
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -118,6 +125,7 @@ const WhyChooseUs = () => {
           <span className="bar" aria-hidden="true" />
           <p>With a strong foundation across these areas, we focus on building professionals who feel prepared.</p>
         </motion.div>
+        </Magnetic>
       </div>
     </section>
   );

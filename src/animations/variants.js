@@ -226,13 +226,31 @@ export const buttonReveal = {
 
 /* ─── Hero Section Animation System ─────────────────────────────── */
 
-export const heroContainer = {
-  hidden: { opacity: 0 },
+/* ─── Hero Sequence — Clean Sequential Fade-Up System ─────────────
+   One shared stagger parent + one child variant keep the Hero entrance
+   consistent and reusable. Only transform/opacity are animated.      */
+
+export const heroStagger = {
+  hidden: {},
   show: {
-    opacity: 1,
     transition: {
       staggerChildren: 0.12,
-      delayChildren: 0.1,
+      delayChildren: 0.12,
+    },
+  },
+};
+
+export const heroFadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: EASE.smooth,
     },
   },
 };
@@ -247,21 +265,6 @@ export const heroGlow = {
     scale: 1,
     transition: {
       duration: 1.4,
-      ease: EASE.smooth,
-    },
-  },
-};
-
-export const heroChildFadeUp = {
-  hidden: {
-    opacity: 0,
-    y: yOffset,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: DURATION.medium,
       ease: EASE.smooth,
     },
   },

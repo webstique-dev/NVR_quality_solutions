@@ -1,13 +1,12 @@
-import { useState } from 'react';
 import { motion, useReducedMotion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { LuCheck, LuShieldCheck, LuArrowRight } from 'react-icons/lu';
-import SplitText from '../ui/SplitText';
 import Button from '../Common/Button';
+import Magnetic from '../ui/Magnetic';
 import { usePreloader } from '../../context/PreloaderContext';
 import {
-  heroContainer,
+  heroStagger,
+  heroFadeUp,
   heroGlow,
-  heroChildFadeUp,
   chipContainer,
   chipItem,
   floatBadgeEntrance,
@@ -19,9 +18,9 @@ import './Hero.css';
 
 const Hero = () => {
   const shouldReduceMotion = useReducedMotion();
-  const { isReady } = usePreloader();
+  const { isPreloaderGone } = usePreloader();
 
-  // Mouse Parallax Motion Values
+  // Mouse Parallax Motion Values (transform-only, GPU friendly)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -29,7 +28,6 @@ const Hero = () => {
   const smoothMouseX = useSpring(mouseX, springConfig);
   const smoothMouseY = useSpring(mouseY, springConfig);
 
-  // Depth Parallax Layers
   const bgX = useTransform(smoothMouseX, [-0.5, 0.5], [-14, 14]);
   const bgY = useTransform(smoothMouseY, [-0.5, 0.5], [-14, 14]);
 
@@ -61,7 +59,12 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <section
+      className="hero"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ opacity: isPreloaderGone ? 1 : 0 }}
+    >
       {/* Background Atmosphere Glows & Decorative Grid */}
       <div className="hero__bg" aria-hidden="true">
         <motion.div
@@ -72,7 +75,7 @@ const Hero = () => {
           animate={
             shouldReduceMotion
               ? { opacity: 1, scale: 1 }
-              : isReady
+              : isPreloaderGone
               ? {
                   opacity: [0.7, 1, 0.7],
                   scale: [1, 1.12, 1],
@@ -92,7 +95,7 @@ const Hero = () => {
           animate={
             shouldReduceMotion
               ? { opacity: 1, scale: 1 }
-              : isReady
+              : isPreloaderGone
               ? {
                   opacity: [0.6, 0.9, 0.6],
                   scale: [1, 1.15, 1],
@@ -109,107 +112,66 @@ const Hero = () => {
         <motion.div
           className="hero__grid-pattern"
           initial={{ opacity: 0 }}
-          animate={{ opacity: isReady ? 0.35 : 0 }}
+          animate={{ opacity: isPreloaderGone ? 0.35 : 0 }}
           transition={{ duration: 1.5, ease: 'easeOut' }}
         />
       </div>
 
+      {/* Content — clean sequential staggered fade-in after preloader */}
       <motion.div
         className="container hero__inner"
-        variants={heroContainer}
+        variants={heroStagger}
         initial={shouldReduceMotion ? false : 'hidden'}
-        animate={isReady ? 'show' : 'hidden'}
+        animate={shouldReduceMotion ? 'show' : isPreloaderGone ? 'show' : 'hidden'}
       >
         {/* Left Column: Content */}
         <motion.div
           className="text-col"
           style={shouldReduceMotion ? {} : { x: contentX, y: contentY }}
         >
-          <motion.span className="eyebrow" variants={heroChildFadeUp}>
+          <motion.span className="eyebrow" variants={heroFadeUp}>
             Healthcare Quality &amp; Patient Safety Training
           </motion.span>
 
-          <SplitText
-            tag="h1"
-            text="Building safer healthcare through quality excellence"
-            highlightText="quality excellence"
-            highlightClass="hero__highlight"
-            className="hero__heading"
-            delay={35}
-            duration={0.8}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            textAlign="left"
-            ready={isReady}
-          />
+          <motion.h1 className="hero__heading" variants={heroFadeUp}>
+            Building safer healthcare through{' '}
+            <span className="hero__highlight">quality excellence</span>
+          </motion.h1>
 
-          <SplitText
-            tag="p"
-            text="At NVR Quality Solutions, we provide expert-led Healthcare Quality Training, Patient Safety Training, and professional consultancy. Every student that leaves us has the knowledge and practical skills needed to implement globally recognized quality standards."
-            className="lede"
-            delay={18}
-            duration={0.7}
-            splitType="words"
-            from={{ opacity: 0, y: 20 }}
-            to={{ opacity: 1, y: 0 }}
-            ready={isReady}
-          />
+          <motion.p className="lede" variants={heroFadeUp}>
+            At NVR Quality Solutions, we provide expert-led Healthcare Quality Training,
+            Patient Safety Training, and professional consultancy. Every student that leaves
+            us has the knowledge and practical skills needed to implement globally recognized
+            quality standards.
+          </motion.p>
 
-          {/* Action Buttons with Spring Interactions */}
-          <motion.div className="cta-row" variants={heroChildFadeUp}>
-            <motion.div
-              whileHover={shouldReduceMotion ? {} : { scale: 1.04, y: -2 }}
-              whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-              transition={{ type: 'spring', stiffness: 450, damping: 22 }}
-            >
-              <Button as="link" to="/training-programs" variant="primary" className="btn-solid">
-                Explore Trainings <LuArrowRight className="btn-arrow" aria-hidden="true" />
-              </Button>
-            </motion.div>
+          {/* Action Buttons — Magnetic CTA */}
+          <motion.div className="cta-row" variants={heroFadeUp}>
+            <Button as="link" to="/training-programs" variant="primary" className="btn-solid">
+              Explore Trainings <LuArrowRight className="btn-arrow" aria-hidden="true" />
+            </Button>
 
-            <motion.div
-              whileHover={shouldReduceMotion ? {} : { scale: 1.04, y: -2 }}
-              whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-              transition={{ type: 'spring', stiffness: 450, damping: 22 }}
-            >
-              <Button as="link" to="/contact" variant="secondary" className="btn-ghost">
-                Talk to Our Experts
-              </Button>
-            </motion.div>
+            <Button as="link" to="/contact" variant="secondary" className="btn-ghost">
+              Talk to Our Experts
+            </Button>
           </motion.div>
 
-          {/* Recognized Worldwide Standards Chips with Staggered Entrance */}
-          <motion.div className="credential-line" variants={heroChildFadeUp}>
+          {/* Recognized Worldwide Standards Chips */}
+          <motion.div className="credential-line" variants={heroFadeUp}>
             <span className="credential-label">Gain standards recognized worldwide:</span>
             <motion.div
               className="chip-row"
               variants={chipContainer}
               initial={shouldReduceMotion ? false : 'hidden'}
-              animate={isReady ? 'show' : 'hidden'}
+              animate={isPreloaderGone ? 'show' : 'hidden'}
             >
-              <motion.span
-                className="chip"
-                variants={chipItem}
-                whileHover={shouldReduceMotion ? {} : 'hover'}
-              >
-                NABH
-              </motion.span>
-              <motion.span
-                className="chip"
-                variants={chipItem}
-                whileHover={shouldReduceMotion ? {} : 'hover'}
-              >
-                JCI
-              </motion.span>
-              <motion.span
-                className="chip"
-                variants={chipItem}
-                whileHover={shouldReduceMotion ? {} : 'hover'}
-              >
-                CAMHP
-              </motion.span>
+              {['NABH', 'JCI', 'CAMHP'].map((label) => (
+                <Magnetic key={label} strength={0.25} className="magnetic--chip">
+                  <motion.span className="chip" variants={chipItem}>
+                    {label}
+                  </motion.span>
+                </Magnetic>
+              ))}
             </motion.div>
           </motion.div>
         </motion.div>
@@ -222,103 +184,107 @@ const Hero = () => {
           <motion.div
             variants={heroImageReveal}
             initial={shouldReduceMotion ? { opacity: 1, scale: 1, x: 0 } : 'hidden'}
-            animate={shouldReduceMotion ? { opacity: 1, scale: 1, x: 0 } : isReady ? 'show' : 'hidden'}
+            animate={shouldReduceMotion ? { opacity: 1, scale: 1, x: 0 } : isPreloaderGone ? 'show' : 'hidden'}
           >
             <div className="media-frame">
               <motion.img
-                src="/hero-illustration.png"
+                src="https://res.cloudinary.com/rlokioxu/image/upload/v1786013954/hero-illustration_stlc4u.jpg"
                 alt="Healthcare professionals reviewing quality standards and accreditation documents"
                 className="media-fill"
+                width={1024}
+                height={1024}
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 initial={shouldReduceMotion ? { scale: 1 } : { scale: 1.06 }}
-                animate={isReady ? { scale: 1 } : { scale: 1.06 }}
+                animate={isPreloaderGone ? { scale: 1 } : { scale: 1.06 }}
                 transition={{ duration: 1.2, ease: EASE.smooth }}
               />
 
-            {/* Floating Glass Badge (Top Left) with Continuous Floating */}
-            <motion.div
-              className="float-badge"
-              style={shouldReduceMotion ? {} : { x: badgeX, y: badgeY }}
-              variants={floatBadgeEntrance}
-              initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
-              animate={shouldReduceMotion ? { opacity: 1 } : isReady ? 'show' : 'hidden'}
-              whileHover={
-                shouldReduceMotion
-                  ? {}
-                  : { scale: 1.05, boxShadow: '0 20px 40px -10px rgba(15, 63, 184, 0.3)' }
-              }
-            >
+              {/* Floating Glass Badge (Top Left) */}
               <motion.div
-                className="float-badge-inner"
-                animate={
-                  shouldReduceMotion || !isReady
+                className="float-badge"
+                style={shouldReduceMotion ? {} : { x: badgeX, y: badgeY }}
+                variants={floatBadgeEntrance}
+                initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+                animate={shouldReduceMotion ? { opacity: 1 } : isPreloaderGone ? 'show' : 'hidden'}
+                whileHover={
+                  shouldReduceMotion
                     ? {}
-                    : {
-                        y: [0, -9, 0],
-                        rotate: [0, 1.2, 0],
-                      }
+                    : { scale: 1.05, boxShadow: '0 20px 40px -10px rgba(15, 63, 184, 0.3)' }
                 }
-                transition={{
-                  duration: 4.8,
-                  ease: 'easeInOut',
-                  repeat: Infinity,
-                }}
               >
-                <span className="icon">
-                  <LuCheck className="icon-svg" aria-hidden="true" />
-                </span>
-                <span className="float-badge-text">
-                  <b>Structured training</b>Expert-guided programs
-                </span>
+                <motion.div
+                  className="float-badge-inner"
+                  animate={
+                    shouldReduceMotion || !isPreloaderGone
+                      ? {}
+                      : {
+                          y: [0, -9, 0],
+                          rotate: [0, 1.2, 0],
+                        }
+                  }
+                  transition={{
+                    duration: 4.8,
+                    ease: 'easeInOut',
+                    repeat: Infinity,
+                  }}
+                >
+                  <span className="icon">
+                    <LuCheck className="icon-svg" aria-hidden="true" />
+                  </span>
+                  <span className="float-badge-text">
+                    <b>Structured training</b>Expert-guided programs
+                  </span>
+                </motion.div>
               </motion.div>
-            </motion.div>
 
-            {/* Floating Card (Bottom Left) with Counter-Phase Floating */}
-            <motion.div
-              className="float-card"
-              style={shouldReduceMotion ? {} : { x: cardX, y: cardY }}
-              variants={floatCardEntrance}
-              initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
-              animate={shouldReduceMotion ? { opacity: 1 } : isReady ? 'show' : 'hidden'}
-              whileHover={
-                shouldReduceMotion
-                  ? {}
-                  : { scale: 1.04, boxShadow: '0 24px 48px -12px rgba(15, 23, 42, 0.28)' }
-              }
-            >
+              {/* Floating Card (Bottom Left) */}
               <motion.div
-                className="float-card-inner"
-                animate={
-                  shouldReduceMotion || !isReady
+                className="float-card"
+                style={shouldReduceMotion ? {} : { x: cardX, y: cardY }}
+                variants={floatCardEntrance}
+                initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+                animate={shouldReduceMotion ? { opacity: 1 } : isPreloaderGone ? 'show' : 'hidden'}
+                whileHover={
+                  shouldReduceMotion
                     ? {}
-                    : {
-                        y: [0, 9, 0],
-                        rotate: [0, -1.2, 0],
-                      }
+                    : { scale: 1.04, boxShadow: '0 24px 48px -12px rgba(15, 23, 42, 0.28)' }
                 }
-                transition={{
-                  duration: 5.4,
-                  ease: 'easeInOut',
-                  repeat: Infinity,
-                  delay: 0.6,
-                }}
               >
-                <span className="ring">
-                  <LuShieldCheck className="ring-icon" aria-hidden="true" />
-                </span>
-                <span className="float-card-text">
-                  <b>Theory + practice</b>Bridging the gap to real-world care
-                </span>
+                <motion.div
+                  className="float-card-inner"
+                  animate={
+                    shouldReduceMotion || !isPreloaderGone
+                      ? {}
+                      : {
+                          y: [0, 9, 0],
+                          rotate: [0, -1.2, 0],
+                        }
+                  }
+                  transition={{
+                    duration: 5.4,
+                    ease: 'easeInOut',
+                    repeat: Infinity,
+                    delay: 0.6,
+                  }}
+                >
+                  <span className="ring">
+                    <LuShieldCheck className="ring-icon" aria-hidden="true" />
+                  </span>
+                  <span className="float-card-text">
+                    <b>Theory + practice</b>Bridging the gap to real-world care
+                  </span>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
 
           <motion.div
             className="scroll-cue"
             aria-hidden="true"
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            animate={isPreloaderGone ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ delay: 1.1, duration: 0.6, ease: EASE.smooth }}
           >
             <span>Explore</span> <span className="arrow">↓</span>
@@ -330,5 +296,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-

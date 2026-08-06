@@ -2,19 +2,7 @@
    Home Page — Scoped Styles
    =========================== */
 
-.home-services-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-md);
-}
-
 .home-faq-wrap {
   max-width: 840px;
   margin: var(--spacing-xxl) auto 0;
-}
-
-@media (max-width: 768px) {
-  .home-services-grid {
-    grid-template-columns: 1fr;
-  }
 }

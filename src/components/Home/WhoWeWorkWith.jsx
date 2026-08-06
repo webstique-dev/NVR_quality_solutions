@@ -7,6 +7,7 @@ import {
   LuClipboardCheck,
   LuChartBarBig,
 } from 'react-icons/lu';
+import Magnetic from '../ui/Magnetic';
 import { fadeUp, cardReveal, blurReveal } from '../../animations/variants';
 import { homeViewport } from '../../animations/viewport';
 import './WhoWeWorkWith.css';
@@ -57,6 +58,7 @@ const WhoWeWorkWith = () => {
     <section className="who-work section section--light">
       <div className="container">
         {/* Block Head */}
+        <Magnetic strength={0.06} className="magnetic--block">
         <motion.div
           className="who-work__header block-head"
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -69,32 +71,34 @@ const WhoWeWorkWith = () => {
             Programs Designed for <span className="who-work__heading-highlight">Every Healthcare Role</span>
           </motion.h2>
         </motion.div>
+        </Magnetic>
 
         {/* Pillar Cards Grid */}
         <div className="who-work__grid pillar-grid">
           {audiences.map((item, i) => {
             const Icon = item.icon;
             return (
-              <motion.article
-                key={item.id}
-                id={`audience-${item.id}`}
-                className="who-work__card pillar-card"
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-                whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-                viewport={homeViewport}
-                variants={cardReveal}
-                custom={i * 0.08}
-                whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
-              >
-                <div className="who-work__card-top">
-                  <div className="pillar-icon" aria-hidden="true">
-                    <Icon className="pillar-icon-svg" />
+              <Magnetic key={item.id} strength={0.2} className="magnetic--card">
+                <motion.article
+                  id={`audience-${item.id}`}
+                  className="who-work__card pillar-card"
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                  whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+                  viewport={homeViewport}
+                  variants={cardReveal}
+                  custom={i * 0.08}
+                  whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
+                >
+                  <div className="who-work__card-top">
+                    <div className="pillar-icon" aria-hidden="true">
+                      <Icon className="pillar-icon-svg" />
+                    </div>
+                    <span className="pillar-tag">{item.tag}</span>
                   </div>
-                  <span className="pillar-tag">{item.tag}</span>
-                </div>
-                <p className="who-work__card-label">{item.label}</p>
-                <div className="who-work__card-accent" aria-hidden="true" />
-              </motion.article>
+                  <p className="who-work__card-label">{item.label}</p>
+                  <div className="who-work__card-accent" aria-hidden="true" />
+                </motion.article>
+              </Magnetic>
             );
           })}
         </div>

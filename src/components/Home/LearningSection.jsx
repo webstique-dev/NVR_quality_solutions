@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { LuTarget } from 'react-icons/lu';
-import ScrollReveal from '../ui/ScrollReveal';
+import Magnetic from '../ui/Magnetic';
 import { fadeUp, imageReveal, blurReveal, staggerContainer, staggerItem } from '../../animations/variants';
 import { homeViewport } from '../../animations/viewport';
 import './LearningSection.css';
@@ -16,6 +16,7 @@ const LearningSection = () => {
       <div className="container">
         <div className="learning__inner">
           {/* Left: Content */}
+          <Magnetic strength={0.06} className="magnetic--block">
           <motion.div
             className="learning__content"
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -29,16 +30,16 @@ const LearningSection = () => {
               Preparing Tomorrow&apos;s <span className="learning__heading-highlight">Leaders in Healthcare Quality</span>
             </motion.h2>
 
-            <ScrollReveal
-              as="h3"
-              baseOpacity={0.15}
-              enableBlur={true}
-              baseRotation={2}
-              blurStrength={6}
-              textClassName="learning__subheading"
+            <motion.h3
+              className="learning__subheading"
+              variants={fadeUp}
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              custom={0.1}
             >
               Learning That Goes Beyond Theory
-            </ScrollReveal>
+            </motion.h3>
 
             <motion.p
               className="learning__paragraph"
@@ -69,24 +70,32 @@ const LearningSection = () => {
               whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
               viewport={homeViewport}
             >
-              <motion.div className="learning__stat" variants={staggerItem}>
-                <span className="learning__stat-value">3</span>
-                <span className="learning__stat-label">Global Standards<br />(NABH, JCI, CAMHP)</span>
-              </motion.div>
+              <Magnetic strength={0.18} className="magnetic--stat">
+                <motion.div className="learning__stat" variants={staggerItem}>
+                  <span className="learning__stat-value">3</span>
+                  <span className="learning__stat-label">Global Standards<br />(NABH, JCI, CAMHP)</span>
+                </motion.div>
+              </Magnetic>
               <div className="learning__stat-divider" aria-hidden="true" />
-              <motion.div className="learning__stat" variants={staggerItem}>
-                <span className="learning__stat-value">100%</span>
-                <span className="learning__stat-label">Practical,<br />Real-World Focus</span>
-              </motion.div>
+              <Magnetic strength={0.18} className="magnetic--stat">
+                <motion.div className="learning__stat" variants={staggerItem}>
+                  <span className="learning__stat-value">100%</span>
+                  <span className="learning__stat-label">Practical,<br />Real-World Focus</span>
+                </motion.div>
+              </Magnetic>
               <div className="learning__stat-divider" aria-hidden="true" />
-              <motion.div className="learning__stat" variants={staggerItem}>
-                <span className="learning__stat-value">All</span>
-                <span className="learning__stat-label">Healthcare<br />Roles Covered</span>
-              </motion.div>
+              <Magnetic strength={0.18} className="magnetic--stat">
+                <motion.div className="learning__stat" variants={staggerItem}>
+                  <span className="learning__stat-value">All</span>
+                  <span className="learning__stat-label">Healthcare<br />Roles Covered</span>
+                </motion.div>
+              </Magnetic>
             </motion.div>
           </motion.div>
+          </Magnetic>
 
           {/* Right: Visual Showcase */}
+          <Magnetic strength={0.05} className="magnetic--block">
           <motion.div
             className="learning__visual"
             initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : 'hidden'}
@@ -96,10 +105,13 @@ const LearningSection = () => {
           >
             <div className="learning__img-wrap">
               <img
-                src="/learning-illustration.png"
+                src="https://res.cloudinary.com/rlokioxu/image/upload/v1786013954/learning-illustration_krryt4.jpg"
                 alt="Healthcare quality education — mentor guiding professionals through accreditation frameworks"
                 className="learning__img"
+                width={1024}
+                height={1024}
                 loading="lazy"
+                decoding="async"
               />
               <div className="learning__img-tag glass">
                 <LuTarget className="learning__img-tag-icon" aria-hidden="true" />
@@ -107,6 +119,7 @@ const LearningSection = () => {
               </div>
             </div>
           </motion.div>
+          </Magnetic>
         </div>
       </div>
     </section>

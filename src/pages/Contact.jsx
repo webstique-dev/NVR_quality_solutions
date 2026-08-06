@@ -11,8 +11,8 @@ import {
 import InquiryForm from '../components/Contact/InquiryForm';
 import FAQAccordion from '../components/Common/FAQAccordion';
 import SectionTitle from '../components/Common/SectionTitle';
-import SplitText from '../components/ui/SplitText';
-import ScrollReveal from '../components/ui/ScrollReveal';
+import Magnetic from '../components/ui/Magnetic';
+import { usePreloader } from '../context/PreloaderContext';
 import {
   fadeUp,
   cardReveal,
@@ -93,6 +93,7 @@ const contactFaqs = [
 
 const Contact = () => {
   const shouldReduceMotion = useReducedMotion();
+  const { isPreloaderGone } = usePreloader();
 
   return (
     <>
@@ -106,30 +107,22 @@ const Contact = () => {
         </div>
 
         <div className="container cnt-hero__inner">
+          <Magnetic strength={0.06} className="magnetic--block">
           <motion.div
             className="cnt-hero__content"
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            animate={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+            animate={
+              shouldReduceMotion ? { opacity: 1, y: 0 } : isPreloaderGone ? 'show' : 'hidden'
+            }
             variants={staggerContainer}
           >
             <motion.span className="eyebrow" variants={staggerItem}>
               Contact Us
             </motion.span>
 
-            <SplitText
-              tag="h1"
-              text="Let's Start the Conversation"
-              highlightText="Conversation"
-              highlightClass="hero__highlight"
-              className="cnt-hero__headline"
-              delay={35}
-              duration={0.8}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
-              textAlign="left"
-            />
+            <motion.h1 className="cnt-hero__headline" variants={staggerItem}>
+              Let&apos;s Start the <span className="hero__highlight">Conversation</span>
+            </motion.h1>
 
             <motion.div className="cnt-hero__lede" variants={staggerItem}>
               <p>
@@ -139,6 +132,7 @@ const Contact = () => {
               </p>
             </motion.div>
           </motion.div>
+          </Magnetic>
         </div>
       </section>
 
@@ -147,6 +141,7 @@ const Contact = () => {
       ════════════════════════════════════════════════ */}
       <section className="cnt-section section--light">
         <div className="container">
+          <Magnetic strength={0.06} className="magnetic--block">
           <motion.div
             className="block-head"
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -156,17 +151,11 @@ const Contact = () => {
           >
             <span className="eyebrow">Reach Out</span>
 
-            <ScrollReveal
-              as="h2"
-              baseOpacity={0.15}
-              enableBlur={true}
-              baseRotation={2}
-              blurStrength={6}
-              textClassName="section-title"
-            >
-              Contact Details & Location
-            </ScrollReveal>
+            <motion.h2 className="section-title" variants={fadeUp}>
+              Contact Details &amp; Location
+            </motion.h2>
           </motion.div>
+          </Magnetic>
 
           <div className="cnt-details__layout">
             {/* Info Cards Grid */}
@@ -180,72 +169,76 @@ const Contact = () => {
               {contactDetails.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <motion.article
-                    key={item.id}
-                    className="pillar-card"
-                    variants={staggerItem}
-                    whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
-                  >
-                    <div className="pillar-icon" aria-hidden="true">
-                      <Icon className="pillar-icon-svg" />
-                    </div>
-                    <span className="pillar-tag">{item.tag}</span>
-                    <h3>{item.title}</h3>
-                    <p>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="cnt-info-link"
-                          {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                        >
-                          {item.detail}
-                        </a>
-                      ) : (
-                        item.detail
-                      )}
-                    </p>
-                    {item.support && <p className="cnt-info-sub">{item.support}</p>}
-                  </motion.article>
+                  <Magnetic key={item.id} strength={0.2} className="magnetic--card">
+                    <motion.article
+                      className="pillar-card"
+                      variants={staggerItem}
+                      whileHover={shouldReduceMotion ? undefined : cardReveal.hover}
+                    >
+                      <div className="pillar-icon" aria-hidden="true">
+                        <Icon className="pillar-icon-svg" />
+                      </div>
+                      <span className="pillar-tag">{item.tag}</span>
+                      <h3>{item.title}</h3>
+                      <p>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            className="cnt-info-link"
+                            {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                          >
+                            {item.detail}
+                          </a>
+                        ) : (
+                          item.detail
+                        )}
+                      </p>
+                      {item.support && <p className="cnt-info-sub">{item.support}</p>}
+                    </motion.article>
+                  </Magnetic>
                 );
               })}
             </motion.div>
 
             {/* Map Card */}
-            <motion.article
-              className="pillar-card cnt-map-card"
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
-              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
-              viewport={homeViewport}
-              variants={fadeLeft}
-            >
-              <div className="cnt-map-card__header">
-                <div className="pillar-icon" aria-hidden="true">
-                  <LuMap className="pillar-icon-svg" />
+            <Magnetic strength={0.2} className="magnetic--card">
+              <motion.article
+                className="pillar-card cnt-map-card"
+                initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+                whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+                viewport={homeViewport}
+                variants={fadeLeft}
+              >
+                <div className="cnt-map-card__header">
+                  <div className="pillar-icon" aria-hidden="true">
+                    <LuMap className="pillar-icon-svg" />
+                  </div>
+                  <span className="pillar-tag">Headquarters Location</span>
                 </div>
-                <span className="pillar-tag">Headquarters Location</span>
-              </div>
-              <h3>Amaravathi, AP</h3>
+                <h3>Amaravathi, AP</h3>
 
-              <div className="cnt-map-card__body">
-                <div className="cnt-map-card__pin-wrap">
-                  <LuMapPin className="cnt-map-card__pin-icon" aria-hidden="true" />
-                  <span className="cnt-map-card__pin-pulse" aria-hidden="true" />
+                <div className="cnt-map-card__body">
+                  <div className="cnt-map-card__pin-wrap">
+                    <LuMapPin className="cnt-map-card__pin-icon" aria-hidden="true" />
+                    <span className="cnt-map-card__pin-pulse" aria-hidden="true" />
+                  </div>
+                  <p className="cnt-map-card__label">Thadepalli, Amaravathi</p>
+                  <span className="cnt-map-card__sublabel">Andhra Pradesh, India</span>
+                  <a
+                    href="https://maps.google.com/?q=Thadepalli,+Amaravathi,+Andhra+Pradesh"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cnt-map-card__btn"
+                  >
+                    View on Google Maps
+                  </a>
                 </div>
-                <p className="cnt-map-card__label">Thadepalli, Amaravathi</p>
-                <span className="cnt-map-card__sublabel">Andhra Pradesh, India</span>
-                <a
-                  href="https://maps.google.com/?q=Thadepalli,+Amaravathi,+Andhra+Pradesh"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="cnt-map-card__btn"
-                >
-                  View on Google Maps
-                </a>
-              </div>
-            </motion.article>
+              </motion.article>
+            </Magnetic>
           </div>
 
           {/* Vital Waveform Line Divider */}
+          <Magnetic strength={0.05} className="magnetic--block">
           <div className="vital-wrap" aria-hidden="true">
             <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
               <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
@@ -253,7 +246,9 @@ const Contact = () => {
               <circle cx="662" cy="22" r="3" />
             </svg>
           </div>
+          </Magnetic>
 
+          <Magnetic strength={0.05} className="magnetic--block">
           <motion.div
             className="why-footline"
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
@@ -264,6 +259,7 @@ const Contact = () => {
             <span className="bar" aria-hidden="true" />
             <p>Our expert support team aims to answer all inquiries within 24 business hours.</p>
           </motion.div>
+          </Magnetic>
         </div>
       </section>
 
@@ -274,6 +270,7 @@ const Contact = () => {
         <div className="container">
           <div className="about-consult__grid">
             {/* Left Column: Intro */}
+            <Magnetic strength={0.06} className="magnetic--block">
             <motion.div
               className="about-consult__intro"
               initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
@@ -288,8 +285,10 @@ const Contact = () => {
                 organizational requirements.
               </p>
             </motion.div>
+            </Magnetic>
 
             {/* Right Column: Numbered List */}
+            <Magnetic strength={0.05} className="magnetic--block">
             <motion.ul
               className="about-consult__list"
               variants={staggerContainer}
@@ -299,11 +298,16 @@ const Contact = () => {
             >
               {helpItems.map((item) => (
                 <motion.li key={item.num} className="about-consult__list-item" variants={staggerItem}>
-                  <span className="about-consult__num">{item.num}</span>
-                  <span className="about-consult__label">{item.label}</span>
+                  <Magnetic strength={0.12} className="magnetic--chip">
+                    <span className="about-consult__num">{item.num}</span>
+                  </Magnetic>
+                  <Magnetic strength={0.1} className="magnetic--chip">
+                    <span className="about-consult__label">{item.label}</span>
+                  </Magnetic>
                 </motion.li>
               ))}
             </motion.ul>
+            </Magnetic>
           </div>
         </div>
       </section>
@@ -322,65 +326,73 @@ const Contact = () => {
               viewport={homeViewport}
               variants={fadeRight}
             >
+            <Magnetic strength={0.1} className="magnetic--block">
               <span className="eyebrow">Send an Inquiry</span>
-              <h2 className="section-title">Send Us a Message</h2>
-              <p className="block-head-desc" style={{ marginBottom: '24px' }}>
-                Complete the contact form, and a member of our team will get back to you as soon
-                as possible.
-              </p>
+                <h2 className="section-title">Send Us a Message</h2>
+              </Magnetic>
+              <Magnetic strength={0.06} className="magnetic--block">
+                <p className="block-head-desc" style={{ marginBottom: '24px' }}>
+                  Complete the contact form, and a member of our team will get back to you as soon
+                  as possible.
+                </p>
+              </Magnetic>
 
-              <div className="cnt-form-card">
-                <InquiryForm />
-              </div>
+              <Magnetic strength={0.05} className="magnetic--block">
+                <div className="cnt-form-card">
+                  <InquiryForm />
+                </div>
+              </Magnetic>
             </motion.div>
 
             {/* Side Panel Column */}
-            <motion.div
-              className="about-closing__cta-box"
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-              viewport={homeViewport}
-              variants={cardReveal}
-            >
-              <span className="eyebrow">Rapid Support</span>
-              <h3 className="cnt-side-title">Need Immediate Guidance?</h3>
-              <p className="cnt-side-desc">
-                Whether you are inquiring about NABH, JCI, or CAMHP training, course enrollment, or
-                hospital consultancy services, our team is ready to assist you.
-              </p>
+            <Magnetic strength={0.2} className="magnetic--block">
+              <motion.div
+                className="about-closing__cta-box"
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+                whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+                viewport={homeViewport}
+                variants={cardReveal}
+              >
+                <span className="eyebrow">Rapid Support</span>
+                <h3 className="cnt-side-title">Need Immediate Guidance?</h3>
+                <p className="cnt-side-desc">
+                  Whether you are inquiring about NABH, JCI, or CAMHP training, course enrollment, or
+                  hospital consultancy services, our team is ready to assist you.
+                </p>
 
-              <div className="cnt-side-features">
-                <div className="cnt-side-feature">
-                  <div className="pillar-icon cnt-small-icon" aria-hidden="true">
-                    <LuClock className="pillar-icon-svg" />
+                <div className="cnt-side-features">
+                  <div className="cnt-side-feature">
+                    <div className="pillar-icon cnt-small-icon" aria-hidden="true">
+                      <LuClock className="pillar-icon-svg" />
+                    </div>
+                    <div>
+                      <strong>Rapid Turnaround</strong>
+                      <p>Expect a response within 24 hours</p>
+                    </div>
                   </div>
-                  <div>
-                    <strong>Rapid Turnaround</strong>
-                    <p>Expect a response within 24 hours</p>
+
+                  <div className="cnt-side-feature">
+                    <div className="pillar-icon cnt-small-icon" aria-hidden="true">
+                      <LuShieldCheck className="pillar-icon-svg" />
+                    </div>
+                    <div>
+                      <strong>Expert Direct Guidance</strong>
+                      <p>Connect with quality consultants</p>
+                    </div>
+                  </div>
+
+                  <div className="cnt-side-feature">
+                    <div className="pillar-icon cnt-small-icon" aria-hidden="true">
+                      <LuHeadphones className="pillar-icon-svg" />
+                    </div>
+                    <div>
+                      <strong>Tailored Support</strong>
+                      <p>Custom training for institutions</p>
+                    </div>
                   </div>
                 </div>
-
-                <div className="cnt-side-feature">
-                  <div className="pillar-icon cnt-small-icon" aria-hidden="true">
-                    <LuShieldCheck className="pillar-icon-svg" />
-                  </div>
-                  <div>
-                    <strong>Expert Direct Guidance</strong>
-                    <p>Connect with quality consultants</p>
-                  </div>
-                </div>
-
-                <div className="cnt-side-feature">
-                  <div className="pillar-icon cnt-small-icon" aria-hidden="true">
-                    <LuHeadphones className="pillar-icon-svg" />
-                  </div>
-                  <div>
-                    <strong>Tailored Support</strong>
-                    <p>Custom training for institutions</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Magnetic>
           </div>
         </div>
       </section>

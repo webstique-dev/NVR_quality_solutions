@@ -4,11 +4,7 @@ import ContentPending from '../components/Common/ContentPending';
 const PrivacyPolicy = () => {
   return (
     <>
-      <PageBanner
-        eyebrow="Legal"
-        title="Privacy Policy"
-        breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Privacy Policy' }]}
-      />
+<PageBanner eyebrow="Legal" title="Privacy Policy" />
       <section className="section section--light">
         <div className="container" style={{ maxWidth: 800 }}>
           <ContentPending label="Privacy Policy content not yet provided in source documents. Legal text should be drafted or reviewed by qualified counsel before publishing." />

@@ -1,18 +1,17 @@
 /* ===================================================================
    ScrollToTopButton — Mistral AI Design System (DESIGN.md)
+
+   The Magnetic wrapper (.magnetic--fixed) owns the fixed placement so
+   `will-change: transform` on the wrapper doesn't re-parent the button.
    =================================================================== */
 
 .scroll-top {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: var(--z-nav);
-  width: 44px;
-  height: 44px;
-  border-radius: var(--rounded-md);
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--rounded-md);
   background-color: var(--color-ink);
   border: 1px solid var(--color-ink);
   box-shadow: var(--shadow-3);
@@ -26,13 +25,4 @@
 .scroll-top:hover {
   background-color: var(--color-charcoal);
   transform: translateY(-3px);
-}
-
-@media (max-width: 640px) {
-  .scroll-top {
-    bottom: 18px;
-    right: 18px;
-    width: 40px;
-    height: 40px;
-  }
 }
