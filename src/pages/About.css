@@ -325,7 +325,7 @@
   font-family: var(--font-primary);
   font-size: 0.82rem;
   font-weight: 700;
-  word-break: unset;
+  word-break: keep-all;
   letter-spacing: 0.08em;
   color: var(--color-primary-red, #E31B23);
   background: rgba(227, 27, 35, 0.12);
