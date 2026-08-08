@@ -7,7 +7,6 @@ import {
   LuGlobe,
   LuAward,
 } from 'react-icons/lu';
-import Button from '../components/Common/Button';
 import Magnetic from '../components/ui/Magnetic';
 import CTABanner from '../components/Layout/CTABanner';
 import { usePreloader } from '../context/PreloaderContext';
@@ -122,34 +121,34 @@ const Services = () => {
 
         <div className="container svc-hero__inner">
           <Magnetic strength={0.06} className="magnetic--block">
-          <motion.div
-            className="svc-hero__content"
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            animate={
-              shouldReduceMotion ? { opacity: 1, y: 0 } : isPreloaderGone ? 'show' : 'hidden'
-            }
-            variants={staggerContainer}
-          >
-            <motion.span className="eyebrow" variants={staggerItem}>
-              Our Services
-            </motion.span>
+            <motion.div
+              className="svc-hero__content"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              animate={
+                shouldReduceMotion ? { opacity: 1, y: 0 } : isPreloaderGone ? 'show' : 'hidden'
+              }
+              variants={staggerContainer}
+            >
+              <motion.span className="eyebrow" variants={staggerItem}>
+                Our Services
+              </motion.span>
 
-            <motion.h1 className="svc-hero__headline" variants={staggerItem}>
-              Lasting Solutions for <span className="hero__highlight">Accreditation Readiness</span>
-            </motion.h1>
+              <motion.h1 className="svc-hero__headline" variants={staggerItem}>
+                Lasting Solutions for <span className="hero__highlight">Accreditation Readiness</span>
+              </motion.h1>
 
-            <motion.div className="svc-hero__lede" variants={staggerItem}>
-              <p>
-                We provide specialized training and consultancy services that help healthcare
-                professionals build successful careers. We also enable healthcare organizations
-                to strengthen quality systems.
-              </p>
-              <p>
-                Our programs are designed to simplify healthcare standards, promote patient safety,
-                and support quality improvement through practical, industry-focused learning.
-              </p>
+              <motion.div className="svc-hero__lede" variants={staggerItem}>
+                <p>
+                  We provide specialized training and consultancy services that help healthcare
+                  professionals build successful careers. We also enable healthcare organizations
+                  to strengthen quality systems.
+                </p>
+                <p>
+                  Our programs are designed to simplify healthcare standards, promote patient safety,
+                  and support quality improvement through practical, industry-focused learning.
+                </p>
+              </motion.div>
             </motion.div>
-          </motion.div>
           </Magnetic>
         </div>
       </section>
@@ -160,23 +159,23 @@ const Services = () => {
       <section id="svc-training" className="svc-section section--light">
         <div className="container">
           <Magnetic strength={0.06} className="magnetic--block">
-          <motion.div
-            className="block-head"
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            viewport={homeViewport}
-            variants={blurReveal}
-          >
-            <span className="eyebrow">Training Programs</span>
+            <motion.div
+              className="block-head"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={blurReveal}
+            >
+              <span className="eyebrow">Training Programs</span>
 
-            <motion.h2 className="section-title" variants={fadeUp}>
-              Our Training Services
-            </motion.h2>
+              <motion.h2 className="section-title" variants={fadeUp}>
+                Our Training Services
+              </motion.h2>
 
-            <p className="block-head-desc">
-              Structured education and practical training designed to prepare students and healthcare professionals for accreditation standards.
-            </p>
-          </motion.div>
+              <p className="block-head-desc">
+                Structured education and practical training designed to prepare students and healthcare professionals for accreditation standards.
+              </p>
+            </motion.div>
           </Magnetic>
 
           <div className="pillar-grid">
@@ -209,26 +208,26 @@ const Services = () => {
 
           {/* Vital Waveform Line Divider */}
           <Magnetic strength={0.05} className="magnetic--block">
-          <div className="vital-wrap" aria-hidden="true">
-            <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
-              <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
-              <circle cx="556" cy="23" r="3" />
-              <circle cx="662" cy="22" r="3" />
-            </svg>
-          </div>
+            <div className="vital-wrap" aria-hidden="true">
+              <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
+                <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
+                <circle cx="556" cy="23" r="3" />
+                <circle cx="662" cy="22" r="3" />
+              </svg>
+            </div>
           </Magnetic>
 
           <Magnetic strength={0.05} className="magnetic--block">
-          <motion.div
-            className="why-footline"
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
-            whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
-            viewport={homeViewport}
-            variants={fadeUp}
-          >
-            <span className="bar" aria-hidden="true" />
-            <p>Empowering healthcare institutions to transform compliance and accreditation standards into daily practice.</p>
-          </motion.div>
+            <motion.div
+              className="why-footline"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeUp}
+            >
+              <span className="bar" aria-hidden="true" />
+              <p>Empowering healthcare institutions to transform compliance and accreditation standards into daily practice.</p>
+            </motion.div>
           </Magnetic>
         </div>
       </section>
@@ -244,52 +243,52 @@ const Services = () => {
           <div className="svc-consult__grid">
             {/* Left Column: Intro */}
             <Magnetic strength={0.06} className="magnetic--block">
-            <motion.div
-              className="svc-consult__intro"
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
-              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
-              viewport={homeViewport}
-              variants={fadeRight}
-            >
-              <span className="eyebrow">Consultancy</span>
-              <h2 className="svc-consult__heading">
-                Healthcare Accreditation Consultancy
-              </h2>
-              <p className="svc-consult__para">
-                Preparing for accreditation requires a well-designed quality management system
-                supported by effective implementation. Our Healthcare Accreditation Training and
-                consultancy services help healthcare organizations.
-              </p>
-              <p className="svc-consult__closing">
-                Our consultants work alongside healthcare teams to strengthen organizational readiness.
-              </p>
-            </motion.div>
+              <motion.div
+                className="svc-consult__intro"
+                initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+                whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+                viewport={homeViewport}
+                variants={fadeRight}
+              >
+                <span className="eyebrow">Consultancy</span>
+                <h2 className="svc-consult__heading">
+                  Healthcare Accreditation Consultancy
+                </h2>
+                <p className="svc-consult__para">
+                  Preparing for accreditation requires a well-designed quality management system
+                  supported by effective implementation. Our Healthcare Accreditation Training and
+                  consultancy services help healthcare organizations.
+                </p>
+                <p className="svc-consult__closing">
+                  Our consultants work alongside healthcare teams to strengthen organizational readiness.
+                </p>
+              </motion.div>
             </Magnetic>
 
             {/* Right Column: Numbered List */}
             <Magnetic strength={0.05} className="magnetic--block">
-            <motion.ul
-              className="svc-consult__list"
-              variants={staggerContainer}
-              initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
-              whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
-              viewport={homeViewport}
-            >
-              {consultancyItems.map((item) => (
-                <motion.li
-                  key={item.num}
-                  className="svc-consult__list-item"
-                  variants={staggerItem}
-                >
-                  <Magnetic strength={0.12} className="magnetic--chip">
-                    <span className="svc-consult__num">{item.num}</span>
-                  </Magnetic>
-                  <Magnetic strength={0.1} className="magnetic--chip">
-                    <span className="svc-consult__label">{item.label}</span>
-                  </Magnetic>
-                </motion.li>
-              ))}
-            </motion.ul>
+              <motion.ul
+                className="svc-consult__list"
+                variants={staggerContainer}
+                initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
+                whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
+                viewport={homeViewport}
+              >
+                {consultancyItems.map((item) => (
+                  <motion.li
+                    key={item.num}
+                    className="svc-consult__list-item"
+                    variants={staggerItem}
+                  >
+                    <Magnetic strength={0.12} className="magnetic--chip">
+                      <span className="svc-consult__num">{item.num}</span>
+                    </Magnetic>
+                    <Magnetic strength={0.1} className="magnetic--chip">
+                      <span className="svc-consult__label">{item.label}</span>
+                    </Magnetic>
+                  </motion.li>
+                ))}
+              </motion.ul>
             </Magnetic>
           </div>
         </div>
@@ -303,58 +302,66 @@ const Services = () => {
           <div className="svc-closing__grid">
             {/* Left Column: Copy & Grid */}
             <Magnetic strength={0.06} className="magnetic--block">
-            <motion.div
-              className="svc-closing__copy"
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
-              whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
-              viewport={homeViewport}
-              variants={fadeRight}
-            >
-              <span className="eyebrow">Why Choose Us</span>
-              <h2 className="svc-closing__heading">Why Choose NVR Quality Solutions?</h2>
-              <p className="svc-closing__para">
-                Healthcare quality is always changing, and professionals need practical knowledge
-                that extends beyond textbooks. They need to always know and handle whatever is
-                happening in the world right now. This is why our approach combines:
-              </p>
+              <motion.div
+                className="svc-closing__copy"
+                initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
+                whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
+                viewport={homeViewport}
+                variants={fadeRight}
+              >
+                <span className="eyebrow">Why Choose Us</span>
+                <h2 className="svc-closing__heading">Why Choose NVR Quality Solutions?</h2>
+                <p className="svc-closing__para">
+                  Healthcare quality is always changing, and professionals need practical knowledge
+                  that extends beyond textbooks. They need to always know and handle whatever is
+                  happening in the world right now. This is why our approach combines:
+                </p>
 
-              <div className="about-wwd__grid" style={{ marginTop: '28px' }}>
-                {whyItems.map((item, i) => (
-                  <Magnetic key={item} strength={0.15} className="magnetic--card">
-                    <motion.div
-                      className="about-wwd__item"
-                      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                      whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                      viewport={homeViewport}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
-                    >
-                      <span className="about-wwd__tick" aria-hidden="true">
-                        <FiCheck />
-                      </span>
-                      <span className="about-wwd__txt">{item}</span>
-                    </motion.div>
-                  </Magnetic>
-                ))}
-              </div>
-            </motion.div>
+                <div className="about-wwd__grid" style={{ marginTop: '28px' }}>
+                  {whyItems.map((item, i) => (
+                    <Magnetic key={item} strength={0.15} className="magnetic--card">
+                      <motion.div
+                        className="about-wwd__item"
+                        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                        whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                        viewport={homeViewport}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
+                      >
+                        <span className="about-wwd__tick" aria-hidden="true">
+                          <FiCheck />
+                        </span>
+                        <span className="about-wwd__txt">{item}</span>
+                      </motion.div>
+                    </Magnetic>
+                  ))}
+                </div>
+              </motion.div>
             </Magnetic>
 
-            {/* Right Column: CTA Box */}
+            {/* Right Column: Visual */}
             <Magnetic strength={0.2} className="magnetic--block">
               <motion.div
-                className="svc-closing__cta-box"
+                className="svc-closing__visual"
                 initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
                 whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
                 viewport={homeViewport}
                 variants={cardReveal}
               >
-                <span className="eyebrow">Next Step</span>
-                <p className="svc-closing__cta-text">
-                  Ready to build your healthcare quality career or strengthen your facility&apos;s quality systems?
-                </p>
-                <Button as="link" to="/training-programs" variant="primary" className="btn-solid">
-                  Explore Our Training Programs
-                </Button>
+                <div className="closing-visual__inner">
+                  <img
+                    src="https://res.cloudinary.com/rlokioxu/image/upload/v1786013955/training-hero-illustration_mrljj2.jpg"
+                    alt="Industry-focused healthcare quality training"
+                    className="closing-visual__img"
+                    width={1024}
+                    height={1024}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="closing-visual__tag glass">
+                    <LuMedal className="closing-visual__tag-icon" aria-hidden="true" />
+                    <span>Industry-Focused Training</span>
+                  </div>
+                </div>
               </motion.div>
             </Magnetic>
           </div>

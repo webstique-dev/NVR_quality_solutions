@@ -418,33 +418,6 @@
   color: var(--color-ink, #0f172a);
 }
 
-.tp-closing__cta-box {
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    var(--color-blue-50, #f5f9ff) 55%,
-    var(--color-blue-100, #eef6ff) 100%
-  );
-  border: 1px solid rgba(15, 63, 184, 0.18);
-  border-radius: 24px;
-  padding: clamp(2rem, 4vw, 2.75rem);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: flex-start;
-  box-shadow:
-    0 26px 52px -26px rgba(15, 63, 184, 0.34),
-    0 2px 6px rgba(15, 23, 42, 0.04);
-}
-
-.tp-closing__cta-text {
-  font-family: var(--font-primary);
-  font-size: 1rem;
-  color: var(--color-slate, #475569);
-  line-height: 1.6;
-  margin: 0;
-}
-
 /* ─── Closing CTA — Deep-Blue Full-Width Band (Training Programs page) ── */
 
 .tp-cta-band {
@@ -495,16 +468,17 @@
     padding: 24px 20px;
   }
 
-  .tp-closing__cta-box {
-    padding: 24px 20px;
-    border-radius: 18px;
+  .closing-visual__tag {
+    bottom: 12px;
+    left: 12px;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.78rem;
   }
 }
 
 @media (max-width: 360px) {
 
-  .tp-card,
-  .tp-closing__cta-box {
+  .tp-card {
     padding: 20px 16px;
     border-radius: 16px;
   }
@@ -514,17 +488,11 @@
     padding: 16px 0;
     font-size: 0.98rem;
   }
-
-  .tp-closing__cta-box .btn {
-    width: 100%;
-    justify-content: center;
-  }
 }
 
 @media (max-width: 320px) {
 
-  .tp-card,
-  .tp-closing__cta-box {
+  .tp-card {
     padding: 18px 14px;
   }
 }

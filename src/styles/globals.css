@@ -208,6 +208,58 @@ p + p {
   color: var(--color-ink);
 }
 
+/* ─── Closing visual image block (shared About/Services/Training) ───── */
+.closing-visual__inner {
+  position: relative;
+}
+
+.closing-visual__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  border: 1px solid var(--color-hairline-soft, #e2e8f0);
+  object-fit: cover;
+  box-shadow:
+    0 20px 40px -10px rgba(15, 63, 184, 0.16),
+    0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.closing-visual__tag {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 0.6rem 1rem;
+  border-radius: 14px;
+  font-family: var(--font-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-ink, #0f172a);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-hairline-soft, #e2e8f0);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12);
+  white-space: nowrap;
+}
+
+.closing-visual__tag-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-brand-royal, #1e63e9);
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .closing-visual__img {
+    box-shadow: none;
+  }
+}
+
 /* ─── Eyebrow — micro-uppercase style ────────────────────────────── */
 .eyebrow {
   display: inline-flex;
