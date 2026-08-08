@@ -4,10 +4,23 @@ import SectionTitle from '../components/Common/SectionTitle';
 import ContentPending from '../components/Common/ContentPending';
 import CTABanner from '../components/Layout/CTABanner';
 import { trainingPrograms } from '../data/trainingPrograms';
+import { useSEO } from '../hooks/useSEO';
+import { ROUTE_META } from '../config/seo';
 
 const TrainingDetail = () => {
   const { slug } = useParams();
   const program = trainingPrograms.find((p) => p.slug === slug);
+
+  useSEO({
+    title: program ? ROUTE_META.trainingDetail.title(program.title) : ROUTE_META.notFound.title,
+    description: program
+      ? ROUTE_META.trainingDetail.description(program.title)
+      : ROUTE_META.notFound.description,
+    keywords: [
+      ...ROUTE_META.trainingPrograms.keywords,
+      ...(program ? [program.title.toLowerCase()] : []),
+    ],
+  });
 
   if (!program) {
     return (

@@ -11,10 +11,25 @@ import CTABanner from '../components/Layout/CTABanner';
 import { faqs } from '../data/faqs';
 import { fadeUp } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
+import { useSEO } from '../hooks/useSEO';
+import { ROUTE_META, SITE } from '../config/seo';
 import './Home.css';
 
 const Home = () => {
   const shouldReduceMotion = useReducedMotion();
+
+  useSEO({
+    title: ROUTE_META.home.title,
+    description: ROUTE_META.home.description,
+    keywords: ROUTE_META.home.keywords,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: SITE.name,
+      description: SITE.corePosition,
+      sameAs: [],
+    },
+  });
 
   return (
     <>

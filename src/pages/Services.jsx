@@ -20,6 +20,8 @@ import {
   staggerItem,
 } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
+import { useSEO } from '../hooks/useSEO';
+import { ROUTE_META } from '../config/seo';
 import './Services.css';
 
 /* ─── Training service cards ─────────────────────────── */
@@ -100,6 +102,12 @@ const whyItems = [
 const Services = () => {
   const shouldReduceMotion = useReducedMotion();
   const { isPreloaderGone } = usePreloader();
+
+  useSEO({
+    title: ROUTE_META.services.title,
+    description: ROUTE_META.services.description,
+    keywords: ROUTE_META.services.keywords,
+  });
 
   return (
     <>

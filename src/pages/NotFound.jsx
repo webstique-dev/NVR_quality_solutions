@@ -1,9 +1,16 @@
 import { motion } from 'framer-motion';
 import Button from '../components/Common/Button';
 import Magnetic from '../components/ui/Magnetic';
+import { useSEO } from '../hooks/useSEO';
+import { ROUTE_META } from '../config/seo';
 import './NotFound.css';
 
 const NotFound = () => {
+  useSEO({
+    title: ROUTE_META.notFound.title,
+    description: ROUTE_META.notFound.description,
+  });
+
   return (
     <section className="not-found section--dark">
       <div className="container not-found__inner">

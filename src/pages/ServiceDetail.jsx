@@ -4,10 +4,23 @@ import SectionTitle from '../components/Common/SectionTitle';
 import ContentPending from '../components/Common/ContentPending';
 import CTABanner from '../components/Layout/CTABanner';
 import { services } from '../data/services';
+import { useSEO } from '../hooks/useSEO';
+import { ROUTE_META } from '../config/seo';
 
 const ServiceDetail = () => {
   const { slug } = useParams();
   const service = services.find((s) => s.slug === slug);
+
+  useSEO({
+    title: service ? ROUTE_META.serviceDetail.title(service.name) : ROUTE_META.notFound.title,
+    description: service
+      ? ROUTE_META.serviceDetail.description(service.name)
+      : ROUTE_META.notFound.description,
+    keywords: [
+      ...ROUTE_META.services.keywords,
+      ...(service ? [service.name.toLowerCase()] : []),
+    ],
+  });
 
   if (!service) {
     return (

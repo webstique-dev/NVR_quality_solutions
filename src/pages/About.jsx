@@ -14,6 +14,8 @@ import {
   staggerItem,
 } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
+import { useSEO } from '../hooks/useSEO';
+import { ROUTE_META } from '../config/seo';
 import './About.css';
 
 /* ─── What We Do items ────────────────────────────────────── */
@@ -40,6 +42,12 @@ const consultancyItems = [
 const About = () => {
   const shouldReduceMotion = useReducedMotion();
   const { isPreloaderGone } = usePreloader();
+
+  useSEO({
+    title: ROUTE_META.about.title,
+    description: ROUTE_META.about.description,
+    keywords: ROUTE_META.about.keywords,
+  });
 
   return (
     <>

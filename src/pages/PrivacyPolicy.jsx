@@ -1,7 +1,14 @@
 import PageBanner from '../components/Layout/PageBanner';
 import ContentPending from '../components/Common/ContentPending';
+import { useSEO } from '../hooks/useSEO';
+import { ROUTE_META } from '../config/seo';
 
 const PrivacyPolicy = () => {
+  useSEO({
+    title: ROUTE_META.privacy.title,
+    description: ROUTE_META.privacy.description,
+  });
+
   return (
     <>
 <PageBanner eyebrow="Legal" title="Privacy Policy" />
