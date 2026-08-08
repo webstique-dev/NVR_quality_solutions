@@ -2,6 +2,63 @@
    Home Page — Scoped Styles
    =========================== */
 
+/* ─── CTA Section — Deep-Blue Full-Width Band (home page only) ────── */
+
+.home-cta-band {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(30, 99, 233, 0.36), transparent 60%),
+    radial-gradient(ellipse at 10% 120%, rgba(63, 169, 255, 0.14), transparent 62%),
+    linear-gradient(180deg, #0a1630 0%, #0d2147 55%, #0a1a36 100%);
+}
+
+.home-cta-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(148, 187, 255, 0.12) 1.2px, transparent 1.2px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 30%, transparent 85%);
+  pointer-events: none;
+}
+
+.home-cta-band .cta-banner {
+  position: relative;
+  background-color: transparent;
+}
+
+.home-cta-band .cta-banner__inner {
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 34px 64px -28px rgba(3, 10, 30, 0.55);
+}
+
+/* ─── FAQ Section — light-blue band fading to footer white ────────── */
+
+.section.home-faq-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--color-blue-100, #eef6ff) 0%,
+    var(--color-blue-50, #f5f9ff) 46%,
+    #ffffff 100%
+  );
+}
+
+.section.home-faq-section::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -6%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(15, 63, 184, 0.08), transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
 .home-faq-wrap {
   max-width: 840px;
   margin: var(--spacing-xxl) auto 0;

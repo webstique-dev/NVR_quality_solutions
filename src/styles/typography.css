@@ -74,11 +74,14 @@
 
 /* ─── Global Reset & Font Application ──────────────────────────── */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   font-family: var(--font-primary);
 }
 
-html, body {
+html,
+body {
   font-family: var(--font-primary);
   font-size: var(--fs-body);
   font-weight: var(--fw-regular);
@@ -92,8 +95,17 @@ html, body {
 
 /* ─── Headings Hierarchy ────────────────────────────────────────── */
 
-h1, h2, h3, h4, h5, h6,
-.display-xl, .hero-heading, .section-heading, .sub-heading, .card-heading {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-xl,
+.hero-heading,
+.section-heading,
+.sub-heading,
+.card-heading {
   font-family: var(--font-primary);
   color: var(--color-ink, #0f172a);
   margin: 0;
@@ -106,28 +118,32 @@ h1, h2, h3, h4, h5, h6,
   letter-spacing: var(--ls-large-heading);
 }
 
-h1, .hero-heading {
+h1,
+.hero-heading {
   font-size: var(--fs-hero-heading);
   font-weight: var(--fw-extrabold);
   line-height: var(--lh-hero);
   letter-spacing: var(--ls-large-heading);
 }
 
-h2, .section-heading {
+h2,
+.section-heading {
   font-size: var(--fs-section-heading);
   font-weight: var(--fw-bold);
   line-height: var(--lh-heading);
   letter-spacing: var(--ls-section-title);
 }
 
-h3, .sub-heading {
+h3,
+.sub-heading {
   font-size: var(--fs-sub-heading);
   font-weight: var(--fw-bold);
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
 
-h4, .card-heading {
+h4,
+.card-heading {
   font-size: var(--fs-card-heading);
   font-weight: var(--fw-bold);
   line-height: var(--lh-card);
@@ -148,7 +164,8 @@ h6 {
 
 /* ─── Text & Paragraph Classes ─────────────────────────────────── */
 
-p, .body {
+p,
+.body {
   font-family: var(--font-primary);
   font-size: var(--fs-body);
   font-weight: var(--fw-regular);
@@ -162,7 +179,8 @@ p, .body {
   line-height: var(--lh-paragraph-lg);
 }
 
-.text-small, small {
+.text-small,
+small {
   font-size: var(--fs-small);
   font-weight: var(--fw-medium);
   line-height: 1.5;
@@ -174,7 +192,11 @@ p, .body {
   line-height: 1.4;
 }
 
-.eyebrow, .badge, .tag, .pillar-tag, .uppercase-label {
+.eyebrow,
+.badge,
+.tag,
+.pillar-tag,
+.uppercase-label {
   font-family: var(--font-primary);
   font-size: var(--fs-small);
   font-weight: var(--fw-semibold);
@@ -198,7 +220,10 @@ p, .body {
 /* ─── UI Component Typography ────────────────────────────────────── */
 
 /* Buttons */
-button, input[type="submit"], input[type="button"], .btn {
+button,
+input[type="submit"],
+input[type="button"],
+.btn {
   font-family: var(--font-primary) !important;
   font-size: var(--fs-btn) !important;
   font-weight: var(--fw-semibold) !important;
@@ -213,13 +238,16 @@ label {
   font-weight: var(--fw-semibold);
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   font-family: var(--font-primary);
   font-size: var(--fs-body);
   font-weight: var(--fw-regular);
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   font-family: var(--font-primary);
   font-size: 15px;
   font-weight: var(--fw-regular);
@@ -231,7 +259,10 @@ input::placeholder, textarea::placeholder {
 }
 
 /* Navigation */
-nav, .navbar, .navbar__link, .navbar__mobile-link {
+nav,
+.navbar,
+.navbar__link,
+.navbar__mobile-link {
   font-family: var(--font-primary);
   font-size: var(--fs-nav);
   font-weight: var(--fw-semibold);
@@ -253,7 +284,8 @@ nav, .navbar, .navbar__link, .navbar__mobile-link {
 }
 
 /* Footer */
-footer, .footer {
+footer,
+.footer {
   font-family: var(--font-primary);
   font-size: var(--fs-footer);
   font-weight: var(--fw-regular);

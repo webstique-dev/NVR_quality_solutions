@@ -5,13 +5,19 @@
 .hero {
   position: relative;
   width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: calc(var(--nav-height, 74px) + 36px) 40px 64px;
+  background-color: var(--color-ink, #0f172a);
+  background-image:
+    radial-gradient(ellipse at 82% -12%, rgba(30, 99, 233, 0.4), transparent 55%),
+    radial-gradient(ellipse at 6% 108%, rgba(63, 169, 255, 0.16), transparent 62%),
+    linear-gradient(180deg, #0a1630 0%, #0d2147 50%, #0a1a36 100%);
+  color: #ffffff;
+  padding: calc(var(--nav-height, 74px) + clamp(2.25rem, 5vw, 4rem)) 0
+    clamp(2.5rem, 5vw, 4.5rem);
   display: flex;
   align-items: center;
   min-height: 85vh;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Background Atmosphere Glows */
@@ -35,7 +41,7 @@
   right: -5%;
   width: 650px;
   height: 650px;
-  background: radial-gradient(circle, rgba(15, 63, 184, 0.12), transparent 70%);
+  background: radial-gradient(circle, rgba(30, 99, 233, 0.3), transparent 70%);
 }
 
 .hero__glow--2 {
@@ -43,17 +49,17 @@
   left: -5%;
   width: 550px;
   height: 550px;
-  background: radial-gradient(circle, rgba(227, 27, 35, 0.08), transparent 70%);
+  background: radial-gradient(circle, rgba(227, 27, 35, 0.12), transparent 70%);
 }
 
 .hero__grid-pattern {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(15, 63, 184, 0.1) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(148, 187, 255, 0.16) 1.2px, transparent 1.2px);
   background-size: 28px 28px;
   pointer-events: none;
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 25%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 22%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 22%, transparent 72%);
 }
 
 /* Main 2-Column Grid Layout */
@@ -95,19 +101,28 @@
   border-radius: 9999px;
 }
 
+/* Dark-hero scoped eyebrow (home hero only) */
+.hero .eyebrow {
+  color: #9cc0ff;
+}
+
+.hero .eyebrow::before {
+  background: var(--color-accent-blue, #3FA9FF);
+}
+
 .hero__heading {
   font-family: var(--font-primary);
   font-size: var(--fs-hero-heading);
   font-weight: 800;
   line-height: var(--lh-hero);
   letter-spacing: var(--ls-large-heading);
-  color: var(--color-ink, #0f172a);
+  color: #ffffff;
   margin: 0 0 22px;
   max-width: 16ch;
 }
 
 .hero__highlight {
-  color: var(--color-primary-blue, #0F3FB8);
+  color: #7eb0ff;
   font-style: normal;
 }
 
@@ -115,7 +130,7 @@
   font-family: var(--font-primary);
   font-size: 1.06rem;
   line-height: 1.65;
-  color: var(--color-slate, #475569);
+  color: rgba(226, 236, 255, 0.86);
   max-width: 48ch;
   margin-bottom: 28px;
 }
@@ -226,14 +241,14 @@
 }
 
 .btn-ghost {
-  border: 1px solid rgba(15, 23, 42, 0.2) !important;
-  color: var(--color-ink, #0f172a) !important;
-  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.02) !important;
 }
 
 .btn-ghost:hover {
-  border-color: var(--color-ink, #0f172a) !important;
-  background: rgba(15, 23, 42, 0.04) !important;
+  border-color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Worldwide Recognized Standards Chips */
@@ -244,13 +259,13 @@
   gap: 14px;
   flex-wrap: wrap;
   padding-top: 26px;
-  border-top: 1px solid var(--color-hairline, #e2e8f0);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   max-width: 520px;
 }
 
 .credential-label {
   font-size: 0.84rem;
-  color: var(--color-slate, #475569);
+  color: rgba(226, 236, 255, 0.78);
   font-weight: 500;
 }
 
@@ -267,10 +282,12 @@
   letter-spacing: 0.04em;
   padding: 5px 13px;
   border-radius: 9999px;
-  border: 1px solid rgba(15, 63, 184, 0.15);
-  background: #ffffff;
-  color: var(--color-primary-blue, #0F3FB8);
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(148, 187, 255, 0.32);
+  background: rgba(255, 255, 255, 0.06);
+  color: #eaf3ff;
+  box-shadow: 0 2px 10px rgba(4, 12, 34, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 /* ─── Right Column (Media & Badges) ──────────────────────────────── */
@@ -284,9 +301,9 @@
   border-radius: 28px;
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  background: linear-gradient(155deg, rgba(238, 245, 255, 0.8) 0%, rgba(255, 255, 255, 0.95) 100%);
-  border: 1px solid rgba(15, 63, 184, 0.12);
-  box-shadow: 0 20px 50px -15px rgba(15, 63, 184, 0.15);
+  background: linear-gradient(155deg, rgba(238, 245, 255, 0.55) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 36px 70px -24px rgba(3, 10, 30, 0.65);
 }
 
 .media-fill {
@@ -417,7 +434,7 @@
   font-family: var(--font-code, 'IBM Plex Mono', monospace);
   font-size: 0.74rem;
   letter-spacing: 0.08em;
-  color: var(--color-slate, #475569);
+  color: rgba(226, 236, 255, 0.66);
 }
 
 .scroll-cue .arrow {
@@ -442,7 +459,7 @@
 
 @media (max-width: 1024px) {
   .hero {
-    padding: calc(var(--nav-height, 64px) + 32px) 24px 64px;
+    padding: calc(var(--nav-height, 64px) + 32px) 0 52px;
     min-height: auto;
   }
 
@@ -471,7 +488,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: calc(var(--nav-height, 60px) + 28px) 20px 56px;
+    padding: calc(var(--nav-height, 60px) + 28px) 0 46px;
   }
 
   .hero__inner {
@@ -481,7 +498,7 @@
 
 @media (max-width: 640px) {
   .hero {
-    padding: calc(var(--nav-height, 58px) + 24px) 18px 48px;
+    padding: calc(var(--nav-height, 58px) + 24px) 0 40px;
   }
 
   .hero__inner {
@@ -491,7 +508,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: calc(var(--nav-height, 56px) + 20px) 16px 44px;
+    padding: calc(var(--nav-height, 56px) + 20px) 0 34px;
   }
 
   .float-badge-text {
@@ -515,7 +532,7 @@
 
 @media (max-width: 360px) {
   .hero {
-    padding: calc(var(--nav-height, 54px) + 16px) 12px 36px;
+    padding: calc(var(--nav-height, 54px) + 16px) 0 30px;
   }
 
   .float-card {
@@ -550,7 +567,7 @@
 
 @media (max-width: 320px) {
   .hero {
-    padding: calc(var(--nav-height, 52px) + 12px) 10px 32px;
+    padding: calc(var(--nav-height, 52px) + 12px) 0 26px;
   }
 
   .eyebrow {

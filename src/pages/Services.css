@@ -17,7 +17,11 @@
 
 .svc-hero {
   position: relative;
-  background: radial-gradient(ellipse at 80% -10%, rgba(15, 63, 184, 0.28), transparent 55%), var(--color-ink, #0f172a);
+  background-color: var(--color-ink, #0f172a);
+  background-image:
+    radial-gradient(ellipse at 82% -12%, rgba(30, 99, 233, 0.4), transparent 55%),
+    radial-gradient(ellipse at 6% 108%, rgba(63, 169, 255, 0.16), transparent 62%),
+    linear-gradient(180deg, #0a1630 0%, #0d2147 48%, #0a1a36 100%);
   color: #ffffff;
   padding: clamp(6.5rem, 10vw, 8.5rem) 0 clamp(4.5rem, 7vw, 6rem);
   overflow: hidden;
@@ -32,22 +36,21 @@
 
 .svc-hero__glow {
   position: absolute;
-  top: 20%;
-  right: 10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(15, 63, 184, 0.15), transparent 70%);
+  top: 10%;
+  right: 4%;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, rgba(30, 99, 233, 0.32), transparent 70%);
   filter: blur(80px);
 }
 
 .svc-hero__grid {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 44px 44px;
+  background-image: radial-gradient(rgba(148, 187, 255, 0.16) 1.2px, transparent 1.2px);
+  background-size: 30px 30px;
   mask-image: linear-gradient(to bottom, black 40%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 90%);
 }
 
 .svc-hero__inner {
@@ -61,8 +64,17 @@
   flex-direction: column;
 }
 
-.svc-hero__content .about-eyebrow {
-  color: #60A5FA;
+/* Scoped dark-hero eyebrow + highlight accents */
+.svc-hero .eyebrow {
+  color: #9cc0ff;
+}
+
+.svc-hero .eyebrow::before {
+  background: var(--color-accent-blue, #3FA9FF);
+}
+
+.svc-hero .hero__highlight {
+  color: #7eb0ff;
 }
 
 .svc-hero__headline {
@@ -86,11 +98,39 @@
   font-family: var(--font-primary);
   font-size: 1.08rem;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(226, 236, 255, 0.9);
   margin: 0;
 }
 
 /* ─── 2. TRAINING SERVICES ─────────────────────────────────────────── */
+
+/* Training Services — light-blue band */
+#svc-training.svc-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--color-blue-50, #f5f9ff) 0%,
+    var(--color-blue-100, #eef6ff) 100%
+  );
+}
+
+#svc-training.svc-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+#svc-training.svc-section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(15, 63, 184, 0.08), transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+}
 
 .svc-top {
   max-width: 680px;
@@ -201,18 +241,22 @@
 /* ─── 3. ACCREDITATION CONSULTANCY ─────────────────────────────────── */
 
 .svc-consult {
-  background: radial-gradient(ellipse at 85% 20%, rgba(15, 63, 184, 0.22), transparent 60%), #0B1F2A;
+  background-color: #0a1a36;
+  background-image:
+    radial-gradient(ellipse at 85% 12%, rgba(30, 99, 233, 0.34), transparent 60%),
+    radial-gradient(ellipse at 8% 100%, rgba(63, 169, 255, 0.12), transparent 60%),
+    linear-gradient(180deg, #0a1630 0%, #0d2147 52%, #0a1a36 100%);
   color: #ffffff;
   position: relative;
   overflow: hidden;
 }
 
 .svc-consult .eyebrow {
-  color: #60A5FA;
+  color: #9cc0ff;
 }
 
 .svc-consult .eyebrow::before {
-  background: #60A5FA;
+  background: var(--color-accent-blue, #3FA9FF);
 }
 
 .svc-consult__grid {
@@ -366,15 +410,22 @@
 }
 
 .svc-closing__cta-box {
-  background: var(--color-blue-50, #f5f9ff);
-  border: 1px solid rgba(15, 63, 184, 0.16);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    var(--color-blue-50, #f5f9ff) 55%,
+    var(--color-blue-100, #eef6ff) 100%
+  );
+  border: 1px solid rgba(15, 63, 184, 0.18);
   border-radius: 24px;
   padding: clamp(2rem, 4vw, 2.75rem);
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
-  box-shadow: 0 10px 30px -10px rgba(15, 63, 184, 0.08);
+  box-shadow:
+    0 26px 52px -26px rgba(15, 63, 184, 0.34),
+    0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
 .svc-closing__cta-text {
@@ -383,6 +434,38 @@
   color: var(--color-slate, #475569);
   line-height: 1.6;
   margin: 0;
+}
+
+/* ─── Closing CTA — Deep-Blue Full-Width Band (Services page only) ── */
+
+.svc-cta-band {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(30, 99, 233, 0.36), transparent 60%),
+    radial-gradient(ellipse at 10% 120%, rgba(63, 169, 255, 0.14), transparent 62%),
+    linear-gradient(180deg, #0a1630 0%, #0d2147 55%, #0a1a36 100%);
+}
+
+.svc-cta-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(148, 187, 255, 0.12) 1.2px, transparent 1.2px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 30%, transparent 85%);
+  pointer-events: none;
+}
+
+.svc-cta-band .cta-banner {
+  position: relative;
+  background-color: transparent;
+}
+
+.svc-cta-band .cta-banner__inner {
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 34px 64px -28px rgba(3, 10, 30, 0.55);
 }
 
 /* ─── Responsive Breakpoints ──────────────────────────────────────── */

@@ -5,6 +5,8 @@
 .learning {
   position: relative;
   overflow: hidden;
+  background-color: var(--color-canvas, #ffffff);
+  border-top: 1px solid var(--color-hairline-soft, #e2e8f0);
 }
 
 .learning__bg {
@@ -17,10 +19,11 @@
 .learning__glow {
   position: absolute;
   top: 0;
-  left: -10%;
+  right: -10%;
+  left: auto;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(15, 63, 184, 0.06), transparent 70%);
+  background: radial-gradient(circle, rgba(15, 63, 184, 0.08), transparent 70%);
   filter: blur(80px);
 }
 

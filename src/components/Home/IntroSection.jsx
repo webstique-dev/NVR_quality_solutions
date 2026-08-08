@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { LuShieldCheck, LuAward, LuBookOpen, LuCheck } from 'react-icons/lu';
-import Button from '../Common/Button';
 import Magnetic from '../ui/Magnetic';
 import { fadeRight, fadeLeft } from '../../animations/variants';
 import { homeViewport } from '../../animations/viewport';

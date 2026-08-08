@@ -347,15 +347,17 @@ const About = () => {
       </section>
 
       {/* Global CTA Banner */}
-      <CTABanner
-        eyebrow="Get Started"
-        title="Explore Our Training Programs"
-        description="Build strong healthcare operational foundations and prepare for accreditation with expert-led training."
-        primaryLabel="Explore Our Training Programs"
-        primaryTo="/training-programs"
-        secondaryLabel="Contact Us"
-        secondaryTo="/contact"
-      />
+      <div className="about-cta-band">
+        <CTABanner
+          eyebrow="Get Started"
+          title="Explore Our Training Programs"
+          description="Build strong healthcare operational foundations and prepare for accreditation with expert-led training."
+          primaryLabel="Explore Our Training Programs"
+          primaryTo="/training-programs"
+          secondaryLabel="Contact Us"
+          secondaryTo="/contact"
+        />
+      </div>
     </>
   );
 };

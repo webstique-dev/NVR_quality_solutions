@@ -403,7 +403,7 @@ const Contact = () => {
       {/* ═══════════════════════════════════════════════
           5. FREQUENTLY ASKED QUESTIONS — EXACT HOME PAGE ACCORDION
       ════════════════════════════════════════════════ */}
-      <section className="section section--light">
+      <section className="section section--light cnt-faq-section">
         <div className="container">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}

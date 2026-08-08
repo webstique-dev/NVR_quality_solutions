@@ -37,18 +37,20 @@ const Home = () => {
       <LearningSection />
 
       {/* CTA Section — Full-Width Premium Banner */}
-      <CTABanner
-        eyebrow="Get In Touch"
-        title="Begin Your Journey in Healthcare Quality"
-        description="Expand your professional skills, prepare for accreditation-related roles, and support healthcare organizations through initiatives. NVR Quality Solutions provides the training and guidance to help you move forward with confidence."
-        primaryLabel="View Training Programs"
-        primaryTo="/training-programs"
-        secondaryLabel="Contact Us"
-        secondaryTo="/contact"
-      />
+      <div className="home-cta-band">
+        <CTABanner
+          eyebrow="Get In Touch"
+          title="Begin Your Journey in Healthcare Quality"
+          description="Expand your professional skills, prepare for accreditation-related roles, and support healthcare organizations through initiatives. NVR Quality Solutions provides the training and guidance to help you move forward with confidence."
+          primaryLabel="View Training Programs"
+          primaryTo="/training-programs"
+          secondaryLabel="Contact Us"
+          secondaryTo="/contact"
+        />
+      </div>
 
       {/* FAQ Section — Modern Accordion */}
-      <section className="section section--light">
+      <section className="section section--light home-faq-section">
         <div className="container">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}

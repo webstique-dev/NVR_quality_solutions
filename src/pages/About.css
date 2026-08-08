@@ -13,6 +13,51 @@
   border-bottom: 1px solid var(--color-hairline-soft, #e2e8f0);
 }
 
+/* ─── Section Band Backgrounds (white / light-blue / deep-blue rhythm) ── */
+
+/* Mission & Vision — white fading to soft blue at the base */
+#mission.about-section {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffffff 42%,
+    var(--color-blue-50, #f5f9ff) 100%
+  );
+}
+
+/* What We Do — light-blue band */
+#wwd.about-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--color-blue-50, #f5f9ff) 0%,
+    var(--color-blue-100, #eef6ff) 100%
+  );
+}
+
+#wwd.about-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+#wwd.about-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(15, 63, 184, 0.08), transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+/* Closing / Why Choose — white canvas */
+#closing.about-section {
+  background-color: var(--color-canvas, #ffffff);
+}
+
 /* ─── Eyebrow Component ────────────────────────────────────────────── */
 
 .about-eyebrow {
@@ -53,7 +98,11 @@
 
 .about-hero {
   position: relative;
-  background: radial-gradient(ellipse at 80% -10%, rgba(15, 63, 184, 0.28), transparent 55%), var(--color-ink, #0f172a);
+  background-color: var(--color-ink, #0f172a);
+  background-image:
+    radial-gradient(ellipse at 82% -12%, rgba(30, 99, 233, 0.4), transparent 55%),
+    radial-gradient(ellipse at 6% 108%, rgba(63, 169, 255, 0.16), transparent 62%),
+    linear-gradient(180deg, #0a1630 0%, #0d2147 48%, #0a1a36 100%);
   color: #ffffff;
   padding: clamp(6.5rem, 10vw, 8.5rem) 0 clamp(4.5rem, 7vw, 6rem);
   overflow: hidden;
@@ -68,11 +117,11 @@
 
 .about-hero__glow {
   position: absolute;
-  top: 20%;
-  right: 10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(15, 63, 184, 0.15), transparent 70%);
+  top: 10%;
+  right: 4%;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, rgba(30, 99, 233, 0.32), transparent 70%);
   filter: blur(80px);
 }
 
@@ -99,6 +148,19 @@
 
 .about-hero__content .about-eyebrow {
   color: #60A5FA;
+}
+
+/* Scoped dark-hero eyebrow + highlight accents */
+.about-hero .eyebrow {
+  color: #9cc0ff;
+}
+
+.about-hero .eyebrow::before {
+  background: var(--color-accent-blue, #3FA9FF);
+}
+
+.about-hero .hero__highlight {
+  color: #7eb0ff;
 }
 
 .about-hero__headline {
@@ -264,10 +326,22 @@
 /* ─── 4. CONSULTANCY DARK BAND ─────────────────────────────────────── */
 
 .about-consult {
-  background: radial-gradient(ellipse at 85% 20%, rgba(15, 63, 184, 0.22), transparent 60%), #0B1F2A;
+  background-color: #0a1a36;
+  background-image:
+    radial-gradient(ellipse at 85% 12%, rgba(30, 99, 233, 0.34), transparent 60%),
+    radial-gradient(ellipse at 8% 100%, rgba(63, 169, 255, 0.12), transparent 60%),
+    linear-gradient(180deg, #0a1630 0%, #0d2147 52%, #0a1a36 100%);
   color: #ffffff;
   position: relative;
   overflow: hidden;
+}
+
+.about-consult .eyebrow {
+  color: #9cc0ff;
+}
+
+.about-consult .eyebrow::before {
+  background: var(--color-accent-blue, #3FA9FF);
 }
 
 .about-consult__grid {
@@ -373,15 +447,22 @@
 }
 
 .about-closing__cta-box {
-  background: var(--color-blue-50, #f5f9ff);
-  border: 1px solid rgba(15, 63, 184, 0.16);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    var(--color-blue-50, #f5f9ff) 55%,
+    var(--color-blue-100, #eef6ff) 100%
+  );
+  border: 1px solid rgba(15, 63, 184, 0.18);
   border-radius: 24px;
   padding: clamp(2rem, 4vw, 2.75rem);
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
-  box-shadow: 0 10px 30px -10px rgba(15, 63, 184, 0.08);
+  box-shadow:
+    0 26px 52px -26px rgba(15, 63, 184, 0.34),
+    0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
 .about-closing__cta-text {
@@ -410,6 +491,38 @@
 
 .about-faq-wrap {
   margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+/* ─── Closing CTA — Deep-Blue Full-Width Band (About page only) ────── */
+
+.about-cta-band {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(30, 99, 233, 0.36), transparent 60%),
+    radial-gradient(ellipse at 10% 120%, rgba(63, 169, 255, 0.14), transparent 62%),
+    linear-gradient(180deg, #0a1630 0%, #0d2147 55%, #0a1a36 100%);
+}
+
+.about-cta-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(148, 187, 255, 0.12) 1.2px, transparent 1.2px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 30%, transparent 85%);
+  pointer-events: none;
+}
+
+.about-cta-band .cta-banner {
+  position: relative;
+  background-color: transparent;
+}
+
+.about-cta-band .cta-banner__inner {
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 34px 64px -28px rgba(3, 10, 30, 0.55);
 }
 
 /* ─── Responsive Breakpoints ──────────────────────────────────────── */

@@ -390,6 +390,7 @@ const TrainingPrograms = () => {
       {/* ═══════════════════════════════════════════════
           5. CTA BANNER
       ════════════════════════════════════════════════ */}
+      <div className="tp-cta-band">
       <CTABanner
         eyebrow="Get Started"
         title="Ready to Begin Your Healthcare Quality Journey?"
@@ -399,6 +400,7 @@ const TrainingPrograms = () => {
         secondaryLabel="Explore Services"
         secondaryTo="/services"
       />
+      </div>
     </>
   );
 };

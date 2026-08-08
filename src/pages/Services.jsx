@@ -149,7 +149,7 @@ const Services = () => {
       {/* ═══════════════════════════════════════════════
           2. TRAINING SERVICES
       ════════════════════════════════════════════════ */}
-      <section className="svc-section section--light">
+      <section id="svc-training" className="svc-section section--light">
         <div className="container">
           <Magnetic strength={0.06} className="magnetic--block">
           <motion.div
@@ -356,15 +356,17 @@ const Services = () => {
       {/* ═══════════════════════════════════════════════
           5. CTA BANNER
       ════════════════════════════════════════════════ */}
-      <CTABanner
-        eyebrow="Get Started"
-        title="Ready to Build Your Healthcare Quality Career?"
-        description="Explore our specialized training programs or talk to our experts to discuss custom consultancy for your institution."
-        primaryLabel="Explore Our Training Programs"
-        primaryTo="/training-programs"
-        secondaryLabel="Contact Our Team"
-        secondaryTo="/contact"
-      />
+      <div className="svc-cta-band">
+        <CTABanner
+          eyebrow="Get Started"
+          title="Ready to Build Your Healthcare Quality Career?"
+          description="Explore our specialized training programs or talk to our experts to discuss custom consultancy for your institution."
+          primaryLabel="Explore Our Training Programs"
+          primaryTo="/training-programs"
+          secondaryLabel="Contact Our Team"
+          secondaryTo="/contact"
+        />
+      </div>
     </>
   );
 };
