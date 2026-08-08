@@ -1,0 +1,52 @@
+/* ===================================================================
+   Custom Cursor — built with Framer Motion
+   Replicates the previous react-animated-cursor visuals:
+   a small solid royal-blue dot (inner) + a large translucent ring (outer).
+   =================================================================== */
+
+.custom-cursor__inner,
+.custom-cursor__outer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.custom-cursor__inner {
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  margin-left: -3.5px;
+  background-color: rgba(30, 99, 233, 1);
+}
+
+.custom-cursor__outer {
+  width: 34px;
+  height: 34px;
+  margin-top: -17px;
+  margin-left: -17px;
+  background-color: rgba(30, 99, 233, 0.16);
+}
+
+/* While the custom cursor is active (fine-pointer, hover-capable device and
+   no reduced-motion preference) hide the native cursor so there is always a
+   single cursor on screen. The class is toggled on <html> by the component.
+   If the OS prefers reduced motion, JS disabling also removes the class.
+   The explicit `!important` keeps parity with the previous cursor, which
+   forced `cursor: none` on the body and every clickable element. */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Safety net: never animate the cursor when reduced motion is requested,
+     even if the class from a previous session lingers. */
+  .custom-cursor__inner,
+  .custom-cursor__outer {
+    display: none;
+  }
+}
