@@ -5,6 +5,7 @@ import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
 import ScrollToTopOnRoute from './components/Common/ScrollToTopOnRoute';
 import ScrollToTopButton from './components/Common/ScrollToTopButton';
+import CustomCursor from './components/Common/CustomCursor';
 import Preloader from './components/Common/Preloader';
 import { PreloaderProvider, usePreloader } from './context/PreloaderContext';
 
@@ -60,6 +61,7 @@ function AppContent() {
       </main>
       <Footer />
       <ScrollToTopButton />
+      <CustomCursor />
       <AnimatePresence mode="wait">
         {showPreloader && (
           <Preloader
