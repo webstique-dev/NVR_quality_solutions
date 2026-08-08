@@ -87,26 +87,6 @@ const Hero = () => {
             scale: { duration: 9, ease: 'easeInOut', repeat: Infinity },
           }}
         />
-        <motion.div
-          className="hero__glow hero__glow--2"
-          style={shouldReduceMotion ? {} : { x: bgX, y: bgY }}
-          variants={heroGlow}
-          initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : 'hidden'}
-          animate={
-            shouldReduceMotion
-              ? { opacity: 1, scale: 1 }
-              : isPreloaderGone
-              ? {
-                  opacity: [0.6, 0.9, 0.6],
-                  scale: [1, 1.15, 1],
-                }
-              : 'hidden'
-          }
-          transition={{
-            opacity: { duration: 8, ease: 'easeInOut', repeat: Infinity, delay: 1 },
-            scale: { duration: 10, ease: 'easeInOut', repeat: Infinity, delay: 1 },
-          }}
-        />
 
         {/* Ambient Decorative Dot Matrix Overlay */}
         <motion.div

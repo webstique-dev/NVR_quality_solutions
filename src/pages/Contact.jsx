@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   LuPhone,
@@ -23,6 +24,7 @@ import {
   staggerItem,
 } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
+import useSectionLenis from '../hooks/useSectionLenis';
 import './Contact.css';
 
 /* ─── Contact Info Items ────────────────────────────── */
@@ -94,6 +96,8 @@ const contactFaqs = [
 const Contact = () => {
   const shouldReduceMotion = useReducedMotion();
   const { isPreloaderGone } = usePreloader();
+  const formSectionRef = useRef(null);
+  useSectionLenis(formSectionRef);
 
   return (
     <>
@@ -318,7 +322,7 @@ const Contact = () => {
       {/* ═══════════════════════════════════════════════
           4. SEND US A MESSAGE
       ════════════════════════════════════════════════ */}
-      <section className="cnt-section section--light">
+      <section ref={formSectionRef} className="cnt-section section--light">
         <div className="container">
           <div className="cnt-form-grid">
             {/* Main Form Column */}

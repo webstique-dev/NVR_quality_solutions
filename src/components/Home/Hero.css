@@ -9,7 +9,7 @@
   background-image:
     radial-gradient(ellipse at 82% -12%, rgba(30, 99, 233, 0.4), transparent 55%),
     radial-gradient(ellipse at 6% 108%, rgba(63, 169, 255, 0.16), transparent 62%),
-    linear-gradient(180deg, #0a1630 0%, #0d2147 50%, #0a1a36 100%);
+    linear-gradient(180deg, #0a1630 0%, #0d2147 48%, #0a1a36 100%);
   color: #ffffff;
   padding: calc(var(--nav-height, 74px) + clamp(2.25rem, 5vw, 4rem)) 0
     clamp(2.5rem, 5vw, 4.5rem);
@@ -37,29 +37,22 @@
 }
 
 .hero__glow--1 {
-  top: -10%;
-  right: -5%;
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(30, 99, 233, 0.3), transparent 70%);
-}
-
-.hero__glow--2 {
-  bottom: -15%;
-  left: -5%;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(227, 27, 35, 0.12), transparent 70%);
+  top: 10%;
+  right: 4%;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, rgba(30, 99, 233, 0.32), transparent 70%);
+  filter: blur(80px);
 }
 
 .hero__grid-pattern {
   position: absolute;
   inset: 0;
   background-image: radial-gradient(rgba(148, 187, 255, 0.16) 1.2px, transparent 1.2px);
-  background-size: 28px 28px;
+  background-size: 30px 30px;
   pointer-events: none;
-  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 22%, transparent 72%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 22%, transparent 72%);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 90%);
 }
 
 /* Main 2-Column Grid Layout */
@@ -130,7 +123,7 @@
   font-family: var(--font-primary);
   font-size: 1.06rem;
   line-height: 1.65;
-  color: rgba(226, 236, 255, 0.86);
+  color: rgba(226, 236, 255, 0.9);
   max-width: 48ch;
   margin-bottom: 28px;
 }

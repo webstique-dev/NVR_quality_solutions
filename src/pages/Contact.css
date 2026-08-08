@@ -2,6 +2,29 @@
    Contact Page — Home Page Theme Alignment & Bug Fixes
    =================================================================== */
 
+/* ─── Lenis Smooth Scroll — scoped to Contact page only ─────────────
+   Lenis applies its classes to <html> only while its instance is mounted
+   on this page (it is destroyed on unmount), so these rules never touch
+   other pages. `scroll-behavior: auto` is required so Lenis' own
+   rAF-driven scroll is not overridden by the global smooth behavior. */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 .cnt-section {
   padding: clamp(4.5rem, 7.5vw, 6.5rem) 0;
   position: relative;
