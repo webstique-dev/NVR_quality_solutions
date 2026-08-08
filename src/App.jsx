@@ -69,9 +69,13 @@ function AppContent() {
               // out, so content is fully painted behind the exit — no
               // blank/flash frame during the transition.
               setPreloaderComplete();
-              setPreloaderFinished();
             }}
             onFinish={() => {
+              // The exit zoom has fully completed and the overlay is about
+              // to be removed from the DOM. Only now flip isPreloaderGone so
+              // the homepage hero animations never run behind/during the
+              // preloader.
+              setPreloaderFinished();
               setShowPreloader(false);
             }}
           />
