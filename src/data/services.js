@@ -21,8 +21,8 @@ export const services = [
     name: 'JCI Training',
   },
   {
-    slug: 'camhp-training',
-    name: 'CAMHP Training',
+    slug: 'caam-hp-training',
+    name: 'CAAM HP Training',
   },
   {
     slug: 'healthcare-quality-consultancy',

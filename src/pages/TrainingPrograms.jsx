@@ -91,15 +91,15 @@ const programs = [
     ],
   },
   {
-    id: 'camhp-training',
+    id: 'caam-hp-training',
     icon: LuAward,
     tag: 'Compliance',
     number: '05',
-    title: 'CAMHP Training',
+    title: 'CAAM HP Training',
     description:
-      'Develop an understanding of CAMHP standards and their role in strengthening healthcare quality and patient safety.',
+      'Develop an understanding of CAAM HP standards and their role in strengthening healthcare quality and patient safety.',
     areas: [
-      'CAMHP framework',
+      'CAAM HP framework',
       'Compliance requirements',
       'Documentation practices',
       'Process improvement',

@@ -67,13 +67,13 @@ const trainingServices = [
     ],
   },
   {
-    id: 'camhp-training',
+    id: 'caam-hp-training',
     icon: LuAward,
     tag: 'Compliance',
     number: '05',
-    title: 'CAMHP Training',
+    title: 'CAAM HP Training',
     body: [
-      'Our CAMHP Training programs dissect the framework, requirements, and quality principles associated with CAMHP standards. The curriculum is designed to improve awareness and prepare participants for quality-focused roles.',
+      'Our CAAM HP Training programs dissect the framework, requirements, and quality principles associated with CAAM HP standards. The curriculum is designed to improve awareness and prepare participants for quality-focused roles.',
     ],
   },
 ];

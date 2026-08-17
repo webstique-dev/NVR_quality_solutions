@@ -7,5 +7,5 @@ export const trainingPrograms = [
   { slug: 'patient-safety-training', title: 'Patient Safety Training' },
   { slug: 'nabh-training', title: 'NABH Training' },
   { slug: 'jci-training', title: 'JCI Training' },
-  { slug: 'camhp-training', title: 'CAMHP Training' },
+  { slug: 'caam-hp-training', title: 'CAAM HP Training' },
 ];

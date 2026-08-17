@@ -145,7 +145,7 @@ const Hero = () => {
               initial={shouldReduceMotion ? false : 'hidden'}
               animate={isPreloaderGone ? 'show' : 'hidden'}
             >
-              {['NABH', 'JCI', 'CAMHP'].map((label) => (
+              {['NABH', 'JCI', 'CAAM HP'].map((label) => (
                 <Magnetic key={label} strength={0.25} className="magnetic--chip">
                   <motion.span className="chip" variants={chipItem}>
                     {label}

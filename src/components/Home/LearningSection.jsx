@@ -73,7 +73,7 @@ const LearningSection = () => {
               <Magnetic strength={0.18} className="magnetic--stat">
                 <motion.div className="learning__stat" variants={staggerItem}>
                   <span className="learning__stat-value">3</span>
-                  <span className="learning__stat-label">Global Standards<br />(NABH, JCI, CAMHP)</span>
+                  <span className="learning__stat-label">Global Standards<br />(NABH, JCI, CAAM HP)</span>
                 </motion.div>
               </Magnetic>
               <div className="learning__stat-divider" aria-hidden="true" />

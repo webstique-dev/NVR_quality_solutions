@@ -5,7 +5,6 @@ import {
   LuMail,
   LuMapPin,
   LuClock,
-  LuMap,
   LuShieldCheck,
   LuHeadphones,
 } from 'react-icons/lu';
@@ -81,7 +80,7 @@ const contactFaqs = [
   {
     question: 'Do you provide certifications?',
     answer:
-      'No. NVR Quality Solutions is a training and consultancy firm. We prepare individuals and healthcare organizations for recognized standards such as NABH, JCI, and CAMHP, but we do not issue certifications.',
+      'No. NVR Quality Solutions is a training and consultancy firm. We prepare individuals and healthcare organizations for recognized standards such as NABH, JCI, and CAAM HP, but we do not issue certifications.',
   },
   {
     question: 'Can hospitals request customized training programs?',
@@ -149,7 +148,7 @@ const Contact = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          2. CONTACT DETAILS & MAP LOCATION
+          2. CONTACT DETAILS
       ════════════════════════════════════════════════ */}
       <section className="cnt-section section--light">
         <div className="container">
@@ -164,7 +163,7 @@ const Contact = () => {
             <span className="eyebrow">Reach Out</span>
 
             <motion.h2 className="section-title" variants={fadeUp}>
-              Contact Details &amp; Location
+              Contact Details
             </motion.h2>
           </motion.div>
           </Magnetic>
@@ -172,7 +171,7 @@ const Contact = () => {
           <div className="cnt-details__layout">
             {/* Info Cards Grid */}
             <motion.div
-              className="pillar-grid cnt-cards-2col"
+              className="pillar-grid cnt-cards-4col"
               variants={staggerContainer}
               initial={shouldReduceMotion ? { opacity: 1 } : 'hidden'}
               whileInView={shouldReduceMotion ? { opacity: 1 } : 'show'}
@@ -211,42 +210,6 @@ const Contact = () => {
                 );
               })}
             </motion.div>
-
-            {/* Map Card */}
-            <Magnetic strength={0.2} className="magnetic--card">
-              <motion.article
-                className="pillar-card cnt-map-card"
-                initial={shouldReduceMotion ? { opacity: 1, x: 0 } : 'hidden'}
-                whileInView={shouldReduceMotion ? { opacity: 1, x: 0 } : 'show'}
-                viewport={homeViewport}
-                variants={fadeLeft}
-              >
-                <div className="cnt-map-card__header">
-                  <div className="pillar-icon" aria-hidden="true">
-                    <LuMap className="pillar-icon-svg" />
-                  </div>
-                  <span className="pillar-tag">Headquarters Location</span>
-                </div>
-                <h3>Amaravathi, AP</h3>
-
-                <div className="cnt-map-card__body">
-                  <div className="cnt-map-card__pin-wrap">
-                    <LuMapPin className="cnt-map-card__pin-icon" aria-hidden="true" />
-                    <span className="cnt-map-card__pin-pulse" aria-hidden="true" />
-                  </div>
-                  <p className="cnt-map-card__label">Thadepalli, Amaravathi</p>
-                  <span className="cnt-map-card__sublabel">Andhra Pradesh, India</span>
-                  <a
-                    href="https://maps.google.com/?q=Thadepalli,+Amaravathi,+Andhra+Pradesh"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="cnt-map-card__btn"
-                  >
-                    View on Google Maps
-                  </a>
-                </div>
-              </motion.article>
-            </Magnetic>
           </div>
 
           {/* Vital Waveform Line Divider */}
@@ -371,7 +334,7 @@ const Contact = () => {
                 <span className="eyebrow">Rapid Support</span>
                 <h3 className="cnt-side-title">Need Immediate Guidance?</h3>
                 <p className="cnt-side-desc">
-                  Whether you are inquiring about NABH, JCI, or CAMHP training, course enrollment, or
+                  Whether you are inquiring about NABH, JCI, or CAAM HP training, course enrollment, or
                   hospital consultancy services, our team is ready to assist you.
                 </p>
 

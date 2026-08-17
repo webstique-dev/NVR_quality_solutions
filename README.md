@@ -43,7 +43,7 @@ placeholder (see `src/components/Common/ContentPending.jsx`).
 
 Service and training program **names** are real (drawn directly from the brief):
 Healthcare Quality Training, Patient Safety Training, NABH Training, JCI Training,
-CAMHP Training, Healthcare Quality Consultancy.
+CAAM HP Training, Healthcare Quality Consultancy.
 
 ## Project Structure
 

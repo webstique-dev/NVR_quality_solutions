@@ -122,14 +122,25 @@ html.lenis body {
 /* ─── 2. CONTACT DETAILS & MAP LOCATION ────────────────────────────── */
 
 .cnt-details__layout {
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 24px;
-  align-items: stretch;
+  width: 100%;
 }
 
-.cnt-cards-2col {
-  grid-template-columns: 1fr 1fr;
+.cnt-cards-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .cnt-cards-4col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cnt-cards-4col {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cnt-info-link {

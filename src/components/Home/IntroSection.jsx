@@ -50,7 +50,7 @@ const IntroSection = () => {
                   Gain expertise in internationally recognized healthcare standards, including{' '}
                   <strong className="intro-section__highlight">NABH</strong>,{' '}
                   <strong className="intro-section__highlight">JCI</strong>, and{' '}
-                  <strong className="intro-section__highlight">CAMHP</strong>, through structured
+                  <strong className="intro-section__highlight">CAAM HP</strong>, through structured
                   training, hands-on learning, and guidance from experienced professionals.
                 </p>
               </div>
@@ -59,7 +59,7 @@ const IntroSection = () => {
               <div className="intro-section__chips">
                 <div className="intro-chip">
                   <LuShieldCheck className="intro-chip__icon" aria-hidden="true" />
-                  <span>NABH, JCI &amp; CAMHP Standards</span>
+                  <span>NABH, JCI &amp; CAAM HP Standards</span>
                 </div>
                 <div className="intro-chip">
                   <LuAward className="intro-chip__icon" aria-hidden="true" />
@@ -134,7 +134,7 @@ const IntroSection = () => {
                   </div>
                   <div className="intro-float-badge__text">
                     <strong>Industry Standards</strong>
-                    <span>NABH • JCI • CAMHP</span>
+                    <span>NABH • JCI • CAAM HP</span>
                   </div>
                 </motion.div>
               </div>

@@ -158,7 +158,7 @@ const Footer = () => {
           <p className="footer__copyright">&copy; {year} NVR Quality Solutions. All rights reserved.</p>
           <p className="footer__disclaimer">
             NVR Quality Solutions provides training and consultancy in preparation for
-            healthcare quality standards such as NABH, JCI, and CAMHP. NVR Quality Solutions
+            healthcare quality standards such as NABH, JCI, and CAAM HP. NVR Quality Solutions
             does not award these certifications.
           </p>
         </motion.div>

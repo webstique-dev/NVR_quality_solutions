@@ -83,7 +83,7 @@ export const ROUTE_META = {
   home: {
     title: 'Healthcare Quality Training & Patient Safety Training | NVR Quality Solutions',
     description:
-      'Expert-led healthcare quality training, patient safety training and accreditation consultancy for NABH, JCI and CAMHP standards. Build safer healthcare systems with NVR Quality Solutions.',
+      'Expert-led healthcare quality training, patient safety training and accreditation consultancy for NABH, JCI and CAAM HP standards. Build safer healthcare systems with NVR Quality Solutions.',
     keywords: [
       'Healthcare Quality Training',
       'Patient Safety Training',
@@ -95,7 +95,7 @@ export const ROUTE_META = {
   about: {
     title: 'About Us | Healthcare Quality Experts & Accreditation Consultants | NVR Quality Solutions',
     description:
-      'NVR Quality Solutions combines industry experience, practical case-based learning, and consultancy-backed education. We prepare healthcare professionals for NABH, JCI and CAMHP accreditation readiness.',
+      'NVR Quality Solutions combines industry experience, practical case-based learning, and consultancy-backed education. We prepare healthcare professionals for NABH, JCI and CAAM HP accreditation readiness.',
     keywords: [
       'Healthcare quality consultant',
       'NABH consultant',
@@ -119,7 +119,7 @@ export const ROUTE_META = {
   serviceDetail: {
     title: (name) => `${name} | Healthcare Quality Services | NVR Quality Solutions`,
     description: (name) =>
-      `${name} at NVR Quality Solutions — expert-led, practical healthcare quality training and consultancy. Prepare for NABH, JCI and CAMHP accreditation readiness.`,
+      `${name} at NVR Quality Solutions — expert-led, practical healthcare quality training and consultancy. Prepare for NABH, JCI and CAAM HP accreditation readiness.`,
   },
   trainingPrograms: {
     title: 'Training Programs | NABH Training, JCI Training & Healthcare Quality Courses',

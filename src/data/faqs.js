@@ -2,7 +2,7 @@ export const faqs = [
   {
     question: 'Do you provide the certifications directly?',
     answer:
-      'No. NVR Quality Solutions is a training and consultancy organization. We do not issue certifications. Our programs are designed to help participants understand healthcare quality standards and prepare for certification pathways and accreditation requirements associated with NABH, JCI, and CAMHP.',
+      'No. NVR Quality Solutions is a training and consultancy organization. We do not issue certifications. Our programs are designed to help participants understand healthcare quality standards and prepare for certification pathways and accreditation requirements associated with NABH, JCI, and CAAM HP.',
   },
   {
     question: 'Who can enroll in your healthcare quality training programs?',
