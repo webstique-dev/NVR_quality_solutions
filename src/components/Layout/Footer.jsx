@@ -11,7 +11,8 @@ const FOOTER_LINKS = {
   Company: [
     { label: 'About', to: '/about' },
     { label: 'Services', to: '/services' },
-    { label: 'Training Programs', to: '/training-programs' },
+    { label: 'Trainings', to: '/trainings' },
+    { label: 'Careers', to: '/careers' },
     { label: 'Contact', to: '/contact' },
   ],
   Resources: [
@@ -65,7 +66,7 @@ const Footer = () => {
             </Magnetic>
             <Magnetic strength={0.06} className="magnetic--block">
               <p className="footer__tagline">
-                Empowering healthcare professionals to build safer, higher-quality
+                Empowering Healthcare Organizations to build safer, higher-quality
                 healthcare systems through expert-led training and quality consultancy.
               </p>
             </Magnetic>

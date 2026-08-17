@@ -16,6 +16,7 @@ const Services = lazy(() => import('./pages/Services'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const TrainingPrograms = lazy(() => import('./pages/TrainingPrograms'));
 const TrainingDetail = lazy(() => import('./pages/TrainingDetail'));
+const Careers = lazy(() => import('./pages/Careers'));
 const Contact = lazy(() => import('./pages/Contact'));
 const FAQ = lazy(() => import('./pages/FAQ'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
@@ -49,8 +50,11 @@ function AppContent() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
+            <Route path="/trainings" element={<TrainingPrograms />} />
+            <Route path="/trainings/:slug" element={<TrainingDetail />} />
             <Route path="/training-programs" element={<TrainingPrograms />} />
             <Route path="/training-programs/:slug" element={<TrainingDetail />} />
+            <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

@@ -23,59 +23,150 @@ import { useSEO } from '../hooks/useSEO';
 import { ROUTE_META } from '../config/seo';
 import './Services.css';
 
+/* ─── What We Do items ────────────────────────────────────── */
+const whatWeDoItems = [
+  'Healthcare Quality Training',
+  'Patient Safety Training',
+  'Healthcare Accreditation Training',
+  'Hospital Quality Management',
+  'Quality implementation support',
+  'Accreditation readiness consultancy',
+  'Healthcare process improvement',
+  'Train-the-Trainer Programs',
+  'Pharmacy Audits',
+  'Mock Drill Preparations',
+];
+
 /* ─── Training service cards ─────────────────────────── */
+// const trainingServices = [
+//   {
+//     id: 'healthcare-quality-training',
+//     icon: LuChartBar,
+//     tag: 'Quality Practice',
+//     number: '01',
+//     title: 'Healthcare Quality Training',
+//     body: [
+//       'Our Healthcare Quality Training programs equip students and healthcare professionals. Every student leaves us with the knowledge and skills needed to understand healthcare quality systems, regulatory expectations, and quality improvement methodologies.',
+//       'Participants gain exposure to industry best practices, documentation processes, quality frameworks, and implementation strategies.',
+//     ],
+//   },
+//   {
+//     id: 'patient-safety-training',
+//     icon: LuShieldCheck,
+//     tag: 'Risk & Safety',
+//     number: '02',
+//     title: 'Patient Safety Training',
+//     body: [
+//       'Our Patient Safety Training programs focus on developing a culture of safety by helping participants understand risk management. They also learn incident reporting, quality improvement, and preventive strategies that improve outcomes.',
+//     ],
+//   },
+//   {
+//     id: 'nabh-training',
+//     icon: LuMedal,
+//     tag: 'Accreditation',
+//     number: '03',
+//     title: 'NABH Training',
+//     body: [
+//       'Our NABH Training programs explore the principles, documentation requirements, quality indicators, and implementation processes associated with the National Accreditation Board for Hospitals & Healthcare Providers (NABH).',
+//     ],
+//   },
+//   {
+//     id: 'jci-training',
+//     icon: LuGlobe,
+//     tag: 'Global Standards',
+//     number: '04',
+//     title: 'JCI Training',
+//     body: [
+//       'Our JCI Training programs introduce participants to internationally recognized healthcare quality and patient safety standards. Training includes quality management principles, patient-centered standards, and implementation practices.',
+//     ],
+//   },
+//   {
+//     id: 'caam-hp-training',
+//     icon: LuAward,
+//     tag: 'Compliance',
+//     number: '05',
+//     title: 'CAAM HP Training',
+//     body: [
+//       'Our CAAM HP Training programs dissect the framework, requirements, and quality principles associated with CAAM HP standards. The curriculum is designed to improve awareness and prepare participants for quality-focused roles.',
+//     ],
+//   },
+// ];
+
 const trainingServices = [
   {
-    id: 'healthcare-quality-training',
-    icon: LuChartBar,
-    tag: 'Quality Practice',
+    id: 'ipcn-training',
+    slug: 'ipcn-training',
+    icon: LuShieldCheck,
     number: '01',
-    title: 'Healthcare Quality Training',
+    title: 'IPCN Training',
     body: [
-      'Our Healthcare Quality Training programs equip students and healthcare professionals. Every student leaves us with the knowledge and skills needed to understand healthcare quality systems, regulatory expectations, and quality improvement methodologies.',
-      'Participants gain exposure to industry best practices, documentation processes, quality frameworks, and implementation strategies.',
+      'Our IPCN Training programs equip healthcare professionals with the knowledge and practical skills required to strengthen infection prevention and control practices across healthcare settings.',
+      'Participants gain an understanding of infection prevention principles, surveillance, standard precautions, hand hygiene, healthcare-associated infections, and effective infection control practices.',
+    ],
+  },
+  {
+    id: 'ipco-training',
+    slug: 'ipco-training',
+    icon: LuShieldCheck,
+    number: '02',
+    title: 'IPCO Training',
+    body: [
+      'Our IPCO Training programs focus on developing practical expertise in planning, implementing, monitoring, and improving infection prevention and control systems within healthcare organizations.',
+      'Participants learn about infection control policies, surveillance, monitoring, compliance, documentation, and strategies for maintaining a safe healthcare environment.',
     ],
   },
   {
     id: 'patient-safety-training',
+    slug: 'patient-safety-training',
     icon: LuShieldCheck,
-    tag: 'Risk & Safety',
-    number: '02',
+    number: '03',
     title: 'Patient Safety Training',
     body: [
-      'Our Patient Safety Training programs focus on developing a culture of safety by helping participants understand risk management. They also learn incident reporting, quality improvement, and preventive strategies that improve outcomes.',
+      'Our Patient Safety Training programs focus on developing a strong culture of safety by helping participants understand risk management, incident reporting, quality improvement, and preventive strategies that improve patient outcomes.',
+    ],
+  },
+  {
+    id: 'healthcare-quality-training',
+    slug: 'healthcare-quality-training',
+    icon: LuChartBar,
+    number: '04',
+    title: 'Healthcare Quality Training',
+    body: [
+      'Our Healthcare Quality Training programs equip students and healthcare professionals with the knowledge and skills needed to understand healthcare quality systems, regulatory expectations, and quality improvement methodologies.',
+      'Participants gain exposure to industry best practices, documentation processes, quality frameworks, performance indicators, and implementation strategies.',
     ],
   },
   {
     id: 'nabh-training',
+    slug: 'nabh-training',
     icon: LuMedal,
-    tag: 'Accreditation',
-    number: '03',
+    number: '05',
     title: 'NABH Training',
     body: [
       'Our NABH Training programs explore the principles, documentation requirements, quality indicators, and implementation processes associated with the National Accreditation Board for Hospitals & Healthcare Providers (NABH).',
+      'The program helps participants understand accreditation requirements and prepare healthcare organizations for effective implementation and continuous quality improvement.',
     ],
   },
-  {
-    id: 'jci-training',
-    icon: LuGlobe,
-    tag: 'Global Standards',
-    number: '04',
-    title: 'JCI Training',
-    body: [
-      'Our JCI Training programs introduce participants to internationally recognized healthcare quality and patient safety standards. Training includes quality management principles, patient-centered standards, and implementation practices.',
-    ],
-  },
-  {
-    id: 'caam-hp-training',
-    icon: LuAward,
-    tag: 'Compliance',
-    number: '05',
-    title: 'CAAM HP Training',
-    body: [
-      'Our CAAM HP Training programs dissect the framework, requirements, and quality principles associated with CAAM HP standards. The curriculum is designed to improve awareness and prepare participants for quality-focused roles.',
-    ],
-  },
+  // {
+  //   id: 'jci-training',
+  //   slug: 'jci-training',
+  //   icon: LuGlobe,
+  //   number: '06',
+  //   title: 'JCI Training',
+  //   body: [
+  //     'Our JCI Training programs introduce participants to internationally recognized healthcare quality and patient safety standards. Training includes quality management principles, patient-centered standards, documentation, and implementation practices that support organizational excellence.',
+  //   ],
+  // },
+  // {
+  //   id: 'caam-hp-training',
+  //   slug: 'caam-hp-training',
+  //   icon: LuAward,
+  //   number: '07',
+  //   title: 'CAAM-HP Training',
+  //   body: [
+  //     'Our CAAM-HP Training programs explore the framework, requirements, and quality principles associated with CAAM-HP standards. The curriculum is designed to improve awareness and prepare participants for quality-focused roles.',
+  //   ],
+  // },
 ];
 
 /* ─── Consultancy list items ─────────────────────────── */
@@ -148,6 +239,81 @@ const Services = () => {
                   and support quality improvement through practical, industry-focused learning.
                 </p>
               </motion.div>
+            </motion.div>
+          </Magnetic>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+          2. WHAT WE DO
+      ════════════════════════════════════════════════ */}
+      <section id="wwd" className="svc-section section--light">
+        <div className="container">
+          <Magnetic strength={0.06} className="magnetic--block">
+            <motion.div
+              className="block-head"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={blurReveal}
+            >
+              <span className="eyebrow">Services</span>
+
+              <motion.h2 className="section-title" variants={fadeUp}>
+                What We Do
+              </motion.h2>
+
+              <p className="block-head-desc">
+                NVR Quality Solutions offers a range of training and consultancy services focused on
+                healthcare quality and patient safety. Our expertise includes:
+              </p>
+            </motion.div>
+          </Magnetic>
+
+          <motion.div
+            className="about-wwd__grid"
+            initial={shouldReduceMotion ? 'hidden' : 'hidden'}
+            whileInView={shouldReduceMotion ? 'show' : 'show'}
+            viewport={homeViewport}
+            variants={staggerContainer}
+          >
+            {whatWeDoItems.map((item) => (
+              <Magnetic key={item} strength={0.2} className="magnetic--card">
+                <motion.div
+                  className="about-wwd__item"
+                  variants={staggerItem}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span className="about-wwd__tick" aria-hidden="true">
+                    <FiCheck />
+                  </span>
+                  <span className="about-wwd__txt">{item}</span>
+                </motion.div>
+              </Magnetic>
+            ))}
+          </motion.div>
+
+          {/* Vital Waveform Line Divider */}
+          <Magnetic strength={0.05} className="magnetic--block">
+            <div className="vital-wrap" aria-hidden="true">
+              <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
+                <path d="M0,13 L520,13 L538,3 L556,23 L574,13 L626,13 L644,4 L662,22 L680,13 L1200,13" />
+                <circle cx="556" cy="23" r="3" />
+                <circle cx="662" cy="22" r="3" />
+              </svg>
+            </div>
+          </Magnetic>
+
+          <Magnetic strength={0.05} className="magnetic--block">
+            <motion.div
+              className="why-footline"
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : 'hidden'}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : 'show'}
+              viewport={homeViewport}
+              variants={fadeUp}
+            >
+              <span className="bar" aria-hidden="true" />
+              <p>Every program is designed to provide practical, industry-relevant knowledge that participants can apply in real healthcare settings.</p>
             </motion.div>
           </Magnetic>
         </div>

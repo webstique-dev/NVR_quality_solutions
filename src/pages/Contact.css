@@ -121,45 +121,268 @@ html.lenis body {
 
 /* ─── 2. CONTACT DETAILS & MAP LOCATION ────────────────────────────── */
 
-.cnt-details__layout {
-  width: 100%;
+/* ─── 2. RE-DESIGNED LUXURY CONTACT DETAILS CARDS ────────────────────── */
+
+.cnt-details-section .block-head-desc {
+  max-width: 680px;
+  margin: 12px auto 0;
+  font-size: 1.05rem;
+  color: var(--color-slate, #475569);
+  text-align: center;
 }
 
-.cnt-cards-4col {
+.cnt-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  margin-top: 44px;
 }
 
-@media (max-width: 1024px) {
-  .cnt-cards-4col {
+@media (max-width: 1100px) {
+  .cnt-cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .cnt-cards-4col {
+  .cnt-cards-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.cnt-info-link {
-  color: var(--color-primary-blue, #0F3FB8);
+.cnt-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(15, 63, 184, 0.12);
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow:
+    0 10px 30px -8px rgba(15, 23, 42, 0.06),
+    0 2px 6px -2px rgba(15, 23, 42, 0.03);
+  transition:
+    transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 280ms ease;
+  overflow: hidden;
+}
+
+/* Subtle glowing accent line on top of each card */
+.cnt-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary-blue, #0f3fb8), var(--color-accent-blue, #3fa9ff));
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.cnt-card--red::before {
+  background: linear-gradient(90deg, var(--color-primary-red, #e31b23), #ff6b6b);
+}
+
+.cnt-card--green::before {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.cnt-card:hover {
+  border-color: rgba(15, 63, 184, 0.28);
+  box-shadow:
+    0 20px 40px -12px rgba(15, 63, 184, 0.14),
+    0 4px 12px -2px rgba(15, 23, 42, 0.06);
+}
+
+.cnt-card:hover::before {
+  opacity: 1;
+}
+
+.cnt-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.cnt-card__icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--color-blue-50, #f5f9ff);
+  border: 1px solid rgba(15, 63, 184, 0.14);
+  color: var(--color-primary-blue, #0f3fb8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 260ms ease;
+}
+
+.cnt-card--red .cnt-card__icon-wrap {
+  background: #fff5f5;
+  border-color: rgba(227, 27, 35, 0.14);
+  color: var(--color-primary-red, #e31b23);
+}
+
+.cnt-card--green .cnt-card__icon-wrap {
+  background: #ecfdf5;
+  border-color: rgba(16, 185, 129, 0.18);
+  color: #10b981;
+}
+
+.cnt-card:hover .cnt-card__icon-wrap {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(15, 63, 184, 0.15);
+}
+
+.cnt-card__icon {
+  width: 22px;
+  height: 22px;
+}
+
+.cnt-card__tag {
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(15, 63, 184, 0.06);
+  color: var(--color-primary-blue, #0f3fb8);
+}
+
+.cnt-card--red .cnt-card__tag {
+  background: rgba(227, 27, 35, 0.06);
+  color: var(--color-primary-red, #e31b23);
+}
+
+.cnt-card--green .cnt-card__tag {
+  background: rgba(16, 185, 129, 0.08);
+  color: #059669;
+}
+
+.cnt-card__body {
+  margin-bottom: 24px;
+}
+
+.cnt-card__title {
+  font-family: var(--font-primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-ink, #0f172a);
+  margin: 0 0 8px 0;
+}
+
+.cnt-card__detail-wrap {
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.cnt-card__detail-link {
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary-blue, #0f3fb8);
   text-decoration: none;
-  font-weight: 600;
   transition: color 200ms ease;
 }
 
-.cnt-info-link:hover {
+.cnt-card__detail-link:hover {
+  color: var(--color-primary-red, #e31b23);
   text-decoration: underline;
-  color: var(--color-primary-red, #E31B23);
 }
 
-.cnt-info-sub {
-  font-size: 0.84rem;
+.cnt-card__detail-text {
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-ink, #0f172a);
+}
+
+.cnt-card__subtext {
+  font-family: var(--font-primary);
+  font-size: 0.86rem;
+  line-height: 1.45;
   color: var(--color-slate, #475569);
-  margin-top: 6px;
-  line-height: 1.4;
+  margin: 0;
+}
+
+.cnt-card__footer {
+  padding-top: 16px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.cnt-card__action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-primary-blue, #0f3fb8);
+  background: var(--color-blue-50, #f5f9ff);
+  border: 1px solid rgba(15, 63, 184, 0.16);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cnt-card:hover .cnt-card__action-btn {
+  background: var(--color-primary-blue, #0f3fb8);
+  color: #ffffff;
+  border-color: var(--color-primary-blue, #0f3fb8);
+}
+
+.cnt-card__action-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 220ms ease;
+}
+
+.cnt-card:hover .cnt-card__action-icon {
+  transform: translate(2px, -2px);
+}
+
+.cnt-card__action-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #059669;
+  background: #ecfdf5;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 6px 14px;
+  border-radius: 9999px;
+}
+
+.cnt-card__pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 /* Map Card */

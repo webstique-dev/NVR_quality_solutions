@@ -7,7 +7,7 @@ export const SITE = {
   name: 'NVR Quality Solutions',
   shortName: 'NVR',
   corePosition:
-    'Empowering healthcare professionals to build safer, higher-quality healthcare systems through expert-led training and quality consultancy.',
+    'Empowering Healthcare Organizations to build safer, higher-quality healthcare systems through expert-led training and quality consultancy.',
   brandPromise:
     'We help healthcare professionals understand, implement, and sustain internationally recognized healthcare quality standards through practical training and consulting.',
   uniquePositioning: [
@@ -146,6 +146,17 @@ export const ROUTE_META = {
       'Hospital quality consultant services',
       'Healthcare accreditation consultant in India',
       'Healthcare quality training institute',
+    ],
+  },
+  careers: {
+    title: 'Careers | Join NVR Quality Solutions Team',
+    description:
+      'Explore career opportunities at NVR Quality Solutions. Join our team of healthcare quality consultants, trainers, and specialists building safer healthcare systems.',
+    keywords: [
+      'Healthcare quality jobs',
+      'NABH consultant careers',
+      'Healthcare trainer jobs',
+      'Patient safety consultant careers',
     ],
   },
   faq: {

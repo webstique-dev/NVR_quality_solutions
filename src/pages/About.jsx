@@ -26,7 +26,8 @@ const whatWeDoItems = [
   'Quality implementation support',
   'Accreditation readiness consultancy',
   'Healthcare process improvement',
-  'Professional development programs',
+  // 'Professional development programs',
+  'Train-the-Trainer Programs',
 ];
 
 /* ─── Consultancy items ───────────────────────────────────── */
@@ -74,7 +75,7 @@ const About = () => {
               </motion.span>
 
               <motion.h1 className="about-hero__headline" variants={staggerItem}>
-                Empowering Healthcare Professionals Through{' '}
+                Empowering Healthcare Organizations Through{' '}
                 <span className="hero__highlight">Expert Consultancy</span>
               </motion.h1>
 
@@ -84,15 +85,10 @@ const About = () => {
                   effective, and patient-centered healthcare.
                 </p>
                 <p>
-                  As a trusted provider of Healthcare Quality Training and healthcare quality
-                  consultancy, we are committed to building the knowledge, skills, and systems
-                  required to meet quality standards.
+                  As a trusted healthcare quality partner, we provide tailored training and consultancy services designed to meet the unique needs of healthcare organizations, helping them strengthen their quality systems, improve performance, and achieve sustainable outcomes.
                 </p>
                 <p>
-                  Our approach combines practical learning with real-world implementation. This way,
-                  our participants understand not only what quality standards require, but also how
-                  they are successfully applied within environments.
-                </p>
+                  Our approach combines practical learning with real-world implementation, while recognizing that every healthcare organization operates with different skill sets, geographic considerations, and resource limitations. Our tailored solutions are designed to work within these constraints, enabling organizations to implement practical, sustainable, and effective quality improvements.                </p>
               </motion.div>
             </motion.div>
           </Magnetic>
@@ -158,8 +154,7 @@ const About = () => {
                 </Magnetic>
                 <Magnetic strength={0.06} className="magnetic--block">
                   <p className="about-mv__card-body">
-                    To be a trusted partner in advancing healthcare quality by training professionals
-                    and healthcare organizations to build sustainable quality systems.
+                    To be a trusted partner in advancing and implementing healthcare quality standards by training professionals and healthcare organizations to build sustainable quality systems.
                   </p>
                 </Magnetic>
                 <span className="about-mv__card-accent" aria-hidden="true" />
@@ -172,7 +167,7 @@ const About = () => {
       {/* ═══════════════════════════════════════════════════════
           3. WHAT WE DO
       ════════════════════════════════════════════════════════ */}
-      <section id="wwd" className="about-section section--light">
+      {/* <section id="wwd" className="about-section section--light">
         <div className="container">
           <Magnetic strength={0.06} className="magnetic--block">
             <motion.div
@@ -218,7 +213,6 @@ const About = () => {
             ))}
           </motion.div>
 
-          {/* Vital Waveform Line Divider */}
           <Magnetic strength={0.05} className="magnetic--block">
             <div className="vital-wrap" aria-hidden="true">
               <svg className="vital" viewBox="0 0 1200 26" preserveAspectRatio="none">
@@ -242,7 +236,7 @@ const About = () => {
             </motion.div>
           </Magnetic>
         </div>
-      </section>
+      </section> */}
 
       {/* ═══════════════════════════════════════════════════════
           4. CONSULTANCY SECTION

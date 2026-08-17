@@ -25,31 +25,130 @@ import { ROUTE_META } from '../config/seo';
 import './TrainingPrograms.css';
 
 /* ─── Training programs data ───────────────────────── */
+// const programs = [
+//   {
+//     id: 'healthcare-quality-training',
+//     icon: LuChartBar,
+//     tag: 'Quality Practice',
+//     number: '01',
+//     title: 'Healthcare Quality Training',
+//     description:
+//       'Build a strong understanding of the principles that drive quality in healthcare.',
+//     areas: [
+//       'Fundamentals of healthcare quality',
+//       'Quality management systems',
+//       'Documentation and compliance',
+//       'Performance indicators',
+//       'Continuous improvement methodologies',
+//     ],
+//   },
+//   {
+//     id: 'patient-safety-training',
+//     icon: LuShieldCheck,
+//     tag: 'Risk & Safety',
+//     number: '02',
+//     title: 'Patient Safety Training',
+//     description:
+//       'This program explores the systems, processes, and practices that help reduce risk, improve patient outcomes, and create safer healthcare environments.',
+//     areas: [
+//       'Patient safety principles',
+//       'Risk identification and prevention',
+//       'Incident reporting',
+//       'Root cause analysis',
+//       'Safety culture',
+//     ],
+//   },
+//   {
+//     id: 'nabh-training',
+//     icon: LuMedal,
+//     tag: 'Accreditation',
+//     number: '03',
+//     title: 'NABH Training',
+//     description:
+//       'Designed for professionals looking to understand the National Accreditation Board for Hospitals & Healthcare Providers (NABH) framework.',
+//     areas: [
+//       'NABH standards',
+//       'Quality documentation',
+//       'Department-specific requirements',
+//       'Internal assessments',
+//       'Accreditation preparedness',
+//     ],
+//   },
+//   // {
+//   //   id: 'jci-training',
+//   //   icon: LuGlobe,
+//   //   tag: 'Global Standards',
+//   //   number: '04',
+//   //   title: 'JCI Training',
+//   //   description:
+//   //     'Gain insights into internationally recognized healthcare quality standards followed by leading healthcare institutions around the world.',
+//   //   areas: [
+//   //     'JCI standards',
+//   //     'Patient-centered care',
+//   //     'Performance improvement',
+//   //     'Leadership and governance',
+//   //     'Quality measurement',
+//   //   ],
+//   // },
+//   // {
+//   //   id: 'caam-hp-training',
+//   //   icon: LuAward,
+//   //   tag: 'Compliance',
+//   //   number: '05',
+//   //   title: 'CAAM HP Training',
+//   //   description:
+//   //     'Develop an understanding of CAAM HP standards and their role in strengthening healthcare quality and patient safety.',
+//   //   areas: [
+//   //     'CAAM HP framework',
+//   //     'Compliance requirements',
+//   //     'Documentation practices',
+//   //     'Process improvement',
+//   //     'Quality implementation',
+//   //   ],
+//   // },
+// ];
+
 const programs = [
   {
-    id: 'healthcare-quality-training',
-    icon: LuChartBar,
-    tag: 'Quality Practice',
+    id: 'ipcn-training',
+    icon: LuShieldCheck,
+    tag: 'Infection Prevention',
     number: '01',
-    title: 'Healthcare Quality Training',
+    title: 'IPCN Training',
     description:
-      'Build a strong understanding of the principles that drive quality in healthcare.',
+      'Develop the knowledge and practical skills required to strengthen infection prevention and control practices across healthcare settings.',
     areas: [
-      'Fundamentals of healthcare quality',
-      'Quality management systems',
-      'Documentation and compliance',
-      'Performance indicators',
-      'Continuous improvement methodologies',
+      'Infection prevention principles',
+      'Standard and transmission-based precautions',
+      'Hand hygiene and infection prevention practices',
+      'Healthcare-associated infection prevention',
+      'Infection surveillance and reporting',
+    ],
+  },
+  {
+    id: 'ipco-training',
+    icon: LuShieldCheck,
+    tag: 'Infection Control',
+    number: '02',
+    title: 'IPCO Training',
+    description:
+      'Build practical expertise in planning, implementing, monitoring, and improving infection prevention and control systems within healthcare organizations.',
+    areas: [
+      'Infection control systems',
+      'Infection surveillance',
+      'Policies and procedures',
+      'Monitoring and compliance',
+      'Infection control documentation',
     ],
   },
   {
     id: 'patient-safety-training',
     icon: LuShieldCheck,
     tag: 'Risk & Safety',
-    number: '02',
+    number: '03',
     title: 'Patient Safety Training',
     description:
-      'This program explores the systems, processes, and practices that help reduce risk, improve patient outcomes, and create safer healthcare environments.',
+      'Explore the systems, processes, and practices that help reduce risk, improve patient outcomes, and create safer healthcare environments.',
     areas: [
       'Patient safety principles',
       'Risk identification and prevention',
@@ -59,13 +158,29 @@ const programs = [
     ],
   },
   {
+    id: 'healthcare-quality-training',
+    icon: LuChartBar,
+    tag: 'Quality Practice',
+    number: '04',
+    title: 'Healthcare Quality Training',
+    description:
+      'Build a strong understanding of the principles, systems, and methodologies that drive continuous quality improvement in healthcare.',
+    areas: [
+      'Fundamentals of healthcare quality',
+      'Quality management systems',
+      'Documentation and compliance',
+      'Performance indicators',
+      'Continuous improvement methodologies',
+    ],
+  },
+  {
     id: 'nabh-training',
     icon: LuMedal,
     tag: 'Accreditation',
-    number: '03',
+    number: '05',
     title: 'NABH Training',
     description:
-      'Designed for professionals looking to understand the National Accreditation Board for Hospitals & Healthcare Providers (NABH) framework.',
+      'Develop an understanding of the National Accreditation Board for Hospitals & Healthcare Providers (NABH) framework and its role in healthcare quality and accreditation.',
     areas: [
       'NABH standards',
       'Quality documentation',
@@ -74,38 +189,40 @@ const programs = [
       'Accreditation preparedness',
     ],
   },
-  {
-    id: 'jci-training',
-    icon: LuGlobe,
-    tag: 'Global Standards',
-    number: '04',
-    title: 'JCI Training',
-    description:
-      'Gain insights into internationally recognized healthcare quality standards followed by leading healthcare institutions around the world.',
-    areas: [
-      'JCI standards',
-      'Patient-centered care',
-      'Performance improvement',
-      'Leadership and governance',
-      'Quality measurement',
-    ],
-  },
-  {
-    id: 'caam-hp-training',
-    icon: LuAward,
-    tag: 'Compliance',
-    number: '05',
-    title: 'CAAM HP Training',
-    description:
-      'Develop an understanding of CAAM HP standards and their role in strengthening healthcare quality and patient safety.',
-    areas: [
-      'CAAM HP framework',
-      'Compliance requirements',
-      'Documentation practices',
-      'Process improvement',
-      'Quality implementation',
-    ],
-  },
+
+  // {
+  //   id: 'jci-training',
+  //   icon: LuGlobe,
+  //   tag: 'Global Standards',
+  //   number: '06',
+  //   title: 'JCI Training',
+  //   description:
+  //     'Gain insights into internationally recognized healthcare quality and patient safety standards followed by leading healthcare institutions around the world.',
+  //   areas: [
+  //     'JCI standards',
+  //     'Patient-centered care',
+  //     'Performance improvement',
+  //     'Leadership and governance',
+  //     'Quality measurement',
+  //   ],
+  // },
+
+  // {
+  //   id: 'caam-hp-training',
+  //   icon: LuAward,
+  //   tag: 'Compliance',
+  //   number: '07',
+  //   title: 'CAAM HP Training',
+  //   description:
+  //     'Develop an understanding of CAAM HP standards and their role in strengthening healthcare quality, compliance, and patient safety.',
+  //   areas: [
+  //     'CAAM HP framework',
+  //     'Compliance requirements',
+  //     'Documentation practices',
+  //     'Process improvement',
+  //     'Quality implementation',
+  //   ],
+  // },
 ];
 
 /* ─── Who can join items ───────────────────────────── */
