@@ -93,27 +93,115 @@ const whatWeDoItems = [
 //   },
 // ];
 
+// const trainingServices = [
+//   {
+//     id: 'ipcn-training',
+//     slug: 'ipcn-training',
+//     icon: LuShieldCheck,
+//     number: '01',
+//     title: 'IPCN Training',
+//     body: [
+//       'Our IPCN Training programs equip healthcare professionals with the knowledge and practical skills required to strengthen infection prevention and control practices across healthcare settings.',
+//       'Participants gain an understanding of infection prevention principles, surveillance, standard precautions, hand hygiene, healthcare-associated infections, and effective infection control practices.',
+//     ],
+//   },
+//   {
+//     id: 'ipco-training',
+//     slug: 'ipco-training',
+//     icon: LuShieldCheck,
+//     number: '02',
+//     title: 'IPCO Training',
+//     body: [
+//       'Our IPCO Training programs focus on developing practical expertise in planning, implementing, monitoring, and improving infection prevention and control systems within healthcare organizations.',
+//       'Participants learn about infection control policies, surveillance, monitoring, compliance, documentation, and strategies for maintaining a safe healthcare environment.',
+//     ],
+//   },
+//   {
+//     id: 'patient-safety-training',
+//     slug: 'patient-safety-training',
+//     icon: LuShieldCheck,
+//     number: '03',
+//     title: 'Patient Safety Training',
+//     body: [
+//       'Our Patient Safety Training programs focus on developing a strong culture of safety by helping participants understand risk management, incident reporting, quality improvement, and preventive strategies that improve patient outcomes.',
+//     ],
+//   },
+//   {
+//     id: 'healthcare-quality-training',
+//     slug: 'healthcare-quality-training',
+//     icon: LuChartBar,
+//     number: '04',
+//     title: 'Healthcare Quality Training',
+//     body: [
+//       'Our Healthcare Quality Training programs equip students and healthcare professionals with the knowledge and skills needed to understand healthcare quality systems, regulatory expectations, and quality improvement methodologies.',
+//       'Participants gain exposure to industry best practices, documentation processes, quality frameworks, performance indicators, and implementation strategies.',
+//     ],
+//   },
+//   {
+//     id: 'nabh-training',
+//     slug: 'nabh-training',
+//     icon: LuMedal,
+//     number: '05',
+//     title: 'NABH Training',
+//     body: [
+//       'Our NABH Training programs explore the principles, documentation requirements, quality indicators, and implementation processes associated with the National Accreditation Board for Hospitals & Healthcare Providers (NABH).',
+//       'The program helps participants understand accreditation requirements and prepare healthcare organizations for effective implementation and continuous quality improvement.',
+//     ],
+//   },
+//   // {
+//   //   id: 'jci-training',
+//   //   slug: 'jci-training',
+//   //   icon: LuGlobe,
+//   //   number: '06',
+//   //   title: 'JCI Training',
+//   //   body: [
+//   //     'Our JCI Training programs introduce participants to internationally recognized healthcare quality and patient safety standards. Training includes quality management principles, patient-centered standards, documentation, and implementation practices that support organizational excellence.',
+//   //   ],
+//   // },
+//   // {
+//   //   id: 'caam-hp-training',
+//   //   slug: 'caam-hp-training',
+//   //   icon: LuAward,
+//   //   number: '07',
+//   //   title: 'CAAM-HP Training',
+//   //   body: [
+//   //     'Our CAAM-HP Training programs explore the framework, requirements, and quality principles associated with CAAM-HP standards. The curriculum is designed to improve awareness and prepare participants for quality-focused roles.',
+//   //   ],
+//   // },
+// ];
+
 const trainingServices = [
+  // {
+  //   id: 'ipcn-training',
+  //   slug: 'ipcn-training',
+  //   icon: LuShieldCheck,
+  //   number: '01',
+  //   title: 'IPCN Training',
+  //   body: [
+  //     'Our IPCN Training programs equip healthcare professionals with the knowledge and practical skills required to strengthen infection prevention and control practices across healthcare settings.',
+  //     'Participants gain an understanding of infection prevention principles, surveillance, standard precautions, hand hygiene, healthcare-associated infections, and effective infection control practices.',
+  //   ],
+  // },
+  // {
+  //   id: 'ipco-training',
+  //   slug: 'ipco-training',
+  //   icon: LuShieldCheck,
+  //   number: '02',
+  //   title: 'IPCO Training',
+  //   body: [
+  //     'Our IPCO Training programs focus on developing practical expertise in planning, implementing, monitoring, and improving infection prevention and control systems within healthcare organizations.',
+  //     'Participants learn about infection control policies, surveillance, monitoring, compliance, documentation, and strategies for maintaining a safe healthcare environment.',
+  //   ],
+  // },
   {
-    id: 'ipcn-training',
-    slug: 'ipcn-training',
-    icon: LuShieldCheck,
-    number: '01',
-    title: 'IPCN Training',
+    id: 'healthcare-quality-training',
+    slug: 'healthcare-quality-training',
+    icon: LuChartBar,
+    number: '04',
+    title: 'Healthcare Quality Training',
     body: [
-      'Our IPCN Training programs equip healthcare professionals with the knowledge and practical skills required to strengthen infection prevention and control practices across healthcare settings.',
-      'Participants gain an understanding of infection prevention principles, surveillance, standard precautions, hand hygiene, healthcare-associated infections, and effective infection control practices.',
-    ],
-  },
-  {
-    id: 'ipco-training',
-    slug: 'ipco-training',
-    icon: LuShieldCheck,
-    number: '02',
-    title: 'IPCO Training',
-    body: [
-      'Our IPCO Training programs focus on developing practical expertise in planning, implementing, monitoring, and improving infection prevention and control systems within healthcare organizations.',
-      'Participants learn about infection control policies, surveillance, monitoring, compliance, documentation, and strategies for maintaining a safe healthcare environment.',
+      'Our Healthcare Quality Training programs equip students and healthcare professionals. Every student leaves us with the knowledge and skills needed to understand healthcare quality systems, regulatory expectations, and quality improvement methodologies.',
+      'Participants gain exposure to industry best practices, documentation processes, quality frameworks, and implementation strategies. They can then contribute confidently to quality initiatives within hospitals and healthcare institutions.',
     ],
   },
   {
@@ -123,20 +211,10 @@ const trainingServices = [
     number: '03',
     title: 'Patient Safety Training',
     body: [
-      'Our Patient Safety Training programs focus on developing a strong culture of safety by helping participants understand risk management, incident reporting, quality improvement, and preventive strategies that improve patient outcomes.',
+      'Our Patient Safety Training programs focus on developing a culture of safety by helping participants understand risk management. They also learn incident reporting, quality improvement, and preventive strategies that improve outcomes.',
     ],
   },
-  {
-    id: 'healthcare-quality-training',
-    slug: 'healthcare-quality-training',
-    icon: LuChartBar,
-    number: '04',
-    title: 'Healthcare Quality Training',
-    body: [
-      'Our Healthcare Quality Training programs equip students and healthcare professionals with the knowledge and skills needed to understand healthcare quality systems, regulatory expectations, and quality improvement methodologies.',
-      'Participants gain exposure to industry best practices, documentation processes, quality frameworks, performance indicators, and implementation strategies.',
-    ],
-  },
+
   {
     id: 'nabh-training',
     slug: 'nabh-training',
@@ -145,29 +223,28 @@ const trainingServices = [
     title: 'NABH Training',
     body: [
       'Our NABH Training programs explore the principles, documentation requirements, quality indicators, and implementation processes associated with the National Accreditation Board for Hospitals & Healthcare Providers (NABH).',
-      'The program helps participants understand accreditation requirements and prepare healthcare organizations for effective implementation and continuous quality improvement.',
     ],
   },
-  // {
-  //   id: 'jci-training',
-  //   slug: 'jci-training',
-  //   icon: LuGlobe,
-  //   number: '06',
-  //   title: 'JCI Training',
-  //   body: [
-  //     'Our JCI Training programs introduce participants to internationally recognized healthcare quality and patient safety standards. Training includes quality management principles, patient-centered standards, documentation, and implementation practices that support organizational excellence.',
-  //   ],
-  // },
-  // {
-  //   id: 'caam-hp-training',
-  //   slug: 'caam-hp-training',
-  //   icon: LuAward,
-  //   number: '07',
-  //   title: 'CAAM-HP Training',
-  //   body: [
-  //     'Our CAAM-HP Training programs explore the framework, requirements, and quality principles associated with CAAM-HP standards. The curriculum is designed to improve awareness and prepare participants for quality-focused roles.',
-  //   ],
-  // },
+  {
+    id: 'jci-training',
+    slug: 'jci-training',
+    icon: LuGlobe,
+    number: '06',
+    title: 'JCI Training',
+    body: [
+      'Our JCI Training programs introduce participants to internationally recognized healthcare quality and patient safety standards. Training includes quality management principles, patient-centered standards, documentation, and implementation practices that support organizational excellence.',
+    ],
+  },
+  {
+    id: 'caam-hp-training',
+    slug: 'caam-hp-training',
+    icon: LuAward,
+    number: '07',
+    title: 'CAAM-HP Training',
+    body: [
+      'Our CAAM-HP Training programs dissect the framework, requirements, and quality principles associated with CAAM-HP standards. The curriculum is designed to improve awareness and prepare participants for quality-focused roles.',
+    ],
+  },
 ];
 
 /* ─── Consultancy list items ─────────────────────────── */
