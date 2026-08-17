@@ -20,8 +20,9 @@ import {
   staggerItem,
 } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
+import { generateCourseSchema, generateWebPageSchema } from '../utils/structuredData';
 import './TrainingPrograms.css';
 
 /* ─── Training programs data ───────────────────────── */
@@ -249,14 +250,23 @@ const TrainingPrograms = () => {
   const shouldReduceMotion = useReducedMotion();
   const { isPreloaderGone } = usePreloader();
 
-  useSEO({
-    title: ROUTE_META.trainingPrograms.title,
-    description: ROUTE_META.trainingPrograms.description,
-    keywords: ROUTE_META.trainingPrograms.keywords,
-  });
-
   return (
     <>
+      <SEO
+        {...seoConfig.trainings}
+        structuredData={[
+          generateWebPageSchema({
+            title: seoConfig.trainings.title,
+            description: seoConfig.trainings.description,
+            url: seoConfig.trainings.canonical,
+          }),
+          generateCourseSchema({
+            title: 'Healthcare Quality & Accreditation Training Programs',
+            description: seoConfig.trainings.description,
+            url: seoConfig.trainings.canonical,
+          }),
+        ]}
+      />
       {/* ═══════════════════════════════════════════════
           1. HERO SECTION
       ════════════════════════════════════════════════ */}

@@ -1,42 +1,47 @@
 import { useEffect } from 'react';
+import { SITE_SEO } from '../config/seoConfig';
 
 const upsertMeta = (attr, key, content) => {
+  if (!key) return;
   let el = document.head.querySelector(`meta[${attr}="${key}"]`);
   if (!el) {
     el = document.createElement('meta');
     el.setAttribute(attr, key);
     document.head.appendChild(el);
   }
-  if (content) el.setAttribute('content', content);
+  el.setAttribute('content', content || '');
 };
 
 const upsertLink = (rel, href) => {
+  if (!href) return;
   let el = document.head.querySelector(`link[rel="${rel}"]`);
   if (!el) {
     el = document.createElement('link');
     el.setAttribute('rel', rel);
     document.head.appendChild(el);
   }
-  if (href) el.setAttribute('href', href);
+  el.setAttribute('href', href);
 };
 
-/**
- * Lightweight per-route SEO manager (no heavy head-manager dependency).
- * Accepts { title, description, keywords } plus optional JSON-LD data
- * and OG image override. Runs on mount and whenever inputs change.
- */
-export const useSEO = ({ title, description, keywords = [], jsonLd } = {}) => {
+export const useSEO = ({ title, description, keywords = [], jsonLd, canonical } = {}) => {
   useEffect(() => {
     if (title) {
       document.title = title;
       upsertMeta('name', 'description', description || '');
-      upsertMeta('name', 'keywords', keywords.join(', '));
+      if (keywords && keywords.length > 0) {
+        upsertMeta('name', 'keywords', Array.isArray(keywords) ? keywords.join(', ') : keywords);
+      }
       upsertMeta('property', 'og:title', title);
       upsertMeta('property', 'og:description', description || '');
 
-      const canonical = `${window.location.origin}${window.location.pathname}`;
-      upsertLink('canonical', canonical);
-      upsertMeta('property', 'og:url', canonical);
+      const fullCanonical = canonical
+        ? canonical.startsWith('http')
+          ? canonical
+          : `${SITE_SEO.domain}${canonical}`
+        : `${SITE_SEO.domain}${window.location.pathname}`;
+
+      upsertLink('canonical', fullCanonical);
+      upsertMeta('property', 'og:url', fullCanonical);
       upsertMeta('property', 'og:type', 'website');
     }
 
@@ -53,10 +58,8 @@ export const useSEO = ({ title, description, keywords = [], jsonLd } = {}) => {
       jsonLdScript.remove();
     }
 
-    /* Restore site-level defaults on unmount so the next route is not
-       poisoned by the previous page's meta. */
     return () => {
       if (jsonLdScript) jsonLdScript.remove();
     };
-  }, [title, description, keywords.join('|'), jsonLd]);
+  }, [title, description, JSON.stringify(keywords), jsonLd, canonical]);
 };

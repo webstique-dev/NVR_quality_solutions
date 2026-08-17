@@ -13,8 +13,9 @@ import {
   staggerItem,
 } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
+import { generateWebPageSchema } from '../utils/structuredData';
 import './About.css';
 
 /* ─── What We Do items ────────────────────────────────────── */
@@ -43,14 +44,16 @@ const About = () => {
   const shouldReduceMotion = useReducedMotion();
   const { isPreloaderGone } = usePreloader();
 
-  useSEO({
-    title: ROUTE_META.about.title,
-    description: ROUTE_META.about.description,
-    keywords: ROUTE_META.about.keywords,
-  });
-
   return (
     <>
+      <SEO
+        {...seoConfig.about}
+        structuredData={generateWebPageSchema({
+          title: seoConfig.about.title,
+          description: seoConfig.about.description,
+          url: seoConfig.about.canonical,
+        })}
+      />
       {/* ═══════════════════════════════════════════════════════
           1. HERO SECTION
       ════════════════════════════════════════════════════════ */}

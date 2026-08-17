@@ -4,23 +4,36 @@ import SectionTitle from '../components/Common/SectionTitle';
 import ContentPending from '../components/Common/ContentPending';
 import CTABanner from '../components/Layout/CTABanner';
 import { trainingPrograms } from '../data/trainingPrograms';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
+import { generateCourseSchema, generateBreadcrumbSchema } from '../utils/structuredData';
 
 const TrainingDetail = () => {
   const { slug } = useParams();
   const program = trainingPrograms.find((p) => p.slug === slug);
 
-  useSEO({
-    title: program ? ROUTE_META.trainingDetail.title(program.title) : ROUTE_META.notFound.title,
-    description: program
-      ? ROUTE_META.trainingDetail.description(program.title)
-      : ROUTE_META.notFound.description,
-    keywords: [
-      ...ROUTE_META.trainingPrograms.keywords,
-      ...(program ? [program.title.toLowerCase()] : []),
-    ],
-  });
+  const detailSEO = program
+    ? seoConfig.trainingDetail(program)
+    : seoConfig.notFound;
+
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Trainings', url: '/trainings' },
+    { name: program ? program.title : 'Training Detail', url: `/trainings/${slug}` },
+  ];
+
+  const schemas = [
+    generateBreadcrumbSchema(breadcrumbs),
+    ...(program
+      ? [
+        generateCourseSchema({
+          title: program.title,
+          description: detailSEO.description,
+          url: detailSEO.canonical,
+        }),
+      ]
+      : []),
+  ];
 
   if (!program) {
     return (
@@ -37,6 +50,10 @@ const TrainingDetail = () => {
 
   return (
     <>
+      <SEO
+        {...detailSEO}
+        structuredData={schemas}
+      />
       <PageBanner
         eyebrow="Training Program"
         title={program.title}

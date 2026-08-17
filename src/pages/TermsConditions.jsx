@@ -1,16 +1,12 @@
 import PageBanner from '../components/Layout/PageBanner';
 import ContentPending from '../components/Common/ContentPending';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
 
 const TermsConditions = () => {
-  useSEO({
-    title: ROUTE_META.terms.title,
-    description: ROUTE_META.terms.description,
-  });
-
   return (
     <>
+      <SEO {...seoConfig.terms} />
       <PageBanner
         eyebrow="Legal"
         title="Terms & Conditions"

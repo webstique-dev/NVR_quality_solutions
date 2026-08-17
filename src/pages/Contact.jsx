@@ -25,8 +25,9 @@ import {
 } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
 import useSectionLenis from '../hooks/useSectionLenis';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
+import { generateWebPageSchema } from '../utils/structuredData';
 import './Contact.css';
 
 /* ─── Contact Info Items ────────────────────────────── */
@@ -112,14 +113,16 @@ const Contact = () => {
   const formSectionRef = useRef(null);
   useSectionLenis(formSectionRef);
 
-  useSEO({
-    title: ROUTE_META.contact.title,
-    description: ROUTE_META.contact.description,
-    keywords: ROUTE_META.contact.keywords,
-  });
-
   return (
     <>
+      <SEO
+        {...seoConfig.contact}
+        structuredData={generateWebPageSchema({
+          title: seoConfig.contact.title,
+          description: seoConfig.contact.description,
+          url: seoConfig.contact.canonical,
+        })}
+      />
       {/* ═══════════════════════════════════════════════
           1. HERO SECTION
       ════════════════════════════════════════════════ */}

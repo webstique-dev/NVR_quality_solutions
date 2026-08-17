@@ -2,27 +2,26 @@ import PageBanner from '../components/Layout/PageBanner';
 import FAQAccordion from '../components/Common/FAQAccordion';
 import CTABanner from '../components/Layout/CTABanner';
 import { faqs } from '../data/faqs';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
+import { generateFAQSchema, generateWebPageSchema } from '../utils/structuredData';
 
 const FAQ = () => {
-  useSEO({
-    title: ROUTE_META.faq.title,
-    description: ROUTE_META.faq.description,
-    keywords: ROUTE_META.faq.keywords,
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: faqs.map((f) => ({
-        '@type': 'Question',
-        name: f.question,
-        acceptedAnswer: { '@type': 'Answer', text: f.answer },
-      })),
-    },
-  });
+  const faqSchemas = [
+    generateWebPageSchema({
+      title: seoConfig.faq.title,
+      description: seoConfig.faq.description,
+      url: seoConfig.faq.canonical,
+    }),
+    generateFAQSchema(faqs),
+  ];
 
   return (
     <>
+      <SEO
+        {...seoConfig.faq}
+        structuredData={faqSchemas}
+      />
       <PageBanner
         eyebrow="FAQ"
         title="Frequently Asked Questions"

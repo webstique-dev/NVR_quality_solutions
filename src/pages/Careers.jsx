@@ -24,8 +24,9 @@ import {
   staggerItem,
 } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
+import { generateWebPageSchema } from '../utils/structuredData';
 import './Careers.css';
 
 /* ─── Culture Pillars Data ──────────────────────────── */
@@ -159,11 +160,7 @@ const Careers = () => {
     message: '',
   });
 
-  useSEO({
-    title: ROUTE_META.careers.title,
-    description: ROUTE_META.careers.description,
-    keywords: ROUTE_META.careers.keywords,
-  });
+
 
   const handleApplyClick = (jobTitle) => {
     setSelectedRole(jobTitle);
@@ -193,6 +190,14 @@ const Careers = () => {
 
   return (
     <>
+      <SEO
+        {...seoConfig.careers}
+        structuredData={generateWebPageSchema({
+          title: seoConfig.careers.title,
+          description: seoConfig.careers.description,
+          url: seoConfig.careers.canonical,
+        })}
+      />
       {/* ═══════════════════════════════════════════════
           1. HERO SECTION
       ════════════════════════════════════════════════ */}

@@ -1,18 +1,14 @@
 import { motion } from 'framer-motion';
 import Button from '../components/Common/Button';
 import Magnetic from '../components/ui/Magnetic';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
 import './NotFound.css';
 
 const NotFound = () => {
-  useSEO({
-    title: ROUTE_META.notFound.title,
-    description: ROUTE_META.notFound.description,
-  });
-
   return (
     <section className="not-found section--dark">
+      <SEO {...seoConfig.notFound} robots="noindex, follow" />
       <div className="container not-found__inner">
         <Magnetic strength={0.06} className="magnetic--block">
           <motion.span

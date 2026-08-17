@@ -19,8 +19,9 @@ import {
   staggerItem,
 } from '../animations/variants';
 import { homeViewport } from '../animations/viewport';
-import { useSEO } from '../hooks/useSEO';
-import { ROUTE_META } from '../config/seo';
+import SEO from '../components/Common/SEO';
+import { seoConfig } from '../config/seoConfig';
+import { generateServiceSchema, generateWebPageSchema } from '../utils/structuredData';
 import './Services.css';
 
 /* ─── What We Do items ────────────────────────────────────── */
@@ -193,14 +194,23 @@ const Services = () => {
   const shouldReduceMotion = useReducedMotion();
   const { isPreloaderGone } = usePreloader();
 
-  useSEO({
-    title: ROUTE_META.services.title,
-    description: ROUTE_META.services.description,
-    keywords: ROUTE_META.services.keywords,
-  });
-
   return (
     <>
+      <SEO
+        {...seoConfig.services}
+        structuredData={[
+          generateWebPageSchema({
+            title: seoConfig.services.title,
+            description: seoConfig.services.description,
+            url: seoConfig.services.canonical,
+          }),
+          generateServiceSchema({
+            name: 'Healthcare Quality Consultancy',
+            description: seoConfig.services.description,
+            url: seoConfig.services.canonical,
+          }),
+        ]}
+      />
       {/* ═══════════════════════════════════════════════
           1. HERO / PAGE BANNER
       ════════════════════════════════════════════════ */}
