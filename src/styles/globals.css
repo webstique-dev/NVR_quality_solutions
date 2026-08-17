@@ -359,3 +359,28 @@ p + p {
     padding: 18px 20px;
   }
 }
+
+/* ─── Performance & GPU Acceleration Optimizations ────────────────── */
+.navbar,
+.custom-cursor__inner,
+.custom-cursor__outer,
+.magnetic,
+.pillar-card,
+.cnt-card,
+.service-card,
+.training-card,
+.car-card,
+.hero__glow,
+.float-badge,
+.float-card {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Off-screen rendering optimizations */
+.home-faq-wrap,
+.footer,
+.closing-visual__inner {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+}

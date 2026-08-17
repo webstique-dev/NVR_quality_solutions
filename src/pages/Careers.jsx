@@ -227,7 +227,7 @@ const Careers = () => {
                 </p>
               </motion.div>
 
-              <motion.div className="car-hero__chips" variants={staggerItem}>
+              {/* <motion.div className="car-hero__chips" variants={staggerItem}>
                 <span className="car-hero__chip">
                   <LuAward /> Expert-Led Team
                 </span>
@@ -237,7 +237,7 @@ const Careers = () => {
                 <span className="car-hero__chip">
                   <LuBookOpen /> Continuous Growth
                 </span>
-              </motion.div>
+              </motion.div> */}
             </motion.div>
           </Magnetic>
         </div>

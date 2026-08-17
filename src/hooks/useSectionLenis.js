@@ -5,7 +5,10 @@ export default function useSectionLenis(sectionRef, { lerp = 0.085 } = {}) {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return undefined;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (typeof window === 'undefined') return undefined;
+    const isTouch = window.matchMedia?.('(pointer: coarse), (hover: none)').matches;
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (isTouch || reducedMotion) return undefined;
 
     const lenis = new Lenis({
       lerp,

@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { motion, useReducedMotion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { LuCheck, LuShieldCheck, LuArrowRight } from 'react-icons/lu';
 import Button from '../Common/Button';
@@ -43,17 +44,27 @@ const Hero = () => {
   const cardX = useTransform(smoothMouseX, [-0.5, 0.5], [22, -22]);
   const cardY = useTransform(smoothMouseY, [-0.5, 0.5], [22, -22]);
 
+  const heroRectRef = useRef(null);
+
+  const handleMouseEnter = (e) => {
+    if (shouldReduceMotion || (typeof window !== 'undefined' && window.innerWidth < 768)) return;
+    heroRectRef.current = e.currentTarget.getBoundingClientRect();
+  };
+
   const handleMouseMove = (e) => {
     if (shouldReduceMotion || (typeof window !== 'undefined' && window.innerWidth < 768)) return;
-    const { currentTarget, clientX, clientY } = e;
-    const rect = currentTarget.getBoundingClientRect();
-    const x = (clientX - rect.left) / rect.width - 0.5;
-    const y = (clientY - rect.top) / rect.height - 0.5;
+    if (!heroRectRef.current) {
+      heroRectRef.current = e.currentTarget.getBoundingClientRect();
+    }
+    const rect = heroRectRef.current;
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
     mouseX.set(x);
     mouseY.set(y);
   };
 
   const handleMouseLeave = () => {
+    heroRectRef.current = null;
     mouseX.set(0);
     mouseY.set(0);
   };
@@ -61,6 +72,7 @@ const Hero = () => {
   return (
     <section
       className="hero"
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ opacity: isPreloaderGone ? 1 : 0 }}

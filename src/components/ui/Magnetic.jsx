@@ -40,11 +40,24 @@ const Magnetic = memo(function Magnetic({
   const springX = useSpring(x, spring);
   const springY = useSpring(y, spring);
 
-  const handleMouseMove = (e) => {
+  const rectRef = useRef(null);
+
+  const handleMouseEnter = () => {
     if (shouldReduceMotion || isCoarsePointer) return;
     const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
+    if (el) {
+      rectRef.current = el.getBoundingClientRect();
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (shouldReduceMotion || isCoarsePointer) return;
+    if (!rectRef.current) {
+      const el = ref.current;
+      if (!el) return;
+      rectRef.current = el.getBoundingClientRect();
+    }
+    const rect = rectRef.current;
     const middleX = e.clientX - (rect.left + rect.width / 2);
     const middleY = e.clientY - (rect.top + rect.height / 2);
     x.set(middleX * strength);
@@ -52,6 +65,7 @@ const Magnetic = memo(function Magnetic({
   };
 
   const reset = () => {
+    rectRef.current = null;
     x.set(0);
     y.set(0);
   };
@@ -61,6 +75,7 @@ const Magnetic = memo(function Magnetic({
       ref={ref}
       className={`magnetic ${className}`.trim()}
       style={{ x: springX, y: springY }}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={reset}
       {...props}
